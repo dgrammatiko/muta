@@ -52,7 +52,7 @@
     "autoprefixer": "^10.0.0",
     "axios": "^1.2.0",
     "chalk": "^5.0.0",
-    "commander": "^5.0.0",
+    "commander": "^9.0.0",
     "cssnano": "^5.1.14",
     "eslint": "^8.2.0",
     "fs-jetpack": "^5.1.0",
