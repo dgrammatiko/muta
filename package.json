@@ -43,7 +43,7 @@
   "homepage": "https://github.com/dgrammatiko/j4-tools#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
-    "@rollup/plugin-babel": "^5.0.4",
+    "@rollup/plugin-babel": "^6.0.0",
     "@rollup/plugin-commonjs": "^23.0.7",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-replace": "^2.3.3",
