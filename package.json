@@ -68,7 +68,7 @@
     "recursive-readdir": "^2.2.2",
     "rollup": "^2.1.0",
     "sass": "^1.57.0",
-    "stylelint": "^13.2.1",
+    "stylelint": "^14.0.0",
     "stylelint-config-recommended": "^3.0.0",
     "symlink-dir": "^5.1.0"
   },
