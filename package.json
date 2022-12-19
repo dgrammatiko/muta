@@ -58,7 +58,7 @@
     "fs-jetpack": "^5.1.0",
     "postcss": "^8.3.11",
     "postcss-cli": "10.1.0",
-    "postcss-custom-media": "7.0.8",
+    "postcss-custom-media": "9.0.1",
     "postcss-custom-selectors": "5.1.2",
     "postcss-discard-comments": "4.0.2",
     "postcss-easy-import": "4.0.0",
