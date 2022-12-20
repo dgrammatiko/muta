@@ -25,7 +25,6 @@
     <folder>css</folder>
     <folder>images</folder>
     <folder>js</folder>
-    <folder>scss</folder>
   </media>
   <positions>
     <!-- used directly in the template -->
