@@ -65,7 +65,7 @@ joomla-tab {
           left: 0;
           height: 3px;
           content: "";
-          background-color: var(--template-link-color);
+          // background-color: var(--template-link-color);
           opacity: .8;
         }
 
@@ -89,9 +89,10 @@ joomla-tab {
   > button[role=region] {
     width: 100%;
     padding: .7rem;
-    color: var(--template-text-light);
+    // color: var(--template-text-light);
     text-align: start;
-    background-color: var(--template-link-color);
+    // background-color: var(--template-link-color);
+    background-color: var(--body-bg);
     border: 1px solid var(--template-text-light);
     border-top: 0;
 
@@ -167,7 +168,7 @@ joomla-tab[orientation=vertical] {
       display: block;
       padding: .75em 1em;
       margin: -1px 0;
-      color: var(--template-special-color);
+      // color: var(--template-special-color);
       text-decoration: none;
       border-top: 1px solid transparent;
       border-bottom: 1px solid $gray-300;
@@ -223,7 +224,7 @@ joomla-tab[view=accordion] {
       position: relative;
       display: block;
       padding: .75em 1em;
-      color: var(--template-text-light);
+      // color: var(--template-text-light);
       text-align: start;
       text-decoration: none;
       border: 0;
@@ -241,7 +242,8 @@ joomla-tab[view=accordion] {
         width: calc(100% + 2px);
         height: 5px;
         content: "";
-        background-color: var(--template-bg-dark);
+        // background-color: var(--template-bg-dark);
+        background-color: var(--body-bg);
         opacity: .8;
       }
     }
@@ -315,11 +317,11 @@ joomla-tab[view=accordion] {
       }
 
       .respTable td:last-child {
-        border-bottom: 1em var(--template-bg-dark-80) solid;
+        // border-bottom: 1em var(--template-bg-dark-80) solid;
       }
 
       .oddCol {
-        background: var(--template-bg-light);
+        // background: var(--template-bg-light);
       }
     }
   }

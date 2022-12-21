@@ -8,39 +8,39 @@
   max-width: $input-max-width;
   cursor: pointer;
   // background: $form-select-background #{"/* rtl:"}$form-select-background-rtl#{"*/"};;
-  background-color: $form-select-bg;
+  // background-color: $form-select-bg;
   border: $input-border;
 
   &[multiple] {
     padding: 0;
-    background-color: var(--white-offset);
+    // background-color: var(--white-offset);
 
     option {
       padding: $form-select-multiple-padding-y $form-select-padding-x;
-      background-color: var(--white-offset);
+      // background-color: var(--white-offset);
 
       &:checked {
         color: var(--template-text-light);
-        background-color: var(--template-bg-dark) !important;
+        // background-color: var(--template-bg-dark) !important;
       }
     }
   }
 
   &.form-select-success,
   &.custom-select-success {
-    color: var(--success);
+    color: var(--white);
     background-color: var(--success);
     border-color: var(--success);
 
     option {
-      color: $form-select-color;
-      background-color: var(--white-offset);
+      // color: $form-select-color;
+      // background-color: var(--white-offset);
     }
   }
 
   &.form-select-danger,
   &.custom-select-danger {
-    color: var(--danger);
+    color: var(--white);
     background-color: var(--danger);
     border-color: var(--danger);
 
@@ -64,7 +64,7 @@
 
   optgroup,
   option {
-    color: var(--template-text-dark);
-    background-color: $white;
+    // color: var(--template-text-dark);
+    // background-color: $white;
   }
 }

@@ -2,15 +2,16 @@
   .toggle-outside {
     border: $input-border;
     border-radius: $border-radius;
+    background: #666;
 
     &:focus {
       box-shadow: $input-box-shadow;
     }
   }
-  // input:focus ~ .toggle-outside {
-  //   border-color: $focuscolor;
-  //   box-shadow: $focusshadow;
-  // }
+  input:focus ~ .toggle-outside {
+    border-color: $form-switch-focus-color;
+    box-shadow: $input-box-shadow;
+  }
 }
 .disabled {
   opacity: $btn-disabled-opacity;

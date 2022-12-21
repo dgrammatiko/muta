@@ -73,26 +73,47 @@ $prefix: "";
 @import "pages/com_users";
 
 // Custom Atum colors
- :root {
-   @each $color, $value in $atum-colors {
-     --#{$prefix}#{$color}: #{$value};
-   }
-
-   // @TODO Find out why this color is different
-   --info-rgb: 42, 105, 184;
- }
+:root {
+  @each $color, $value in $atum-colors {
+    --#{$prefix}#{$color}: #{$value};
+  }
+}
 
 :root[data-bs-theme="dark"] {
   background-color: var(--black);
-  color: var(--white);
+  color: #adb5bd;
+  --template-text-light: #adb5bd;
+
+  body {
+    background-color: var(--black);
+  }
   .quick-icons .quickicon {
     --bg-color: hsl(var(--hue), 30%, 7%);
   }
   .com_cpanel .module-actions>* {
-    color: var(--template-bg-dark-70);
+    color: var(--template-bg-dark-10);
   }
   .table {
-    --table-bg: unset;
+    --table-bg: var(--body-bg);
+  }
+  .switcher .toggle-inside {
+    background: var(--body-bg);
+  }
+  .js-editor-tinymce > textarea {
+    background: var(--body-bg);
+    color: #adb5bd;
+  }
+  joomla-field-media .field-media-preview {
+    background-color: var(--dark-bg-subtle);
+  }
+  .choices__input {
+    color: #adb5bd;
+  }
+  .choices__inner {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+  }
+  joomla-field-mediamore details {
+    background-color: var(--body-bg);
   }
 }
 

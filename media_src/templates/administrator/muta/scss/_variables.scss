@@ -489,8 +489,8 @@ $input-btn-submenu-icon-distance:   1rem;
 
 // Custom form
 $form-select-indicator-padding:    3rem;
-$form-select-bg:                   var(--template-bg-light);
-$form-select-bg-size:              116rem;
+// $form-select-bg:                   var(--template-bg-light);
+// $form-select-bg-size:              116rem;
 // $form-select-indicator:            url("../images/select-bg.svg");
 // $form-select-indicator-rtl:        url("../images/select-bg-rtl.svg");
 // $form-select-indicator-active:     url("../../../images/select-bg.svg");
@@ -501,6 +501,9 @@ $form-select-box-shadow:           $atum-box-shadow;
 $form-select-bg-size-sm:           75rem;
 $form-select-multiple-padding-y:   .3rem;
 $form-file-button-color:           var(--white);
+
+// $form-select-indicator-color-dark: $body-color-dark !default;
+$form-select-indicator-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
 
 //input
 $input-padding:                    .5rem 1rem;

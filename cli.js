@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const { Command } = require('commander');
 const { existsSync } = require('fs');
-const chalk = require('chalk');
 const { fetchJoomla } = require('./tools/fetchJoomla');
 // const { resolveComponent } = require('./tools/resolvers/components')
 const { symLink } = require('./tools/symLinks');
@@ -10,9 +9,9 @@ const { scripts } = require('./tools/compilejs');
 const { copyThru } = require('./tools/copythru');
 const { logger } = require('./tools/utils/logger.js');
 
+const program = new Command();
 
 (async () => {
-  const program = new Command();
   program
     .option('-i, --init', 'Initialise')
     .option('-l, --link [type]', 'Link')
@@ -22,28 +21,29 @@ const { logger } = require('./tools/utils/logger.js');
 
   program.parse(process.argv);
 
-  if (program.link) {
+  const options = program.opts();
+  if (options.link) {
     if (!existsSync) {
       logger('Initializing...');
       await fetchJoomla('4.2.5');
 
     }
-    logger(chalk.greenBright(`linking ${program.link}`));
+    logger(`linking ${options.link}`);
     symLink()
   }
 
-  if (program.build) {
-    logger(chalk.greenBright(`building ${program.build}`));
-    copyThru(program.build)
-    stylesheets(program.build)
-    scripts(program.build)
+  if (options.build) {
+    logger(`building ${options.build}`);
+    copyThru(options.build)
+    stylesheets(options.build)
+    scripts(options.build)
   }
 
-  if (program.watch) logger(`watch type ${program.watch}`);
+  if (options.watch) logger(`watch type ${options.watch}`);
 
-  if (program.release === true) logger('Release');
+  if (options.release === true) logger('Release');
 
-  if (program.init === true) {
+  if (options.init === true) {
     logger('Initializing...');
     fetchJoomla('4.2.5');
   }
