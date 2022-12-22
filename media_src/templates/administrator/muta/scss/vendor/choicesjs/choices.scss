@@ -57,7 +57,7 @@
   display: block;
   width: 100%;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border-color);
   background-color: var(--body-bg);
   margin: 0;
 }
@@ -100,7 +100,7 @@
   height: 0;
   width: 0;
   border-style: solid;
-  border-color: #333 transparent transparent transparent;
+  border-color: var(--border-color) transparent transparent transparent;
   border-width: 5px;
   position: absolute;
   right: 11.5px;
@@ -110,7 +110,7 @@
 }
 
 .choices[data-type*=select-one].is-open::after {
-  border-color: transparent transparent #333 transparent;
+  border-color: transparent transparent var(--border-color) transparent;
   margin-top: -7.5px;
 }
 
@@ -164,7 +164,7 @@
   width: 100%;
   background-color: var(--body-bg);
   padding: 7.5px 7.5px 3.75px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 2.5px;
   font-size: 14px;
   min-height: 44px;
@@ -173,7 +173,7 @@
 
 .is-focused .choices__inner,
 .is-open .choices__inner {
-  border-color: #b7b7b7;
+  border-color: var(--border-color);
 }
 
 .is-open .choices__inner {
@@ -241,7 +241,7 @@
 
 .is-disabled .choices__list--multiple .choices__item {
   background-color: #aaaaaa;
-  border: 1px solid #919191;
+  border: 1px solid var(--border-color);
 }
 
 .choices__list--dropdown {
@@ -250,7 +250,7 @@
   position: absolute;
   width: 100%;
   background-color: var(--body-bg);
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   top: 100%;
   margin-top: -1px;
   border-bottom-left-radius: 2.5px;
@@ -265,7 +265,7 @@
 }
 
 .is-open .choices__list--dropdown {
-  border-color: #b7b7b7;
+  border-color: var(--border-color);
 }
 
 .is-flipped .choices__list--dropdown {
@@ -348,7 +348,7 @@
   font-weight: 600;
   font-size: 12px;
   padding: 10px;
-  border-bottom: 1px solid #f7f7f7;
+  border-bottom: 1px solid var(--border-color);
   color: gray;
 }
 
@@ -413,7 +413,7 @@
   padding: .1rem 1rem;
   margin-bottom: 0;
   font-size: 1rem;
-  border: $input-border;
+  // border: $input-border;
   border-radius: $border-radius;
 
   // .is-focused & {

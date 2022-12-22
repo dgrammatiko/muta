@@ -235,7 +235,7 @@ details {
 
   summary {
     // color: var(--template-link-color);
-    color: var(--template-bg-dark-65);
+    color: rgba(var(--link-color-rgb), var(--link-opacity, 1));
 
 
     ~ * {

@@ -134,17 +134,17 @@
     font-weight: 700;
     line-height: 1;
     color: hsl(var(--hue),30%,40%);
-    background-color: hsl(var(--hue),35%,98%);
-    border: 1px solid hsl(var(--hue),35%,88%);
+    background-color: var(--template-bg-dark); //hsl(var(--hue),35%,98%);
+    border: 1px solid var(--template-bg-dark); //hsl(var(--hue),35%,88%);
     border-radius: $border-radius;
     transition: all .15s ease-in;
 
     &:hover,
     &:focus,
     &:active {
-      color: #fff;
+      // color: #fff;
       text-decoration: none;
-      background: var(--template-bg-dark);
+      background: hsl(var(--hue), 35%, 98%); //var(--template-bg-dark);
     }
 
     > span {

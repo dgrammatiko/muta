@@ -40,13 +40,13 @@
   }
 
   .btn {
-    --subhead-btn-accent: var(--template-text-dark);
+    // --subhead-btn-accent: var(--template-text-dark);
     padding: 0 1rem;
     margin: 5px 0;
     font-size: 1rem;
     line-height: $atum-toolbar-line-height;
-    color: var(--secondary-text);
-    background-color: var(--body-bg);
+    color: var(--template-text-light); //var(--secondary-text);
+    background-color: var(--template-bg-dark);
     // color: var(--template-text-dark);
     // background: $white;
     // border-color: hsl(var(--hue),20%,80%);
@@ -89,7 +89,10 @@
     }
 
     &.btn-action {
-      --subhead-btn-accent: var(--template-bg-dark);
+      --subhead-btn-accent:hsla(0, 0%, 100%, .9);
+      background-color: var(--template-bg-dark);
+      border-color: var(--subhead-btn-accent);
+      color: hsla(0, 0%, 100%, .9);
       display: flex;
       align-items: center;
 
@@ -99,6 +102,15 @@
         font-weight: 900;
         content: "\f078";
         border: 0;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        --subhead-btn-accent: var(--template-bg-dark);
+        background-color: hsla(0, 0%, 100%, .9);
+        border-color: hsla(0, 0%, 100%, .9);
+        color: var(--template-bg-dark);
       }
     }
 

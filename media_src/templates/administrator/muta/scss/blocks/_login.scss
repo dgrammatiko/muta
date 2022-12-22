@@ -30,7 +30,7 @@
     // color: var(--template-text-dark);
     // background: var(--white);
     border-radius: 10px;
-    box-shadow: 0 4px 20px -10px var(--template-bg-dark-50);
+    // box-shadow: 0 4px 20px -10px var(--template-bg-dark-50);
 
     @include media-breakpoint-down(lg) {
       margin-bottom: 3rem;
@@ -107,12 +107,13 @@
 
   h1 {
     margin-bottom: .25rem;
-    color: $white;
+    // color: $white;
     text-align: center;
   }
 
   h2 {
     font-weight: $font-weight-normal;
+    text-align: center;
     // color: var(--template-bg-dark-10);
   }
 
