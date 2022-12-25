@@ -1,16 +1,16 @@
 .switcher {
   .toggle-outside {
-    border: $input-border;
+    border: .1rem solid var(--bs-border-color);
     border-radius: $border-radius;
-    background: #666;
+    background: var(--bs-border-color);
 
     &:focus {
-      box-shadow: $input-box-shadow;
+      @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
     }
   }
   input:focus ~ .toggle-outside {
-    border-color: $form-switch-focus-color;
-    box-shadow: $input-box-shadow;
+    border-color: var(--bs-border-color);
+    @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
   }
 }
 .disabled {

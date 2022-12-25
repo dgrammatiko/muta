@@ -18,6 +18,7 @@ $app    = Factory::getApplication();
 $input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
+$entry  = $displayData['entry'];
 $option = $input->get('option', '');
 $view   = $input->get('view', '');
 $layout = $input->get('layout', 'default');

@@ -1,4 +1,7 @@
 .subhead {
+  --subhead-btn-accent: var(--template-text-dark);
+  --subhead-btn-bg: var(--bs-light);
+  --subhead-btn-color: var(--bs-light-text);
   position: sticky;
   top: 0;
   right: 0;
@@ -7,10 +10,9 @@
   width: auto;
   min-height: 43px;
   padding: 8px 1rem;
-  color: var(--white); //#0c192e;
-  background: var(--template-bg-dark);
-  // background-image: linear-gradient(var(--toolbar-bg), var(--template-bg-dark-3));
-  // box-shadow: 0 2px 10px -8px var(--template-bg-dark-50);
+  color: var(--bs-white);
+  background: var(--bs-body-bg);
+  box-shadow: 0 2px 10px -8px var(--bs-border-color);
 
   .row {
     margin-right: 0;
@@ -40,16 +42,12 @@
   }
 
   .btn {
-    // --subhead-btn-accent: var(--template-text-dark);
     padding: 0 1rem;
     margin: 5px 0;
     font-size: 1rem;
     line-height: $atum-toolbar-line-height;
-    color: var(--template-text-light); //var(--secondary-text);
-    background-color: var(--template-bg-dark);
-    // color: var(--template-text-dark);
-    // background: $white;
-    // border-color: hsl(var(--hue),20%,80%);
+    background-color: var(--subhead-btn-bg);
+    color: var(--subhead-btn-color);
 
     > span {
       display: inline-block;
@@ -69,11 +67,11 @@
     }
 
     &.btn-success {
-      --subhead-btn-accent: var(--success);
+      --subhead-btn-accent: var(--bs-success);
     }
 
     &.btn-danger {
-      --subhead-btn-accent: var(--danger);
+      --subhead-btn-accent: var(--bs-danger);
     }
 
     &.btn-primary {
@@ -85,14 +83,12 @@
     }
 
     &.btn-info {
-      --subhead-btn-accent: var(--info);
+      --subhead-btn-accent: var(--bs-info);
     }
 
     &.btn-action {
-      --subhead-btn-accent:hsla(0, 0%, 100%, .9);
-      background-color: var(--template-bg-dark);
+      --subhead-btn-accent: var(--template-bg-dark-60);
       border-color: var(--subhead-btn-accent);
-      color: hsla(0, 0%, 100%, .9);
       display: flex;
       align-items: center;
 
@@ -102,15 +98,24 @@
         font-weight: 900;
         content: "\f078";
         border: 0;
+        color: var(--subhead-btn-accent);
+      }
+
+      &:focus-visible {
+        background-color: var(--template-bg-dark-90);
+        border-color: var(--template-bg-dark-90);
+        box-shadow: 0 0 0 0.25rem var(--template-bg-dark-60);
+        color: var(--bs-btn-hover-color);
+        outline: 0;
       }
 
       &:hover,
       &:active,
       &:focus {
-        --subhead-btn-accent: var(--template-bg-dark);
-        background-color: hsla(0, 0%, 100%, .9);
-        border-color: hsla(0, 0%, 100%, .9);
-        color: var(--template-bg-dark);
+        --subhead-btn-accent: var(--template-bg-dark-90);
+        &::after {
+          color: var(--bs-white);
+        }
       }
     }
 

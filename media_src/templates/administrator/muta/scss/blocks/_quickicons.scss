@@ -82,17 +82,17 @@
 
       &.warning,
       &.danger {
-        --text-color: var(--danger);
+        --text-color: var(--bs-danger);
         --bg-color: #f4f0f0;
         --icon-color: #ce8484;
-        --bg-color-hvr: var(--danger);
+        --bg-color-hvr: var(--bs-danger);
       }
 
       &.success {
-        --text-color: var(--success);
+        --text-color: var(--bs-success);
         --bg-color: #f3f9f3;
         --icon-color: #55a258;
-        --bg-color-hvr: var(--success);
+        --bg-color-hvr: var(--bs-success);
       }
     }
   }
@@ -135,7 +135,7 @@
     display: flex;
     min-height: 6rem;
     overflow: hidden;
-    border: 1px solid hsl(var(--hue),50%,93%);
+    border: 1px solid var(--bs-border-color);
     border-radius: 4px;
   }
 }

@@ -19,12 +19,18 @@ ul.media-tree {
   left: 0;
   display: block;
   margin-bottom: 10px;
+  background-color: var(--bs-secondary-bg);
+
+  h2 {
+    padding-inline-start: 1rem;
+    padding-block-start: 1rem;
+  }
 }
 
 .media-drive {
   overflow-x: auto;
   background-color: $sidebar-drive-bg;
-  border: 1px solid $border-color;
+  border: 1px solid var(--bs-border-color);
   + .media-drive {
     border-top: 0;
   }

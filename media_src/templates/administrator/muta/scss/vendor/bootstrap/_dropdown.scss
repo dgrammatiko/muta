@@ -12,7 +12,7 @@
 }
 
 .dropdown-menu {
-  box-shadow: $atum-box-shadow;
+  box-shadow: $box-shadow;
 }
 
 .dropdown-item {
@@ -31,11 +31,11 @@
     }
 
     .btn-danger + .dropdown-menu & {
-      background-color: var(--danger);
+      background-color: var(--bs-danger);
     }
 
     .btn-info + .dropdown-menu & {
-      background-color: var(--info);
+      background-color: var(--bs-info);
     }
 
     .dropdown-status-group .dropdown-menu &:not(.disabled) {
@@ -45,7 +45,7 @@
 
     .dropdown-save-group .dropdown-menu &:not(.disabled) {
       color: var(--template-text-light);
-      background-color: var(--success);
+      background-color: var(--bs-success);
     }
   }
 
@@ -58,7 +58,7 @@
   }
 
   .dropdown-save-group .dropdown-menu &:not(.disabled) {
-    color: var(--success);
+    color: var(--bs-success);
   }
 
   &.first:not(.last) {

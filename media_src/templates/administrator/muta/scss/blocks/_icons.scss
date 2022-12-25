@@ -19,15 +19,15 @@
     font-size: 1rem;
     line-height: 22px;
     color: $gray-400;
-    border: 2px solid var(--border);
+    border: 2px solid var(--bs-border);
     border-radius: 50%;
   }
 
   .#{$jicon-css-prefix}-publish,
   .#{$jicon-css-prefix}-check,
   .#{$fa-css-prefix}-check {
-    color: var(--success);
-    border-color: var(--success);
+    color: var(--bs-success);
+    border-color: var(--bs-success);
   }
 
   .#{$jicon-css-prefix}-home,

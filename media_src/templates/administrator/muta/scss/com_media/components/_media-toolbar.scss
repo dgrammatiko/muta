@@ -6,10 +6,10 @@
   flex-wrap: wrap;
   padding: 0;
   // background-color: $toolbar-bg;
-  border-bottom: 1px solid $border-color;
-  border-inline-start: 1px solid $border-color;
+  border-bottom: 1px solid var(--bs-border-color);
+  border-inline-start: 1px solid var(--bs-border-color);
   border-radius: 0 $border-radius 0 0;
-  box-shadow: 0 -1px 0 0  $border-color;
+  box-shadow: 0 -1px 0 0 var(--bs-border-color);
   input {
     padding: .3rem .75rem;
   }
@@ -22,8 +22,8 @@
     text-align: center;
     background-color: transparent;
     border: 0;
-    border-inline-start: 1px solid $border-color;
-    box-shadow: 1px 0 #fefefe inset;
+    border-inline-start: 1px solid var(--bs-border-color);
+    box-shadow: 1px 0 var(--bs-border-color) inset;
     &:hover {
       background-color: $toolbar-icon-bg-hover;
       box-shadow: none;

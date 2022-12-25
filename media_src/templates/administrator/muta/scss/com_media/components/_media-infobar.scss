@@ -12,7 +12,7 @@ $fa-css-prefix:    fa;
   padding: $gutter-width;
   overflow-y: auto;
   // background-color: $info-bg;
-  border-inline-start: 1px solid $border-color;
+  border-inline-start: 1px solid var(--bs-border-color);
   h2 {
     padding-block-start: 8px;
     padding-block-end: 8px;
@@ -21,8 +21,8 @@ $fa-css-prefix:    fa;
     margin: (-$gutter-width) (-$gutter-width) $gutter-width;
     font-weight: normal;
     word-wrap: break-word;
-    // background-color: $info-title-bg;
-    border-bottom: 1px solid #eee;
+    background-color: var(--bs-secondary-bg);
+    border-bottom: 1px solid var(--bs-border-color);
   }
   dl {
     display: flex;
@@ -75,8 +75,8 @@ $fa-css-prefix:    fa;
     margin: 20px auto 15px;
     font-size: 2rem;
     line-height: calc(4rem - 4px);
-    color: #ccc;
-    border: 2px solid #ccc;
+    color: var(--bs-body-color);
+    border: 2px solid var(--bs-border-color);
     border-radius: 50%;
   }
 }

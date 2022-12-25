@@ -9,7 +9,8 @@ defined('_JEXEC') || die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 
-$doc = $displayData['doc'];
+$doc   = $displayData['doc'];
+$entry = $displayData['entry'];
 
 $doc->setMetaData('viewport', 'width=device-width, initial-scale=1');
 $doc->addHeadLink(HTMLHelper::_('image', 'joomla-favicon.svg', '', [], true, 1), 'icon', 'rel', ['type' => 'image/svg+xml', 'sizes' => 'any']);

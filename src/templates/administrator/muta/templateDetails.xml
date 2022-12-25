@@ -18,6 +18,7 @@
     <filename>login.php</filename>
     <filename>joomla.asset.json</filename>
     <filename>templateDetails.xml</filename>
+    <folder>fields</folder>
     <folder>html</folder>
     <folder>language</folder>
   </files>
@@ -43,18 +44,13 @@
     <position>customtop</position>
   </positions>
   <config>
-  <fields name="params">
+  <fields name="params" addfieldpath="/administrator/templates/muta/fields">
     <fieldset name="colors" label="TPL_MUTA_COLORS_SETTINGS_LABEL">
-    <field name="hue" type="color" label="TPL_MUTA_COLORS_HUE" format="hue" control="slider" preview="true" saveFormat="hsl" default="hsl(214,63%,20%)" />
-    <field name="bg-light" type="color" label="TPL_MUTA_COLORS_SETTINGS_BG_LIGHT_LABEL" default="#f0f4fb" filter="color" />
-    <field name="text-dark" type="color" label="TPL_MUTA_COLORS_SETTINGS_TEXT_DARK_LABEL" default="#495057" filter="color" />
-    <field name="text-light" type="color" label="TPL_MUTA_COLORS_SETTINGS_TEXT_LIGHT_LABEL" default="#ffffff" filter="color" />
-    <field name="link-color" type="color" label="TPL_MUTA_COLORS_SETTINGS_LINK_COLOR_LABEL" default="#2a69b8" filter="color" />
-    <field name="special-color" type="color" label="TPL_MUTA_COLORS_SETTINGS_SPECIAL_COLOR_LABEL" default="#001B4C" filter="color" />
-    <field name="monochrome" type="radio" label="TPL_MUTA_COLORS_SETTINGS_MONOCHROME_LABEL" layout="joomla.form.field.radio.switcher" default="0">
-      <option value="0">JNO</option>
-      <option value="1">JYES</option>
-    </field>
+      <field name="muta-colors" type="Dgcolor" hidden="true" />
+      <field name="monochrome" type="radio" label="TPL_MUTA_COLORS_SETTINGS_MONOCHROME_LABEL" layout="joomla.form.field.radio.switcher" default="0">
+        <option value="0">JNO</option>
+        <option value="1">JYES</option>
+      </field>
     </fieldset>
 
     <fieldset name="images" label="TPL_MUTA_IMAGE_SETTINGS_LABEL">

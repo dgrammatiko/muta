@@ -14,22 +14,22 @@ use Joomla\CMS\Layout\LayoutHelper;
  * @see administrator/templates/muta/html/layouts/muta/favicons.php
  */
 
-LayoutHelper::render('muta.partials.favicons', ['doc' => $this, 'params' => $this->params]);
+LayoutHelper::render('muta.partials.favicons', ['doc' => $this, 'params' => $this->params, 'entry' => basename(__FILE__)]);
 
 /*
  * Set custom logos
  * @see administrator/templates/muta/html/layouts/muta/favicons.php
  */
-LayoutHelper::render('muta.partials.logos', ['doc' => $this, 'params' => $this->params]);
+LayoutHelper::render('muta.partials.logos', ['doc' => $this, 'params' => $this->params, 'entry' => basename(__FILE__)]);
 
 /*
  * Set the assets
  * @see administrator/templates/muta/html/layouts/muta/assets.php
  */
-LayoutHelper::render('muta.partials.assets', ['doc' => $this, 'params' => $this->params]);
+LayoutHelper::render('muta.partials.assets', ['doc' => $this, 'params' => $this->params, 'entry' => basename(__FILE__)]);
 
 /*
  * Render the HTML
  * @see administrator/templates/muta/html/layouts/muta/partials/login.php
  */
-echo LayoutHelper::render('muta.entries.error', ['doc' => $this, 'params' => $this->params]);
+echo LayoutHelper::render('muta.entries.error', ['doc' => $this, 'params' => $this->params, 'entry' => basename(__FILE__)]);

@@ -27,7 +27,9 @@
     }
 
     .js-stools-btn-clear {
-      background-color: var(--template-bg-dark);
+      color: var(--bs-body-color);
+      background-color: var(--bs-body-bg);
+      // background-color: var(--template-bg-dark);
     }
   }
 
@@ -45,6 +47,7 @@
     grid-gap: 8px;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     padding: 10px;
+    background-color: var(--bs-body-bg);
     // background-color: $white;
   }
 }

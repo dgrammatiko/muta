@@ -11,6 +11,7 @@ use Joomla\CMS\Uri\Uri;
 
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
+$entry  = $displayData['entry'];
 
 $doc->logoBrandLarge  = $params->get('logoBrandLarge')
   ? Uri::root() . htmlspecialchars($params->get('logoBrandLarge'), ENT_QUOTES)

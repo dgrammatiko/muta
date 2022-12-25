@@ -3,7 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 1rem;
-  background-color: var(--body-bg);
+  background-color: var(--bs-body-bg);
   border-radius: $border-radius;
   box-shadow: $col-box-shadow;
 
@@ -46,5 +46,4 @@
 
 .media-sidebar {
   flex: 0 0 280px;
-  padding: 1rem;
 }

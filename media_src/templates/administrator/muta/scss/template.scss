@@ -1,5 +1,5 @@
 // Remove prefix added in BS5 for compat with Joomla beta's shipped with Betas
-$prefix: "";
+// $prefix: "";
 
 
 // Bootstrap functions
@@ -77,43 +77,60 @@ $prefix: "";
   @each $color, $value in $atum-colors {
     --#{$prefix}#{$color}: #{$value};
   }
+  color-scheme: light;
+  accent-color: var(--bs-primary);
+  body {
+    background-color: var(--template-bg-dark-5);
+  }
+  .table {
+    --bs-table-bg: var(--bs-body-bg);
+  }
 }
 
 :root[data-bs-theme="dark"] {
-  background-color: var(--black);
-  color: #adb5bd;
-  --template-text-light: #adb5bd;
+  color-scheme: dark;
+  accent-color: var(--bs-primary);
+  background-color: var(--bs-black);
+  color: var(--bs-body-color);
+  --template-text-light: var(--bs-body-color);
 
   body {
-    background-color: var(--black);
+    background-color: var(--bs-black);
   }
   .quick-icons .quickicon {
     --bg-color: hsl(var(--hue), 30%, 7%);
   }
-  .com_cpanel .module-actions>* {
+  .com_cpanel .module-actions > * {
     color: var(--template-bg-dark-10);
   }
   .table {
-    --table-bg: var(--body-bg);
+    --table-bg: var(--bs-body-bg);
   }
   .switcher .toggle-inside {
-    background: var(--body-bg);
+    background: var(--bs-body-bg);
   }
   .js-editor-tinymce > textarea {
-    background: var(--body-bg);
-    color: #adb5bd;
+    background: var(--bs-body-bg);
+    color: var(--bs-body-color);
   }
   joomla-field-media .field-media-preview {
     background-color: var(--dark-bg-subtle);
   }
   .choices__input {
-    color: #adb5bd;
+    color: var(--bs-body-color);
   }
   .choices__inner {
     background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
   }
   joomla-field-mediamore details {
-    background-color: var(--body-bg);
+    background-color: var(--bs-body-bg);
+  }
+  .subhead {
+    --subhead-btn-bg: var(--bs-dark);
+  }
+  .quick-icons .quickicon-linkadd {
+    background-color: hsl(var(--hue), 30%, 7%);
+    border-inline-start: 1px solid var(--bs-border-color);
   }
 }
 

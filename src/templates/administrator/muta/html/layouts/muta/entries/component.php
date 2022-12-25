@@ -7,20 +7,11 @@
 
 defined('_JEXEC') || die;
 
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Layout\LayoutHelper;
-
 /** @var \Joomla\CMS\Document\HtmlDocument $doc */
 
-$app    = Factory::getApplication();
-$input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
-$option = $input->get('option', '');
-$view   = $input->get('view', '');
-$layout = $input->get('layout', 'default');
-$task   = $input->get('task', 'display');
+$entry  = $displayData['entry'];
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>" data-bs-theme="<?= $doc->prefersColorScheme; ?>">
