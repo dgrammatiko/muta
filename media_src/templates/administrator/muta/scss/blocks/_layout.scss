@@ -1,0 +1,15 @@
+.options-form {
+  width: 100%;
+  padding: 1vw 2vw;
+  margin-bottom: 1rem;
+  color: var(--bs-body-color);
+  border: .08rem solid var(--bs-border-color);
+
+  > legend {
+    float: none;
+    width: auto;
+    padding: 0 1rem;
+    font-weight: $font-weight-bold;
+    border: .08rem solid var(--bs-border-color);
+  }
+}

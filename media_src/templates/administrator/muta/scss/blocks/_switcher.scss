@@ -1,0 +1,18 @@
+.switcher {
+  .toggle-outside {
+    border: .1rem solid var(--bs-border-color);
+    border-radius: $border-radius;
+    background: var(--bs-border-color);
+
+    &:focus {
+      @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
+    }
+  }
+  input:focus ~ .toggle-outside {
+    border-color: var(--bs-border-color);
+    @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
+  }
+}
+.disabled {
+  opacity: $btn-disabled-opacity;
+}
