@@ -51,6 +51,6 @@ $wa->usePreset('template.muta.' . ($doc->direction === 'rtl' ? 'rtl' : 'ltr'))
   ->addInlineStyle(':root {' . implode('', array_map(function($k, $v) { return '--'.$k.':'.$v.';'; }, array_keys($colors), array_values($colors))). '}', [], ['id' => 'tpl-muta-colors'])
   ->registerStyle('template.active', '', [], [], ['template.muta.' . ($doc->direction === 'rtl' ? 'rtl' : 'ltr')]);
 
-if ($entry === 'component.php') {
+if ($entry === 'component') {
   $wa->disableScript('template.muta');
 }

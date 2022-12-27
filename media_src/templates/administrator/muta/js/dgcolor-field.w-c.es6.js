@@ -13,7 +13,6 @@ class DgColor extends LitElement {
   constructor() {
     super();
 
-    console.log(this.value)
     this.blueprint = {
       main: [
         {
@@ -190,8 +189,6 @@ class DgColor extends LitElement {
 
     const fallback = JSON.parse('{"bs-link-color":"#144AAB","bs-link-color-rgb":"20, 74, 171","bs-link-hover-color":"#9EC5FE","bs-link-hover-color-rgb":"158,197,254","hue":"214","template-bg-light":"#f0f4fb","template-text-dark":"#495057","template-text-light":"#fff","template-link-color":"rgb(20, 74, 171)","template-link-hover-color":"rgb(14, 56, 108)","template-special-color":"#0d6efd","template-sidebar-bg":"var(--template-bg-dark-80)","template-sidebar-font-color":"#fff","template-sidebar-link-color":"#fff","template-contrast":"#0d6efd","template-bg-dark":"hsl(var(--hue), 40%, 20%)","template-bg-dark-3":"hsl(var(--hue), 40%, 97%)","template-bg-dark-5":"hsl(var(--hue), 40%, 95%)","template-bg-dark-7":"hsl(var(--hue), 40%, 93%)","template-bg-dark-10":"hsl(var(--hue), 40%, 90%)","template-bg-dark-15":"hsl(var(--hue), 40%, 85%)","template-bg-dark-20":"hsl(var(--hue), 40%, 80%)","template-bg-dark-30":"hsl(var(--hue), 40%, 70%)","template-bg-dark-40":"hsl(var(--hue), 40%, 60%)","template-bg-dark-50":"hsl(var(--hue), 40%, 50%)","template-bg-dark-60":"hsl(var(--hue), 40%, 40%)","template-bg-dark-65":"hsl(var(--hue), 40%, 35%)","template-bg-dark-70":"hsl(var(--hue), 40%, 30%)","template-bg-dark-75":"hsl(var(--hue), 40%, 25%)","template-bg-dark-80":"hsl(var(--hue), 40%, 20%)","template-bg-dark-90":"hsl(var(--hue), 40%, 10%)","bs-primary":"#0d6efd","bs-primary-rgb":"13, 110, 253"}');
 
-    console.log(this.getAttribute('value'));
-    console.log(JSON.parse(this.getAttribute('value')));
     try {
       this.value = JSON.parse(this.getAttribute('value'));
     } catch (e) {
@@ -263,14 +260,13 @@ class DgColor extends LitElement {
   }
 
   applyColors() {
-    const root = document.querySelector(':root');
     for (const [key, value] of Object.entries(this.value)) {
-      root.style.setProperty(`--${key}`, value)
+      document.documentElement.style.setProperty(`--${key}`, value)
     }
-    root.style.setProperty('--hue', this.value?.hue);
-    root.style.setProperty('--bs-primary', this.value?.['bs-link-color']);
-    root.style.setProperty('--bs-primary-rgb', this.value?.['bs-link-color-rgb']);
-    root.style.setProperty('accent-color', this.value?.['bs-link-color']);
+    document.documentElement.style.setProperty('--hue', this.value?.hue);
+    document.documentElement.style.setProperty('--bs-primary', this.value?.['bs-link-color']);
+    document.documentElement.style.setProperty('--bs-primary-rgb', this.value?.['bs-link-color-rgb']);
+    document.documentElement.style.setProperty('accent-color', this.value?.['bs-link-color']);
   }
 }
 
