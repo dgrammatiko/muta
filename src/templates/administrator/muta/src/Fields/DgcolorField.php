@@ -7,6 +7,8 @@
  * THIS IS NOT THE WAY TO CODE FIELDS!!! DO NOT TAKE THIS AS A TEMPLATE...
  */
 
+namespace Dgrammatiko\Template\Muta\Administrator\Field;
+
 defined('_JEXEC') || die;
 
 use Joomla\CMS\Factory;
@@ -18,7 +20,7 @@ use Joomla\CMS\Language\Text;
  *
  * @since  1.0.0
  */
-class JFormFieldDgcolor extends FormField
+class DgcolorField extends FormField
 {
   /**
    * The form field type.
