@@ -127,6 +127,13 @@
   }
   .subhead {
     --subhead-btn-bg: var(--bs-dark);
+    & .btn {
+      color: var(--template-text-light);
+      &:hover,
+      &:focus {
+        color: var(--bs-white);
+      }
+    }
   }
   .quick-icons .quickicon-linkadd {
     background-color: hsl(var(--hue), 30%, 7%);

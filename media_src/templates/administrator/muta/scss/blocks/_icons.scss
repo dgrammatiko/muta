@@ -18,7 +18,7 @@
     height: 26px;
     font-size: 1rem;
     line-height: 22px;
-    color: $gray-400;
+    color: var(--bs-border-color);
     border: 2px solid var(--bs-border-color);
     border-radius: 50%;
   }
