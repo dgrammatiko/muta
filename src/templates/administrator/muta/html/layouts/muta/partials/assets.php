@@ -33,7 +33,7 @@ $doc->prefersColorScheme = $input->cookie->get('mutaPrefersColorScheme', 'light'
 $doc->cpanel             = $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help');
 $doc->hiddenMenu         = $input->get('hidemainmenu');
 $doc->sidebarState       = $input->cookie->get('mutaSidebarState', '');
-$defaultValue            = '{"hue":"214","template-bg-light":"#f0f4fb","template-text-dark":"#495057","template-text-light":"#fff","template-link-color":"rgb(56, 85, 173)","template-special-color":"#0d6efd","template-sidebar-bg":"var(--template-bg-dark-80)","template-sidebar-font-color":"#fff","template-sidebar-link-color":"#fff","template-link-hover-color":"rgb(20, 45, 97)","template-contrast":"#0d6efd","template-bg-dark":"hsl(var(--hue), 40%, 20%)","template-bg-dark-3":"hsl(var(--hue), 40%, 97%)","template-bg-dark-5":"hsl(var(--hue), 40%, 95%)","template-bg-dark-7":"hsl(var(--hue), 40%, 93%)","template-bg-dark-10":"hsl(var(--hue), 40%, 90%)","template-bg-dark-15":"hsl(var(--hue), 40%, 85%)","template-bg-dark-20":"hsl(var(--hue), 40%, 80%)","template-bg-dark-30":"hsl(var(--hue), 40%, 70%)","template-bg-dark-40":"hsl(var(--hue), 40%, 60%)","template-bg-dark-50":"hsl(var(--hue), 40%, 50%)","template-bg-dark-60":"hsl(var(--hue), 40%, 40%)","template-bg-dark-65":"hsl(var(--hue), 40%, 35%)","template-bg-dark-70":"hsl(var(--hue), 40%, 30%)","template-bg-dark-75":"hsl(var(--hue), 40%, 25%)","template-bg-dark-80":"hsl(var(--hue), 40%, 20%)","template-bg-dark-90":"hsl(var(--hue), 40%, 10%)","bs-link-color-rgb":"56, 85, 173","link-color":"#3855AD","bs-link-hover-color-rgb":"20, 45, 97","bs-link-hover-color":"#142D61"}';
+$defaultValue            = (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/fields/def.json'), true);
 
 try {
   $json = json_decode($params->get('muta-colors', '{}'), true);
@@ -41,7 +41,7 @@ try {
   $json = [];
 }
 if (!$json) $json = [];
-$colors = array_merge(json_decode($defaultValue, true), $json);
+$colors = array_merge($defaultValue, $json);
 $doc->setMetaData('theme-color', 'hsl('. $colors['hue']. ',40%,20%)');
 
 // Enable assets
