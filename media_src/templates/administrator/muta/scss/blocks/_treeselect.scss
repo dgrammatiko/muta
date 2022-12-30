@@ -19,7 +19,7 @@
     &::before {
       position: absolute;
       top: 14px;
-      inset-inline-start: ($treeselect-indent - 15px);
+      inset-inline-start: calc($treeselect-indent - 15px);
       width: 10px;
       height: 1px;
       margin: auto;
@@ -31,7 +31,7 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      inset-inline-start: ($treeselect-indent - 15px);
+      inset-inline-start: calc($treeselect-indent - 15px);
       width: 1px;
       height: 100%;
       content: "";

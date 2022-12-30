@@ -27,10 +27,9 @@
     max-width: 25rem;
     padding: 30px;
     margin: 1rem;
-    // color: var(--template-text-dark);
-    // background: var(--bs-white);
+    background-color: var(--bs-tertiary-bg);
     border-radius: 10px;
-    // box-shadow: 0 4px 20px -10px var(--template-bg-dark-50);
+    box-shadow: var(--bs-box-shadow);
 
     @include media-breakpoint-down(lg) {
       margin-bottom: 3rem;

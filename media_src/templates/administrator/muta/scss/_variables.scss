@@ -419,9 +419,9 @@ $black-weight:                     900;
 
 // Dropdowns
 $dropdown-padding-y:               0;
-$dropdown-box-shadow:              0 1px 1px rgba($black, .15);
+$dropdown-box-shadow:              0 .0625rem .0625rem rgba($black, .15);
 // $dropdown-link-hover-color:        var(--template-text-dark);
-$dropdown-border-width:            1px;
+$dropdown-border-width:            .0625rem;
 $dropdown-item-padding-y:          .5rem;
 $dropdown-item-padding-x:          .75rem;
 $dropdown-spacer:                  0;
@@ -475,7 +475,7 @@ $input-group-addon-border-color:   var(--template-bg-dark);
 
 // Treeselect
 $treeselect-line-height:           2.2rem;
-$treeselect-indent:                40px;
+$treeselect-indent:                2.5rem;
 
 // List
 $list-group-bg:                    var(--bs-white-offset);
@@ -506,23 +506,23 @@ $form-select-multiple-padding-y:   .3rem;
 $form-select-indicator-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='#fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/></svg>") !default;
 
 //input
-$input-padding:                    .5rem 1rem;
-$input-border:                     solid 1px var(--template-bg-dark-20);
+$input-padding-y: .5rem !default;
+$input-padding-x: 1rem !default;
 
 // Modals
 $modal-header-height:              2.875rem;
 
 // Quickicons
 $quickicon-bg:                     var(--bs-white);
-$quickicon-box-shadow-success:     0 0 3px 0 var(--bs-success);
-$quickicon-box-shadow-danger:      0 0 3px 0 var(--bs-danger);
-$quickicon-box-shadow-warning:     0 0 3px 0 var(--bs-warning);
+$quickicon-box-shadow-success:     0 0 .188rem 0 var(--bs-success);
+$quickicon-box-shadow-danger:      0 0 .188rem 0 var(--bs-danger);
+$quickicon-box-shadow-warning:     0 0 .188rem 0 var(--bs-warning);
 $quickicon-icon-size:              2rem;
 $quickicon-icon-size-sm:           1.3rem;
 
 // Gutter
 $grid-gutter-width:                2rem;
-$grid-gutter-width-s:              15px;
+$grid-gutter-width-s:              .95rem;
 
 // Breadcrumbs
 $breadcrumb-bg:                    var(--bs-white);
