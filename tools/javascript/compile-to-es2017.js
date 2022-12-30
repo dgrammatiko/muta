@@ -5,6 +5,7 @@ const CssNano = require('cssnano');
 const { basename, sep, resolve } = require('path');
 const rollup = require('rollup');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const jsonFn = require('@rollup/plugin-json')
 const replace = require('@rollup/plugin-replace');
 const { babel } = require('@rollup/plugin-babel');
 const Postcss = require('postcss');
@@ -59,6 +60,7 @@ module.exports.handleESMFile = async (file) => {
       nodeResolve({
         preferBuiltins: false,
       }),
+      jsonFn(),
       replace({
         preventAssignment: true,
         CSS_CONTENTS_PLACEHOLDER: minifiedCss,
@@ -88,12 +90,14 @@ module.exports.handleESMFile = async (file) => {
       }),
     ],
     external: [],
+    // importAssertions: true,
   });
 
   await bundle.write({
     format: 'es',
     sourcemap: false,
     file: resolve(`${newPath}.js`),
+    externalImportAssertions:false
   });
 
   // eslint-disable-next-line no-console

@@ -1,6 +1,196 @@
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
+import fallbackJson from '../../../../../src/templates/administrator/muta/fields/def.json';
 
+const blueprint = {
+  colors: [
+    {
+      type: 'hue',
+      cssVariableName: 'hue',
+      label: 'TPL_MUTA_COLORS_HUE',
+    },
+    {
+      type: 'picker',
+      cssVariableName: 'bs-link-color',
+      label: 'TPL_MUTA_COLORS_SETTINGS_LINK_COLOR_LABEL',
+    },
+    {
+      type: 'picker',
+      cssVariableName: 'bs-link-hover-color',
+      label: 'TPL_MUTA_COLORS_SETTINGS_LINK_HOVER_COLOR_LABEL',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'bs-primary',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'bs-primary-rgb',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'link-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'link-color-rgb',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'bs-link-color-rgb',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'bs-link-hover-color-rgb',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-light',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-text-dark',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-text-light',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-link-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-link-hover-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-special-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-sidebar-bg',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-sidebar-font-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-sidebar-link-color',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-light',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-text-light',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-contrast',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-3',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-5',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-7',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-10',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-15',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-20',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-30',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-40',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-50',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-60',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-65',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-70',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-75',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-80',
+      label: '',
+    },
+    {
+      type: 'calculated',
+      cssVariableName: 'template-bg-dark-90',
+      label: '',
+    },
+  ],
+};
 
 class DgColor extends LitElement {
   static get properties() {
@@ -13,190 +203,13 @@ class DgColor extends LitElement {
   constructor() {
     super();
 
-    this.blueprint = {
-      main: [
-        {
-          cssVariableName: 'hue',
-          label: 'TPL_MUTA_COLORS_HUE',
-          value: 214
-        }
-      ] ,
-      colors: [
-        {
-          cssVariableName: 'bs-link-color',
-          label: 'TPL_MUTA_COLORS_SETTINGS_LINK_COLOR_LABEL',
-          value: '#0d6efd'
-        },
-        {
-          cssVariableName: 'bs-link-color-rgb',
-          label: '',
-          value: '13, 110, 253'
-        },
-        {
-          cssVariableName: 'bs-link-hover-color',
-          label: 'TPL_MUTA_COLORS_SETTINGS_LINK_HOVER_COLOR_LABEL',
-          value: '#013a8e'
-        },
-        {
-          cssVariableName: 'bs-link-hover-color-rgb',
-          label: '',
-          value: '1, 58, 142'
-        }
-      ],
-      calculated: [
-        {
-          cssVariableName: 'template-bg-light',
-          label: '',
-          value: '#f0f4fb'
-        },
-        {
-          cssVariableName: 'template-text-dark',
-          label: '',
-          value: '#495057'
-        },
-        {
-          cssVariableName: 'template-text-light',
-          label: '',
-          value: '#ffffff'
-        },
-        {
-          cssVariableName: 'template-link-color',
-          label: '',
-          value: '#0d6efd'
-        },
-        {
-          cssVariableName: 'template-link-hover-color',
-          label: '',
-          value: '#0143a3'
-        },
-        {
-          cssVariableName: 'template-special-color',
-          label: '',
-          value: '#0d6efd'
-        },
-        {
-          cssVariableName: 'template-sidebar-bg',
-          label: '',
-          value: 'var(--template-bg-dark-80)'
-        },
-        {
-          cssVariableName: 'template-sidebar-font-color',
-          label: '',
-          value: '#fff'
-        },
-        {
-          cssVariableName: 'template-sidebar-link-color',
-          label: '',
-          value: '#fff'
-        },
-        {
-          cssVariableName: 'template-bg-light',
-          label: '',
-          value: '#f0f4fb'
-        },
-        {
-          cssVariableName: 'template-text-light',
-          label: '',
-          value: '#fff'
-        },
-        {
-          cssVariableName: 'template-contrast',
-          label: '',
-          value: '#0d6efd'
-        },
-        {
-          cssVariableName: 'template-bg-dark',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 20%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-3',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 97%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-5',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 95%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-7',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 93%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-10',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 90%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-15',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 85%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-20',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 80%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-30',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 70%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-40',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 60%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-50',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 50%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-60',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 40%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-65',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 35%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-70',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 30%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-75',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 25%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-80',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 20%)'
-        },
-        {
-          cssVariableName: 'template-bg-dark-90',
-          label: '',
-          value: 'hsl(var(--hue), 40%, 10%)'
-        },
-      ]
-    }
-
-    const fallback = JSON.parse('{"bs-link-color":"#144AAB","bs-link-color-rgb":"20, 74, 171","bs-link-hover-color":"#9EC5FE","bs-link-hover-color-rgb":"158,197,254","hue":"214","template-bg-light":"#f0f4fb","template-text-dark":"#495057","template-text-light":"#fff","template-link-color":"rgb(20, 74, 171)","template-link-hover-color":"rgb(14, 56, 108)","template-special-color":"#0d6efd","template-sidebar-bg":"var(--template-bg-dark-80)","template-sidebar-font-color":"#fff","template-sidebar-link-color":"#fff","template-contrast":"#0d6efd","template-bg-dark":"hsl(var(--hue), 40%, 20%)","template-bg-dark-3":"hsl(var(--hue), 40%, 97%)","template-bg-dark-5":"hsl(var(--hue), 40%, 95%)","template-bg-dark-7":"hsl(var(--hue), 40%, 93%)","template-bg-dark-10":"hsl(var(--hue), 40%, 90%)","template-bg-dark-15":"hsl(var(--hue), 40%, 85%)","template-bg-dark-20":"hsl(var(--hue), 40%, 80%)","template-bg-dark-30":"hsl(var(--hue), 40%, 70%)","template-bg-dark-40":"hsl(var(--hue), 40%, 60%)","template-bg-dark-50":"hsl(var(--hue), 40%, 50%)","template-bg-dark-60":"hsl(var(--hue), 40%, 40%)","template-bg-dark-65":"hsl(var(--hue), 40%, 35%)","template-bg-dark-70":"hsl(var(--hue), 40%, 30%)","template-bg-dark-75":"hsl(var(--hue), 40%, 25%)","template-bg-dark-80":"hsl(var(--hue), 40%, 20%)","template-bg-dark-90":"hsl(var(--hue), 40%, 10%)","bs-primary":"#0d6efd","bs-primary-rgb":"13, 110, 253"}');
-
     try {
       this.value = JSON.parse(this.getAttribute('value'));
     } catch (e) {
-      this.value = fallback;
+      this.value = fallbackJson;
     }
 
-    if (!this.value.length) this.value = fallback;
-    this.renderColors = this.renderColors.bind(this);
+    if (!this.value.length) this.value = fallbackJson;
     this.applyColors = this.applyColors.bind(this);
   }
 
@@ -207,7 +220,7 @@ class DgColor extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this.fields = this.blueprint.colors.filter(x => !x.cssVariableName.endsWith('-rgb'));
+    this.fields = blueprint.colors.filter(x => !x.cssVariableName.endsWith('-rgb'));
     this.sliderValue = this.value.hue;
   }
 
@@ -217,7 +230,13 @@ class DgColor extends LitElement {
 
   render() {
     this.applyColors();
-    return html`${this.createHueField()}${this.fields.map(field => this.createColorField(field))}${this.renderColors()}<input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
+    return html`${this.fields.map(field => {
+      if (field.type === 'picker') return this.createColorField(field);
+      else if (field.type === 'hue') return this.createHueField();
+    })}
+    <button class="btn btn-warning" type="button" @click=${() => {this.value = fallbackJson; this.requestUpdate;}}>Reset</button>
+    <p>CSS Variables:</p>${blueprint.colors.map(field => { return html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`})}
+    <input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
   }
 
   createHueField() {
@@ -240,8 +259,16 @@ class DgColor extends LitElement {
     <div class="controls">
       <toolcool-color-picker id=${field.cssVariableName} color=${this.value?.[field.cssVariableName]} @change=${(e) => {
         this.value[`${field.cssVariableName}-rgb`] = e.detail.rgb.replace('rgb(', '').replace(')', '');
-        if (field.cssVariableName === 'bs-link-color') this.value['template-link-color'] = e.detail.rgb;
-        if (field.cssVariableName === 'bs-link-hover-color') this.value['template-link-hover-color'] = e.detail.rgb;
+        if (field.cssVariableName === 'bs-link-color') {
+          this.value['template-link-color'] = e.detail.rgb;
+          this.value['link-color'] = e.detail.rgb;
+          this.value['bs-primary'] = e.detail.rgb;
+        }
+        if (field.cssVariableName === 'bs-link-hover-color') {
+          this.value['template-link-hover-color'] = e.detail.rgb;
+          this.value['link-hover-color'] = e.detail.rgb;
+          this.value['bs-primary-rgb'] = e.detail.rgb;
+        }
         this.value[`${field.cssVariableName}`] = e.detail.hex;
         this.value[`${field.cssVariableName}-rgb`] = e.detail.rgb.replace('rgb(', '').replace(')', '');
         this.requestUpdate(); }} button-width="8rem" button-height="3rem" button-padding="2px" style="--tool-cool-color-picker-popup-bg: var(--bs-body-bg); --tool-cool-color-picker-field-label-color: var(--bs-body-color)"></toolcool-color-picker>
@@ -249,23 +276,10 @@ class DgColor extends LitElement {
   </div>`;
   }
 
-  renderColors() {
-    return html`<p>CSS Variables:</p>
-    <pre><code>--hue: ${this.value?.hue};</code></pre>
-    <pre><code>--bs-primary: ${this.value['link-color']};</code></pre>
-    <pre><code>--bs-primary-rgb: ${this.value['link-color-rgb']};</code></pre>
-    ${this.blueprint.colors.map(field => { return html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`})}
-    ${this.blueprint.calculated.map(field => html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`)}
-    `
-  }
-
   applyColors() {
     for (const [key, value] of Object.entries(this.value)) {
       document.documentElement.style.setProperty(`--${key}`, value)
     }
-    document.documentElement.style.setProperty('--hue', this.value?.hue);
-    document.documentElement.style.setProperty('--bs-primary', this.value?.['bs-link-color']);
-    document.documentElement.style.setProperty('--bs-primary-rgb', this.value?.['bs-link-color-rgb']);
     document.documentElement.style.setProperty('accent-color', this.value?.['bs-link-color']);
   }
 }
