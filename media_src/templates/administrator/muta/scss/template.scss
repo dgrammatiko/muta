@@ -139,6 +139,9 @@
     background-color: hsl(var(--hue), 30%, 7%);
     border-inline-start: 1px solid var(--bs-border-color);
   }
+  .image-background {
+    --accent-color: var(--bs-gray-800);
+  }
 }
 
 // Forcing reduced motion when set in the user OS

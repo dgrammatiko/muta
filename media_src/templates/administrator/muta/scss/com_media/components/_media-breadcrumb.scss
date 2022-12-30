@@ -22,14 +22,17 @@
 .media-breadcrumb-item {
   padding-inline-end: 8px;
   padding-inline-start: 22px;
-  background-color: $breadcrumbs-bg;
+  background-color: var(--bs-body-bg);
   &:first-of-type {
     padding-inline-start: 16px;
   }
   &:last-of-type {
-    background-color: $breadcrumbs-current-bg;
+    background-color: var(--bs-border-color-translucent);
+    &::before {
+      border-inline-start-color: var(--bs-body-bg);
+    }
     &::after {
-      border-inline-start-color: $breadcrumbs-current-bg;
+      border-inline-start-color: var(--bs-border-color-translucent);
     }
   }
   &:hover {
@@ -58,6 +61,6 @@
     border-inline-start-color: var(--bs-border-color);
   }
   &::after {
-    border-inline-start-color: $breadcrumbs-bg;
+    border-inline-start-color: var(--bs-body-bg);
   }
 }
