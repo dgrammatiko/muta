@@ -146,10 +146,10 @@
     &:active {
       text-decoration: none;
       background: var(--bg-color-hvr);
-      color: var(--bs-body-color);
+      color: #fff;
 
       & .cpanel-add-module-icon {
-          color: var(--bs-body-color);
+          color: #fff;
         }
     }
 
