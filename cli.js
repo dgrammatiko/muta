@@ -25,7 +25,7 @@ const program = new Command();
   if (options.link) {
     if (!existsSync) {
       logger('Initializing...');
-      await fetchJoomla('4.2.5');
+      await fetchJoomla('4.3.0-alpha3');
 
     }
     logger(`linking ${options.link}`);
