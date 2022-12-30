@@ -73,6 +73,6 @@
   </fields>
   </config>
   <updateservers>
-    <server type="template" priority="1" name="Muta Template">https://muta.dgrammatiko.dev/update.xml</server>
+    <server type="template" element="muta" priority="1" name="Muta Template">https://muta.dgrammatiko.dev/update.xml</server>
   </updateservers>
 </extension>
