@@ -97,7 +97,7 @@
   body {
     background-color: var(--bs-black);
   }
-  .quick-icons .quickicon {
+  .quick-icons .quickicon, .cpanel-add-module {
     --bg-color: hsl(var(--hue), 30%, 7%);
   }
   .com_cpanel .module-actions > * {

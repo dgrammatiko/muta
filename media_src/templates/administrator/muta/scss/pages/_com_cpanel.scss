@@ -123,6 +123,8 @@
   }
 
   .cpanel-add-module {
+    --bg-color: hsl(var(--hue), 60%, 97%);
+    --bg-color-hvr: var(--template-bg-dark);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -134,17 +136,21 @@
     font-weight: 700;
     line-height: 1;
     color: hsl(var(--hue),30%,40%);
-    background-color: var(--template-bg-dark); //hsl(var(--hue),35%,98%);
-    border: 1px solid var(--template-bg-dark); //hsl(var(--hue),35%,88%);
+    background-color: var(--bg-color); //hsl(var(--hue),35%,98%);
+    border: 1px solid var(--bs-border-color); //hsl(var(--hue),35%,88%);
     border-radius: $border-radius;
     transition: all .15s ease-in;
 
     &:hover,
     &:focus,
     &:active {
-      // color: #fff;
       text-decoration: none;
-      background: hsl(var(--hue), 35%, 98%); //var(--template-bg-dark);
+      background: var(--bg-color-hvr);
+      color: var(--bs-body-color);
+
+      & .cpanel-add-module-icon {
+          color: var(--bs-body-color);
+        }
     }
 
     > span {

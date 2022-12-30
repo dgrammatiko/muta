@@ -1,8 +1,5 @@
 // Quick Icons
-
 .quick-icons {
-  // background-color: $white;
-
   .nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -71,7 +68,7 @@
       &:hover,
       &:focus,
       &:active {
-        color: $white;
+        color: var(--bs-body-color);
         text-decoration: none;
         background: var(--bg-color-hvr);
 
@@ -83,14 +80,14 @@
       &.warning,
       &.danger {
         --text-color: var(--bs-danger);
-        --bg-color: #f4f0f0;
+        // --bg-color: #f4f0f0;
         --icon-color: #ce8484;
         --bg-color-hvr: var(--bs-danger);
       }
 
       &.success {
         --text-color: var(--bs-success);
-        --bg-color: #f3f9f3;
+        // --bg-color: #f3f9f3;
         --icon-color: #55a258;
         --bg-color-hvr: var(--bs-success);
       }
@@ -124,7 +121,7 @@
         background: var(--template-bg-dark);
 
         * {
-          color: $white;
+          color: var(--bs-body-color);
         }
       }
     }
