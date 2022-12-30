@@ -105,7 +105,7 @@ class JFormFieldDgcolor extends FormField
    */
   public function getInput()
   {
-    $defaultValue = (array) json_decode(file_get_contents(__DIR__ . '/def.json'), true);
+    $defaultValue = (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/fields/def.json'), true);
 
     try {
       $json = json_decode($this->value, true);
