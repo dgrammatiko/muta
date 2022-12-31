@@ -118,6 +118,7 @@ class JFormFieldDgcolor extends FormField
     Text::script('TPL_MUTA_COLORS_SETTINGS_LINK_COLOR_LABEL');
     Text::script('TPL_MUTA_COLORS_SETTINGS_LINK_HOVER_COLOR_LABEL');
     Text::script('TPL_MUTA_COLORS_HUE');
+    Text::script('JRESET');
 
     Factory::getDocument()->getWebAssetManager()
     ->registerAndUseScript(
