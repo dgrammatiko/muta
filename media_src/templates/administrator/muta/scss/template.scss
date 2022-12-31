@@ -79,11 +79,22 @@
   }
   color-scheme: light;
   accent-color: var(--bs-primary);
+  --template-select-indicator: url("../images/select-bg-light.svg") #{"/* rtl:"}url("../images/select-bg-light-rtl.svg")#{"*/"};
+  --template-select-indicator-active: url("../../../images/select-bg-light-active.svg") #{"/* rtl:"}url("../../../images/select-bg-light-active-rtl.svg")#{"*/"};
+
   body {
     background-color: var(--template-bg-dark-5);
   }
   .table {
     --bs-table-bg: var(--bs-body-bg);
+  }
+
+  .choices[data-type*="select-one"],
+  .choices[data-type*="select-multiple"] {
+    .choices__inner {
+      background: var(--template-select-indicator) no-repeat 100%/116rem;
+      background-color: var(--bs-border-color);
+    }
   }
 }
 
@@ -93,6 +104,8 @@
   background-color: var(--bs-black);
   color: var(--bs-body-color);
   --template-text-light: var(--bs-body-color);
+  --template-select-indicator: url("../images/select-bg-dark.svg") #{"/* rtl:"}url("../images/select-bg-dark-rtl.svg")#{"*/"};
+  --template-select-indicator-active: url("../../../images/select-bg-dark-active.svg") #{"/* rtl:"}url("../../../images/select-bg-dark-active-rtl.svg")#{"*/"};
 
   body {
     background-color: var(--bs-black);
@@ -119,8 +132,12 @@
   .choices__input {
     color: var(--bs-body-color);
   }
-  .choices__inner {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+  .choices[data-type*="select-one"],
+  .choices[data-type*="select-multiple"] {
+    .choices__inner {
+      background: var(--template-select-indicator) no-repeat 100%/116rem;
+      background-color: var(--bs-border-color);
+    }
   }
   joomla-field-mediamore details {
     background-color: var(--bs-body-bg);

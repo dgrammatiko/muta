@@ -5,12 +5,12 @@
     background: var(--bs-border-color);
 
     &:focus {
-      @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
+      @include box-shadow(var(--bs-border-color), $form-select-focus-box-shadow);
     }
   }
   input:focus ~ .toggle-outside {
     border-color: var(--bs-border-color);
-    @include box-shadow($form-select-box-shadow, $form-select-focus-box-shadow);
+    @include box-shadow(var(--bs-border-color), $form-select-focus-box-shadow);
   }
 }
 .disabled {

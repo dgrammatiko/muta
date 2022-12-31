@@ -65,7 +65,7 @@
 .choices[data-type*=select-one] .choices__button {
 
   background-color: var(--form-control-bg);
-  background-image: $form-select-indicator;
+  background-image: var(--template-select-indicator);
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 16px 12px;
@@ -507,13 +507,8 @@
 .choices[data-type*="select-one"],
 .choices[data-type*="select-multiple"] {
   .choices__inner {
-    padding-inline-end: $form-select-indicator-padding;
+    padding-inline-end: 3rem;
     cursor: pointer;
-    background-color: var(--form-control-bg);
-    background-image: $form-select-indicator;
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 16px 12px;
 
     [dir="rtl"] & {
       background-color: var(--form-control-bg);

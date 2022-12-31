@@ -52,7 +52,7 @@ legend {
 }
 
 select.form-control {
-  background-color: $form-select-bg;
+  background-color: var(--bs-form-control-bg);
 }
 
 .field-media-wrapper {
