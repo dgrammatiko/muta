@@ -7,7 +7,6 @@
 
   .nav-header {
     font-weight: $font-weight-bold;
-    color: $gray-900;
   }
 
   li {
@@ -24,7 +23,7 @@
       height: 1px;
       margin: auto;
       content: "";
-      background-color: rgba(0, 0, 0, .2);
+      background-color: var(--bs-border-color);
     }
 
     &::after {
@@ -35,7 +34,7 @@
       width: 1px;
       height: 100%;
       content: "";
-      background-color: rgba(0, 0, 0, .2);
+      background-color: var(--bs-border-color);
     }
 
     &:last-child {

@@ -135,7 +135,7 @@
   .choices[data-type*="select-one"],
   .choices[data-type*="select-multiple"] {
     .choices__inner {
-      background: var(--template-select-indicator) no-repeat 100%/116rem;
+      background: var(--template-select-indicator) no-repeat right center/116rem #{"/* rtl:"}var(--template-select-indicator) no-repeat left center/116rem#{"*/"};
       background-color: var(--bs-border-color);
     }
   }
