@@ -1,4 +1,4 @@
-const { readdirSync, existsSync, mkdirSync } = require('fs');
+const { readdirSync, readFileSync, existsSync, mkdirSync } = require('fs');
 const admZip = require('adm-zip');
 
 const { version } = require('../package.json');
@@ -10,8 +10,12 @@ module.exports.zip = () => {
   readdirSync(`${process.cwd()}/src/${noRootPath}`, { withFileTypes: true }).filter(item => !/(^|\/)\.[^/.]/g.test(item.name)).forEach(file => {
     if (file.isDirectory()) {
       zip.addLocalFolder(`src/${noRootPath}/${file.name}`, file.name, /^(?!\.DS_Store)/);
-    } else {
+    } else if (!file.name.endsWith('templateDetails.xml')) {
       zip.addLocalFile(`src/${noRootPath}/${file.name}`, false);
+    } else {
+      let xml = readFileSync(`src/${noRootPath}/${file.name}`, { encoding: 'utf8' });
+      xml = xml.replace(/{{version}}/g, version);
+      zip.addFile('templateDetails.xml', xml);
     }
   });
 

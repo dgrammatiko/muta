@@ -7,7 +7,7 @@
   <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
   <authorEmail>d.grammatiko@gmail.com</authorEmail>
   <authorUrl>https://dgrammatiko.dev</authorUrl>
-  <version>0.0.1</version>
+  <version>{{version}}</version>
   <description>atum++</description>
   <inheritable>1</inheritable>
   <files>
