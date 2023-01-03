@@ -46,8 +46,8 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
       <div class="header-title d-flex">
         <div class="d-flex align-items-center">
           <div class="logo">
-            <img src="<?php echo $doc->logoBrandLarge; ?>" <?php echo $doc->logoBrandLargeAlt; ?>>
-            <img class="logo-collapsed" src="<?php echo $doc->logoBrandSmall; ?>" <?php echo $doc->logoBrandSmallAlt; ?>>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => $doc->logoBrandLargeAlt, 'loading' => 'eager']); ?>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => $doc->logoBrandSmallAlt, 'class' =>'logo-collapsed', 'loading' => 'eager']); ?>
           </div>
         </div>
         <jdoc:include type="modules" name="title" />

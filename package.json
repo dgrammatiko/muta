@@ -1,13 +1,10 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "0.3.0",
+  "version": "0.6.0",
   "publishConfig": {
     "access": "public"
   },
   "description": "Muta",
-  "bin": {
-    "j4tools": "./bin/j4tools.js"
-  },
   "main": "cli.js",
   "scripts": {
     "i": "node ./cli.js -i",
@@ -19,28 +16,9 @@
     "lint": "npm run lint-css && npm run lint-js",
     "update:browserlist": "npx browserslist@latest --update-db"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dgrammatiko/j4-tools.git"
-  },
-  "keywords": [
-    "Joomla",
-    "scaffolding",
-    "components",
-    "modules",
-    "plugins",
-    "libraries",
-    "templates",
-    "transpilling",
-    "scss",
-    "postcss"
-  ],
   "author": "Dimitris Grammatikogiannis",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dgrammatiko/j4-tools/issues"
-  },
-  "homepage": "https://github.com/dgrammatiko/j4-tools#readme",
+  "homepage": "https://muta.dgrammatiko.dev",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@rollup/plugin-babel": "^6.0.0",

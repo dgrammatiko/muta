@@ -45,8 +45,8 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
     <div class="header-title d-flex">
       <div class="d-flex align-items-center">
         <div class="logo">
-          <img src="<?= $doc->logoBrandLarge; ?>" <?= $doc->logoBrandLargeAlt; ?>>
-          <img class="logo-collapsed" src="<?= $doc->logoBrandSmall; ?>" <?= $doc->logoBrandSmallAlt; ?>>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => $doc->logoBrandLargeAlt]); ?>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => $doc->logoBrandSmallAlt, 'class' => 'logo-collapsed']); ?>
         </div>
       </div>
       <jdoc:include type="modules" name="title" />
@@ -65,7 +65,7 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
             <h2><?= Text::_('TPL_MUTA_BACKEND_LOGIN'); ?></h2>
           </div>
           <div class="main-brand logo text-center">
-            <img src="<?= $doc->loginLogo; ?>" <?= $doc->loginLogoAlt; ?>>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->loginLogo, 'alt' => $doc->loginLogoAlt, 'loading' => 'eager']); ?>
           </div>
           <jdoc:include type="component" />
           <jdoc:include type="modules" name="sidebar" style="details" />

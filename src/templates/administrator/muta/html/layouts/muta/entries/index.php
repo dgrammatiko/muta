@@ -50,13 +50,13 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
             <?php /* No home link in edit mode (so users can not jump out) and control panel (for a11y reasons) */ ?>
             <?php if ($doc->hiddenMenu || $doc->cpanel) : ?>
               <div class="logo<?= $doc->sidebarState === 'closed' || $doc->hiddenMenu ? ' small' : ''; ?>">
-                <img src="<?= $doc->logoBrandLarge; ?>" <?= $doc->logoBrandLargeAlt; ?>>
-                <img class="logo-collapsed" src="<?= $doc->logoBrandSmall; ?>" <?= $doc->logoBrandSmallAlt; ?>>
+                <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => $doc->logoBrandLargeAlt, 'loading' => 'eager']); ?>
+                <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => $doc->logoBrandSmallAlt, 'class' =>'logo-collapsed', 'loading' => 'eager']); ?>
               </div>
             <?php else : ?>
               <a class="logo <?= $doc->sidebarState === 'closed' ? 'small' : ''; ?>" href="<?= Route::_('index.php'); ?>">
-                <img src="<?= $doc->logoBrandLarge; ?>" alt="<?= Text::_('TPL_MUTA_BACK_TO_CONTROL_PANEL'); ?>">
-                <img class="logo-collapsed" src="<?= $doc->logoBrandSmall; ?>" alt="<?= Text::_('TPL_MUTA_BACK_TO_CONTROL_PANEL'); ?>">
+                <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => Text::_('TPL_MUTA_BACK_TO_CONTROL_PANEL'), 'loading' => 'eager']); ?>
+                <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => Text::_('TPL_MUTA_BACK_TO_CONTROL_PANEL'), 'class' =>'logo-collapsed', 'loading' => 'eager']); ?>
               </a>
             <?php endif; ?>
           </div>
