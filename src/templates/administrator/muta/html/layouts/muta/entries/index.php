@@ -18,9 +18,6 @@ $input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
 $entry  = $displayData['entry'];
-$option = $input->get('option', '');
-$view   = $input->get('view', '');
-$layout = $input->get('layout', 'default');
 $task   = $input->get('task', 'display');
 
 Text::script('JGLOBAL_WARNCOOKIES');
@@ -35,7 +32,7 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
     <jdoc:include type="styles" />
     <jdoc:include type="scripts" />
   </head>
-  <body class="admin <?= $option . ' view-' . $view . ' layout-' . $layout . ($task ? ' task-' . $task : '') . ($doc->monochrome || $doc->a11y_mono ? ' monochrome' : '') . ($doc->a11y_contrast ? ' a11y_contrast' : '') . ($doc->a11y_highlight ? ' a11y_highlight' : ''); ?>">
+  <body class="admin <?= $input->get('option', '') . ' view-' . $input->get('view', '') . ' layout-' . $input->get('layout', 'default') . ($task ? ' task-' . $task : '') . ($doc->monochrome || $doc->a11y_mono ? ' monochrome' : '') . ($doc->a11y_contrast ? ' a11y_contrast' : '') . ($doc->a11y_highlight ? ' a11y_highlight' : ''); ?>">
     <noscript>
       <div class="alert alert-danger" role="alert">
         <?= Text::_('JGLOBAL_WARNJAVASCRIPT'); ?>

@@ -7,9 +7,7 @@
 
 defined('_JEXEC') || die;
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Layout\LayoutHelper;
 
 /** @var \Joomla\CMS\Document\HtmlDocument $doc */
 

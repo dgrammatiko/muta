@@ -7,16 +7,11 @@
 
 defined('_JEXEC') || die;
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\CMS\Uri\Uri;
-
 
 /** @var \Joomla\CMS\Document\HtmlDocument $doc */
 
-$app    = Factory::getApplication();
-$input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
 ?>
