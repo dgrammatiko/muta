@@ -1,9 +1,10 @@
 /* https://github.com/dgrammatiko/dark-switch/blob/master/src/index.css */
 joomla-theme-switch {
+  --size: 1.5;
   position: relative;
   display: inline-block;
-  width: 3rem;
-  height: 1.5rem;
+  width: calc(var(--size) * 2rem);
+  height: calc(var(--size) * 1rem);
 }
 
 joomla-theme-switch button {
@@ -14,25 +15,25 @@ joomla-theme-switch button {
   border: 0;
   padding: 0;
   margin: 0;
-  height: 1.5rem;
-  width: 3rem;
+  height: calc(var(--size) * 1rem);
+  width: calc(var(--size) * 2rem);
   color: transparent;
   background-color: var(--template-bg-dark-60);
-  border-radius: 1.5rem;
+  border-radius: calc(var(--size) * 1rem);
   transition: background-color ease 0.4s, transform ease 0.4s;
 }
 
 joomla-theme-switch button::before {
   position: absolute;
   content: "";
-  height: 1.5rem;
-  width: 1.5rem;
+  height: calc(var(--size) * 1rem);
+  width: calc(var(--size) * 1rem);
   left: 0;
   top: 0;
   bottom: 0;
   padding: 0;
   margin: 0;
-  border-radius: 1.5rem;
+  border-radius: calc(var(--size) * 1rem);
   background-color: #000;
   background-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='#adb5bd' d='M448 256c0-106-86-192-192-192V448c106 0 192-86 192-192zm64 0c0 141.4-114.6 256-256 256S0 397.4 0 256S114.6 0 256 0S512 114.6 512 256z'%3E%3C/path%3E%3C/svg%3E");  background-repeat: no-repeat;
   background-position: center;
