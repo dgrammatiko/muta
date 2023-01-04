@@ -10,6 +10,7 @@
   <version>{{version}}</version>
   <description>atum++</description>
   <inheritable>1</inheritable>
+  <scriptfile>scriptFile.php</scriptfile>
   <files>
     <filename>component.php</filename>
     <filename>cpanel.php</filename>
