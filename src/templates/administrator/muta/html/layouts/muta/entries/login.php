@@ -18,9 +18,6 @@ $input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
 $entry  = $displayData['entry'];
-$option = $input->get('option', '');
-$view   = $input->get('view', '');
-$layout = $input->get('layout', 'default');
 $task   = $input->get('task', 'display');
 
 Text::script('JGLOBAL_WARNCOOKIES');
@@ -37,7 +34,7 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
   <jdoc:include type="scripts" />
 </head>
 
-<body class="admin <?= $option . ' view-' . $view . ' layout-' . $layout . ($task ? ' task-' . $task : '') . ($doc->monochrome ? ' monochrome' : ''); ?>">
+<body class="admin <?= $input->get('option', '') . ' view-' . $input->get('view', '') . ' layout-' . $input->get('layout', 'default') . ($task ? ' task-' . $task : '') . ($doc->monochrome ? ' monochrome' : ''); ?>">
   <noscript>
     <div class="alert alert-danger" role="alert"><?= Text::_('JGLOBAL_WARNJAVASCRIPT'); ?></div>
   </noscript>
@@ -45,8 +42,8 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
     <div class="header-title d-flex">
       <div class="d-flex align-items-center">
         <div class="logo">
-          <img src="<?= $doc->logoBrandLarge; ?>" <?= $doc->logoBrandLargeAlt; ?>>
-          <img class="logo-collapsed" src="<?= $doc->logoBrandSmall; ?>" <?= $doc->logoBrandSmallAlt; ?>>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => $doc->logoBrandLargeAlt]); ?>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => $doc->logoBrandSmallAlt, 'class' => 'logo-collapsed']); ?>
         </div>
       </div>
       <jdoc:include type="modules" name="title" />
@@ -65,7 +62,7 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
             <h2><?= Text::_('TPL_MUTA_BACKEND_LOGIN'); ?></h2>
           </div>
           <div class="main-brand logo text-center">
-            <img src="<?= $doc->loginLogo; ?>" <?= $doc->loginLogoAlt; ?>>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->loginLogo, 'alt' => $doc->loginLogoAlt, 'loading' => 'eager']); ?>
           </div>
           <jdoc:include type="component" />
           <jdoc:include type="modules" name="sidebar" style="details" />

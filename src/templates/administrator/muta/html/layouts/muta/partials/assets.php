@@ -18,8 +18,6 @@ $user   = $app->getIdentity();
 $wa     = $doc->getWebAssetManager();
 $option = $input->get('option', '');
 $view   = $input->get('view', '');
-$layout = $input->get('layout', 'default');
-$task   = $input->get('task', 'display');
 
 // Getting user accessibility settings
 $doc->monochrome         = (bool) $params->get('monochrome');
@@ -29,7 +27,7 @@ $doc->a11y_highlight     = (bool) $user->getParam('a11y_highlight', '');
 $doc->a11y_font          = (bool) $user->getParam('a11y_font', '');
 $doc->a11yColorScheme    = $user->getParam('prefers_color_scheme', '');
 $doc->prefersColorScheme = !empty($a11yColorScheme) ? $a11yColorScheme : 'light';
-$doc->prefersColorScheme = $input->cookie->get('mutaPrefersColorScheme', 'light');
+$doc->prefersColorScheme = $input->cookie->get('mutaPrefersColorScheme', $doc->prefersColorScheme);
 $doc->cpanel             = $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help');
 $doc->hiddenMenu         = $input->get('hidemainmenu');
 $doc->sidebarState       = $input->cookie->get('mutaSidebarState', '');

@@ -10,7 +10,6 @@ defined('_JEXEC') || die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\CMS\Uri\Uri;
 
 /** @var \Joomla\CMS\Document\HtmlDocument $doc */
 
@@ -19,9 +18,6 @@ $input  = $app->getInput();
 $doc    = $displayData['doc'];
 $params = $displayData['params'];
 $entry  = $displayData['entry'];
-$option = $input->get('option', '');
-$view   = $input->get('view', '');
-$layout = $input->get('layout', 'default');
 $task   = $input->get('task', 'display');
 
 Text::script('JGLOBAL_WARNCOOKIES');
@@ -36,7 +32,7 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
     <jdoc:include type="styles" />
     <jdoc:include type="scripts" />
   </head>
-  <body class="admin <?php echo $option . ' view-' . $view . ' layout-' . $layout . ($task ? ' task-' . $task : '') . ($doc->monochrome ? ' monochrome' : ''); ?>">
+  <body class="admin <?php echo $input->get('option', '') . ' view-' . $input->get('view', '') . ' layout-' . $input->get('layout', 'default') . ($task ? ' task-' . $task : '') . ($doc->monochrome ? ' monochrome' : ''); ?>">
     <noscript>
       <div class="alert alert-danger" role="alert">
         <?php echo Text::_('JGLOBAL_WARNJAVASCRIPT'); ?>
@@ -46,8 +42,8 @@ $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'sta
       <div class="header-title d-flex">
         <div class="d-flex align-items-center">
           <div class="logo">
-            <img src="<?php echo $doc->logoBrandLarge; ?>" <?php echo $doc->logoBrandLargeAlt; ?>>
-            <img class="logo-collapsed" src="<?php echo $doc->logoBrandSmall; ?>" <?php echo $doc->logoBrandSmallAlt; ?>>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandLarge, 'alt' => $doc->logoBrandLargeAlt, 'loading' => 'eager']); ?>
+            <?= LayoutHelper::render('joomla.html.image', ['src' => $doc->logoBrandSmall, 'alt' => $doc->logoBrandSmallAlt, 'class' =>'logo-collapsed', 'loading' => 'eager']); ?>
           </div>
         </div>
         <jdoc:include type="modules" name="title" />

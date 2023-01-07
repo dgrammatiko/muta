@@ -7,10 +7,11 @@
   <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
   <authorEmail>d.grammatiko@gmail.com</authorEmail>
   <authorUrl>https://dgrammatiko.dev</authorUrl>
-  <version>0.0.1</version>
+  <version>{{version}}</version>
   <description>atum++</description>
   <inheritable>1</inheritable>
   <namespace path="src">Dgrammatiko\Template\Muta</namespace>
+  <scriptfile>scriptFile.php</scriptfile>
   <files>
     <filename>component.php</filename>
     <filename>cpanel.php</filename>
@@ -74,6 +75,6 @@
   </fields>
   </config>
   <updateservers>
-    <server type="template" element="muta" priority="1" name="Muta Template">https://muta.dgrammatiko.dev/update.xml</server>
+    <server type="extension" name="Muta Administrator Template">https://muta.dgrammatiko.dev/update.xml</server>
   </updateservers>
 </extension>

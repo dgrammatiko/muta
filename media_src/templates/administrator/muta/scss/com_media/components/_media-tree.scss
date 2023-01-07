@@ -1,5 +1,4 @@
 // Media Tree
-
 ul.media-tree {
   padding: 0 0 5px;
   margin: 0;
@@ -102,13 +101,17 @@ ul.media-tree {
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
+  &:hover {
+      text-decoration: none;
+      background-color: var(--bs-tertiary-bg) !important;
+      color: var(--bs-white) !important;
+    }
 }
 
 .media-tree-item.active > a {
-  &:hover {
-    text-decoration: none;
-    background-color: $sidebar-tree-item-hover-bg;
-  }
+  text-decoration: none;
+  background-color: var(--bs-tertiary-bg) !important;
+  color: var(--bs-white)!important;
 }
 
 .media-tree-item .item-icon {

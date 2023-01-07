@@ -72,8 +72,8 @@ $icon-type-docs:                    "\f1c1";
 $icon-type-code:                    "\f1c9";
 
 // Drag n Drop Upload
-$dnd-bg:                            rgba(245, 245, 245, .8);
-$dnd-icon-color:                    #1c3d5c;
+$dnd-bg:                            rgba(var(--bs-body-bg-rgb), .92);
+$dnd-icon-color:                    var(--bs-primary);
 $dnd-border:                        3px dashed var(--bs-border-color);
 
 // Modal
