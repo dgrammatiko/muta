@@ -2,6 +2,11 @@ import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
 import fallbackJson from '../../../../../src/templates/administrator/muta/fields/def.json';
 
+/** Remove the inline help button and shenanigans, if present  */
+document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.classList.remove('hide-aware-inline-help', 'd-none'));
+const inlineHelp = document.getElementById('toolbar-inlinehelp');
+if (inlineHelp) inlineHelp.remove();
+
 const blueprint = {
   colors: [
     {
