@@ -70,7 +70,9 @@ export class Switcher extends HTMLElement {
       this.html.setAttribute('data-bs-theme', inverted === 'dark' ? 'dark' : 'light');
       window.dispatchEvent(new CustomEvent('joomla:toggle-theme', { detail: { prefersColorScheme: inverted } }));
       if (navigator.cookieEnabled) {
-        document.cookie = `mutaPrefersColorScheme=${inverted};`;
+        const oneYearFromNow = new Date();
+        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+        document.cookie = `mutaPrefersColorScheme=${inverted}; expires=${oneYearFromNow.toGMTString()}`;
       }
     // }).catch(() => { return; });
   }
