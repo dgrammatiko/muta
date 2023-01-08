@@ -26,7 +26,7 @@ $doc->a11y_contrast      = (bool) $user->getParam('a11y_contrast', '');
 $doc->a11y_highlight     = (bool) $user->getParam('a11y_highlight', '');
 $doc->a11y_font          = (bool) $user->getParam('a11y_font', '');
 $doc->a11yColorScheme    = $user->getParam('prefers_color_scheme', '');
-$doc->prefersColorScheme = !empty($a11yColorScheme) ? $a11yColorScheme : 'light';
+$doc->prefersColorScheme = !empty($doc->a11yColorScheme) ? $doc->a11yColorScheme : 'light';
 $doc->prefersColorScheme = $input->cookie->get('mutaPrefersColorScheme', $doc->prefersColorScheme);
 $doc->cpanel             = $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help');
 $doc->hiddenMenu         = $input->get('hidemainmenu');
