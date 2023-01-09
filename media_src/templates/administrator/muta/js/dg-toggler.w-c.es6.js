@@ -1,4 +1,6 @@
 // https://github.com/dgrammatiko/dark-switch/blob/master/src/index.js
+if (!Joomla) throw new Error('The Joomla API is not initialized properly');
+
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 const supported = window.matchMedia('(prefers-color-scheme)').media !== 'not all' ? true : false;
@@ -14,32 +16,25 @@ export class Switcher extends HTMLElement {
 
   get on() { return this.getAttribute('text-on') || 'on'; }
   get off() { return this.getAttribute('text-off') || 'off'; }
-  get legend() { return this.getAttribute('text-legend') || 'dark theme:'; }
+  get legend() { return this.getAttribute('text-legend') || 'dark theme'; }
   get forced() { return this.hasAttribute('forced-theme'); }
 
   connectedCallback() {
-    if (this.childElementCount) this.innerHTML = '';
     this.state = this.html.dataset && this.html.dataset.bsTheme ? this.html.dataset.bsTheme : 'light';
     if (supported && !this.forced && darkModeMediaQuery.matches) this.state = 'dark';
     if (supported && !this.forced && lightModeMediaQuery.matches) this.state = 'light';
     if (supported && !this.forced) darkModeMediaQuery.addListener(this.systemQuery);
 
-    this.button = document.createElement('button');
-    this.span = document.createElement('span');
-    this.button.innerText = this.legend;
-    this.button.setAttribute('tabindex', 0);
-    this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
+    this.innerHTML = Joomla.sanitizeHtml(`<button tabindex="0" aria-pressed="${this.state == 'dark' ? 'true' : 'false'}">${this.legend}<span aria-hidden="true">${this.state == 'dark' ? this.on : this.off}</span></button>`);
+    this.button = this.querySelector('button');
+    this.span = this.querySelector('span');
     this.button.addEventListener('click', this.onClick);
-    this.span.setAttribute('aria-hidden', 'true');
-    this.span.innerText = this.state == 'dark' ? this.on : this.off;
-    this.button.appendChild(this.span);
-    this.appendChild(this.button);
     this.applyState();
   }
 
   disconnectedCallback() {
     if (supported && !this.forced) darkModeMediaQuery.removeListener(this.systemQuery);
-    if (this.button) this.button.removeEventListener('click', this.onClick)
+    if (this.button) this.button.removeEventListener('click', this.onClick);
   }
 
   systemQuery(event) {
@@ -58,15 +53,13 @@ export class Switcher extends HTMLElement {
     //   redirect: 'follow',
     // }).finally(this.applyState).catch(() => {});
     this.applyState();
-    this.emit();
-    this.setCookie();
   }
   applyState() {
     const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
-    this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
-    this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
     ev.prefersColorScheme = this.state;
     window.dispatchEvent(ev);
+    this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
+    this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
     if (!navigator.cookieEnabled) return;
     const oneYearFromNow = new Date();
     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
