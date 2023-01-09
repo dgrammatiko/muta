@@ -1,61 +1,43 @@
 // https://github.com/dgrammatiko/dark-switch/blob/master/src/index.js
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const supportsMediaColorScheme = window.matchMedia('(prefers-color-scheme)').media !== 'not all' ? true : false;
+
 export class Switcher extends HTMLElement {
   constructor() {
     super();
 
+    this.html = document.documentElement;
     this.onClick = this.onClick.bind(this);
     this.systemQuery = this.systemQuery.bind(this);
+    this.applyState = this.applyState.bind(this);
   }
 
-  static get observedAttributes() { return ['value', 'text-on', 'text-off', 'text']; }
-
-  get default() { return this.getAttribute('default'); }
   get on() { return this.getAttribute('text-on') || 'on'; }
-  set on(value) { this.setAttribute('text-on', value); }
   get off() { return this.getAttribute('text-off') || 'off'; }
-  set off(value) { this.setAttribute('text-off', value); }
   get legend() { return this.getAttribute('text-legend') || 'dark theme:'; }
-  set legend(value) { this.setAttribute('text-legend', value); }
-
-  attributeChangedCallback(attr, oldValue, newValue) {
-    switch (attr) {
-      case 'text-on':
-        if (this.span && this.state == 'dark') {
-          this.span.innerText = newValue;
-        }
-        break;
-      case 'text-off':
-        if (this.span && this.state == 'light') {
-          this.span.innerText = newValue
-        }
-        break;
-      case 'text-legend':
-        if (this.button) {
-          this.button.innerText = newValue
-        }
-        break;
-    }
-  }
+  get forced() { return this.hasAttribute('forced-theme'); }
 
   connectedCallback() {
-    this.darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    this.supportsMediaColorScheme = window.matchMedia('(prefers-color-scheme)').media !== 'not all' ? true : false;
-    this.html = document.documentElement;
-    this.state = this.default || 'light';
+    this.state = this.html.dataset && this.html.dataset.bsTheme ? this.html.dataset.bsTheme : 'light';
     this.render();
 
-    if (this.supportsMediaColorScheme) {
-      this.darkModeMediaQuery.addListener(this.systemQuery);
+    if (supportsMediaColorScheme && !this.forced) {
+      if (darkModeMediaQuery.matches) {
+        this.state = 'dark';
+        this.applyState();
+      }
+      darkModeMediaQuery.addListener(this.systemQuery);
     }
   }
 
   systemQuery(event) {
     this.state = event.matches === true ? 'dark' : 'light';
+    this.applyState();
   }
 
   disconnectedCallback() {
-    if (this.supportsMediaColorScheme) {
-      this.darkModeMediaQuery.removeListener(this.systemQuery);
+    if (supportsMediaColorScheme && !this.forced) {
+      darkModeMediaQuery.removeListener(this.systemQuery);
     }
     if (this.button) {
       this.button.removeEventListener('click', this.onClick)
@@ -63,20 +45,21 @@ export class Switcher extends HTMLElement {
   }
 
   onClick() {
-    const inverted = this.state === 'light' ? 'dark' : 'light';
-    // this.syncValues(inverted).then(() => {
-      this.state = inverted;
-      this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
-      this.html.setAttribute('data-bs-theme', inverted === 'dark' ? 'dark' : 'light');
-      window.dispatchEvent(new CustomEvent('joomla:toggle-theme', { detail: { prefersColorScheme: inverted } }));
-      if (navigator.cookieEnabled) {
-        const oneYearFromNow = new Date();
-        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-        document.cookie = `mutaPrefersColorScheme=${inverted}; expires=${oneYearFromNow.toGMTString()}`;
-      }
-    // }).catch(() => { return; });
+    this.state = this.state === 'light' ? 'dark' : 'light';
+    // this.syncValues(this.state).then(() => this.applyState).catch(() => { return; });
+    this.applyState()
   }
 
+  applyState() {
+    this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
+    this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
+    window.dispatchEvent(new CustomEvent('joomla:toggle-theme', { detail: { prefersColorScheme: this.state } }));
+    if (navigator.cookieEnabled) {
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      document.cookie = `mutaPrefersColorScheme=${this.state}; expires=${oneYearFromNow.toGMTString()}`;
+    }
+  }
   // syncValues(value = 'light') {
   //   const urlBase = Joomla.getOptions('system.paths').baseFull;
   //   return fetch(new URL(`${urlBase}index.php?option=com_users&task=user.setA11ySettings&format=json`), {
@@ -108,6 +91,4 @@ export class Switcher extends HTMLElement {
   }
 }
 
-if (!customElements.get('joomla-theme-switch')) {
-  customElements.define('joomla-theme-switch', Switcher);
-}
+if (!customElements.get('joomla-theme-switch')) customElements.define('joomla-theme-switch', Switcher);

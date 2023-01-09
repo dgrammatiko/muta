@@ -240,7 +240,8 @@ class DgColor extends LitElement {
       else if (field.type === 'hue') return this.createHueField();
     })}
     <button class="btn btn-warning" type="button" @click=${() => {this.value = fallbackJson; this.requestUpdate;}}>${Joomla.Text._('JRESET')}</button>
-    <p>CSS Variables:</p>${blueprint.colors.map(field => { return html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`})}
+    <p></p>
+    <details><summary>CSS Variables:</summary>${blueprint.colors.map(field => { return html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`})}</details>
     <input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
   }
 
