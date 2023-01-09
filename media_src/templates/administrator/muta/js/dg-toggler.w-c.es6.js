@@ -35,8 +35,6 @@ export class Switcher extends HTMLElement {
     this.button.appendChild(this.span);
     this.appendChild(this.button);
     this.applyState();
-    this.emit();
-    this.setCookie();
   }
 
   disconnectedCallback() {
@@ -47,8 +45,6 @@ export class Switcher extends HTMLElement {
   systemQuery(event) {
     this.state = event.matches === true ? 'dark' : 'light';
     this.applyState();
-    this.emit();
-    this.setCookie();
   }
   onClick() {
     this.state = this.state === 'light' ? 'dark' : 'light';
@@ -66,15 +62,11 @@ export class Switcher extends HTMLElement {
     this.setCookie();
   }
   applyState() {
+    const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
     this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
-  }
-  emit() {
-    const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
     ev.prefersColorScheme = this.state;
     window.dispatchEvent(ev);
-  }
-  setCookie() {
     if (!navigator.cookieEnabled) return;
     const oneYearFromNow = new Date();
     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
