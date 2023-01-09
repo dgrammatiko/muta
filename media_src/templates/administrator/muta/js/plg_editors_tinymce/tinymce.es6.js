@@ -169,7 +169,7 @@ JoomlaTinyMCE = {
 
     // tinyMCE themes docs: https://www.tiny.cloud/docs/general-configuration-guide/customize-ui/
     function reRender(ed, options, ev) {
-      const prefersColorScheme = ev.detail.prefersColorScheme;
+      const prefersColorScheme = ev.prefersColorScheme;
       const theme = ['dark', 'light'].includes(prefersColorScheme) ? prefersColorScheme : 'light';
       tinyMCE.remove(`#${element.id}`);
 
