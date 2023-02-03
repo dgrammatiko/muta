@@ -8,6 +8,7 @@
   cursor: pointer;
   background: var(--template-select-indicator) no-repeat right center / 116rem #{"/* rtl:"}var(--template-select-indicator) no-repeat left center / 116rem#{"*/"};
   background-color: var(--bs-border-color);
+  border: $form-select-border-width solid $form-select-border-color;
 
   &[multiple] {
     padding: 0;

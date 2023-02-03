@@ -1,7 +1,6 @@
 // Form
 .form-control {
   max-width: $input-max-width;
-  border-radius: $border-radius;
 
   &::placeholder {
     font-size: .8rem;
@@ -142,8 +141,8 @@ div.subform-repeatable-group {
   position: relative;
   padding: 32px 32px 16px 28px;
   margin-top: 20px;
-  border: var(--bs-border-color);
-  border-radius: $border-radius;
+  border: $input-border-width solid $input-border-color;
+   @include border-radius($border-radius);
 
   > .btn-toolbar {
 

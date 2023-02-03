@@ -396,17 +396,9 @@
 
 
 .choices {
-  border: 0;
-  border-radius: $border-radius;
-  background-color: var(--bs-form-control-bg);
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  // &.is-focused {
-  //   box-shadow: $focusshadow;
-  // }
+  border: $form-select-border-width solid $form-select-border-color;
+  @include border-radius($form-select-border-radius, 0);
+  @include box-shadow($form-select-box-shadow);
 }
 
 .choices__inner {
@@ -414,12 +406,7 @@
   padding: .1rem 1rem;
   margin-bottom: 0;
   font-size: 1rem;
-  // border: $input-border;
-  border-radius: $border-radius;
-
-  // .is-focused & {
-  //   border-color: $focuscolor;
-  // }
+  border-radius: 0;
 }
 
 .choices__input {
@@ -428,12 +415,7 @@
   font-size: 1rem;
   background-color: var(--bs-form-control-bg);
 
-  &::-moz-placeholder {
-    color: $gray-700;
-    opacity: 1;
-  }
-
-  &::-webkit-input-placeholder {
+  &::placeholder {
     color: $gray-700;
     opacity: 1;
   }
