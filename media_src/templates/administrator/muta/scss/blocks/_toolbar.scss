@@ -122,7 +122,7 @@
     &[disabled],
     &.dropdown-toggle[disabled] {
       --subhead-btn-accent: var(--template-bg-dark);
-      background: rgba($gray-300, .8);
+      background: rgba(var(--bs-emphasis-color-rgb,.8));
       opacity: .5;
 
       &:hover,
