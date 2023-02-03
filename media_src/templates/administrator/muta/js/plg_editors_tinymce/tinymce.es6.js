@@ -3,6 +3,85 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+// Debounce ReInit per editor ID
+const reInitQueue = {};
+const debounceReInit = (element, pluginOptions, ev) => {
+  if (reInitQueue[element.id]) {
+    clearTimeout(reInitQueue[element.id]);
+  }
+  reInitQueue[element.id] = setTimeout(() => reRender(element, pluginOptions, ev), 500);
+};
+
+function registerJoomlaInstance(ed) {
+  /** Register the editor's instance to Joomla Object */
+  Joomla.editors.instances[ed.id] = {
+    // Required by Joomla's API for the XTD-Buttons
+    getValue: () => ed.getContent(),
+    setValue: (text) => ed.setContent(text),
+    getSelection: () => ed.selection.getContent({ format: 'text' }),
+    replaceSelection: (text) => ed.execCommand('mceInsertContent', false, text),
+    // Required by Joomla's API for Mail Component Integration
+    disable: (disabled) => ed.setMode(disabled ? 'readonly' : 'design'),
+    // Some extra instance dependent
+    id: ed.id,
+    instance: ed,
+  };
+}
+
+// tinyMCE themes docs: https://www.tiny.cloud/docs/general-configuration-guide/customize-ui/
+function reRender(element, options, ev) {
+  tinyMCE.remove(`#${element.id}`);
+  if (Joomla.editors.instances[element.id]) {
+    Joomla.editors.instances[element.id] = null;
+  }
+
+  const originalContentCss = options.content_css;
+  const originalSkin = options.skin;
+
+  let prefersColorScheme = ev.prefersColorScheme;
+  // Check if window.matchMedia is supported
+  let theme = document.documentElement.getAttribute('data-bs-theme');
+  if (!theme) theme = 'light';
+  if (prefersColorScheme && ['dark', 'light'].includes(prefersColorScheme)) {
+    theme = prefersColorScheme;
+  }
+
+  options.skin = theme === 'dark' ? 'oxide-dark' : originalSkin;
+  options.content_css = `${originalContentCss}${theme === 'dark' ? ',dark' : ''}`;
+
+  const ed = new tinyMCE.Editor(element.id, options, tinymce.EditorManager);
+
+  // Work around iframe behavior, when iframe element changes location in DOM and losing its content.
+  // Re init editor when iframe is reloaded.
+  if (!ed.inline) {
+    let isReady = false;
+    let isRendered = false;
+    const listenIframeReload = () => {
+      const $iframe = ed.getContentAreaContainer().querySelector('iframe');
+
+      $iframe.addEventListener('load', () => debounceReInit(element, options, {prefersColorScheme: null}));
+    };
+
+    // Make sure iframe is fully loaded.
+    // This works differently in different browsers, so have to listen both "load" and "PostRender" events.
+    ed.on('load', () => {
+      isReady = true;
+      if (isRendered) {
+        listenIframeReload();
+      }
+    });
+    ed.on('PostRender', () => {
+      isRendered = true;
+      if (isReady) {
+        listenIframeReload();
+      }
+    });
+  }
+
+  ed.render();
+  registerJoomlaInstance(ed);
+}
+
 JoomlaTinyMCE = {
   /**
    * Find all TinyMCE elements and initialize TinyMCE instance for each
@@ -28,15 +107,18 @@ JoomlaTinyMCE = {
       // Setup the toggle button
       if (toggleButton) {
         toggleButton.removeAttribute('disabled');
-        toggleButton.addEventListener('click', () => {
-          if (Joomla.editors.instances[currentEditor.id].instance.isHidden()) {
-            Joomla.editors.instances[currentEditor.id].instance.show();
+        toggleButton.addEventListener('click', (event) => {
+          const container = event.target.closest('.js-editor-tinymce');
+          const editorEl = container.querySelector('textarea');
+
+          if (Joomla.editors.instances[editorEl.id].instance.isHidden()) {
+            Joomla.editors.instances[editorEl.id].instance.show();
           } else {
-            Joomla.editors.instances[currentEditor.id].instance.hide();
+            Joomla.editors.instances[editorEl.id].instance.hide();
           }
 
           if (toggleIcon) {
-            toggleIcon.setAttribute('class', Joomla.editors.instances[currentEditor.id].instance.isHidden() ? 'icon-eye' : 'icon-eye-slash');
+            toggleIcon.setAttribute('class', Joomla.editors.instances[editorEl.id].instance.isHidden() ? 'icon-eye' : 'icon-eye-slash');
           }
         });
       }
@@ -144,58 +226,11 @@ JoomlaTinyMCE = {
       }, true);
     };
 
-    function registerJoomlaInstance(element, ed) {
-      if (Joomla.editors.instances[element.id]) {
-        Joomla.editors.instances[element.id] = null;
-      }
-
-      /** Register the editor's instance to Joomla Object */
-      Joomla.editors.instances[element.id] = {
-        // Required by Joomla's API for the XTD-Buttons
-        getValue: () => Joomla.editors.instances[element.id].instance.getContent(),
-        setValue: (text) => Joomla.editors.instances[element.id].instance.setContent(text),
-        getSelection: () => Joomla.editors.instances[element.id].instance.selection.getContent({ format: 'text' }),
-        replaceSelection: (text) => Joomla.editors.instances[element.id].instance.execCommand('mceInsertContent', false, text),
-        // Required by Joomla's API for Mail Component Integration
-        disable: (disabled) => Joomla.editors.instances[element.id].instance.setMode(disabled ? 'readonly' : 'design'),
-        // Some extra instance dependent
-        id: element.id,
-        instance: ed,
-      };
-    }
-
-    const originalContentCss = options.content_css;
-    const originalSkin = options.skin;
-
-    // tinyMCE themes docs: https://www.tiny.cloud/docs/general-configuration-guide/customize-ui/
-    function reRender(ed, options, ev) {
-      const prefersColorScheme = ev.prefersColorScheme;
-      const theme = ['dark', 'light'].includes(prefersColorScheme) ? prefersColorScheme : 'light';
-      tinyMCE.remove(`#${element.id}`);
-
-      options.skin = theme === 'dark' ? 'oxide-dark' : originalSkin;
-      options.content_css = `${originalContentCss}${theme === 'dark' ? ',dark' : ''}`;
-
-      ed = new tinyMCE.Editor(element.id, options, tinymce.EditorManager);
-      ed.render();
-      registerJoomlaInstance(element, ed);
-    }
-
-    // Check if window.matchMedia is supported
-    let theme = document.documentElement.getAttribute('data-bs-theme');
-    if (!theme) theme = 'light';
-
-    options.skin = theme === 'dark' ? 'oxide-dark' : originalSkin;
-    options.content_css = `${originalContentCss}${theme === 'dark' ? ',dark' : ''}`;
-
     // Check for color-scheme changes in OS
-    window.addEventListener('joomla:toggle-theme', (ev) => reRender(ed, options, ev));
+    window.addEventListener('joomla:toggle-theme', (ev) => reRender(element, options, ev));
 
-    // Create a new instance
-    // eslint-disable-next-line no-undef
-    const ed = new tinyMCE.Editor(element.id, options, tinymce.EditorManager);
-    ed.render();
-    registerJoomlaInstance(element, ed);
+    // Render
+    reRender(element, options, {prefersColorScheme: null});
   },
 };
 
