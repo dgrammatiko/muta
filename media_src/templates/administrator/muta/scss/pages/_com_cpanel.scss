@@ -144,13 +144,13 @@
     &:hover,
     &:focus,
     &:active {
+      color: #fff;
       text-decoration: none;
       background: var(--bg-color-hvr);
-      color: #fff;
 
-      & .cpanel-add-module-icon {
-          color: #fff;
-        }
+      .cpanel-add-module-icon {
+        color: #fff;
+      }
     }
 
     > span {

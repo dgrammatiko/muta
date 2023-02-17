@@ -46,8 +46,8 @@
     margin: 5px 0;
     font-size: 1rem;
     line-height: $atum-toolbar-line-height;
-    background-color: var(--subhead-btn-bg);
     color: var(--subhead-btn-color);
+    background-color: var(--subhead-btn-bg);
 
     > span {
       display: inline-block;
@@ -88,25 +88,25 @@
 
     &.btn-action {
       --subhead-btn-accent: var(--template-bg-dark-60);
-      border-color: var(--subhead-btn-accent);
       display: flex;
       align-items: center;
+      border-color: var(--subhead-btn-accent);
 
       &::after {
         width: 2.375rem;
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
+        color: var(--subhead-btn-accent);
         content: "\f078";
         border: 0;
-        color: var(--subhead-btn-accent);
       }
 
       &:focus-visible {
+        color: var(--bs-btn-hover-color);
         background-color: var(--template-bg-dark-90);
         border-color: var(--template-bg-dark-90);
-        box-shadow: 0 0 0 0.25rem var(--template-bg-dark-60);
-        color: var(--bs-btn-hover-color);
         outline: 0;
+        box-shadow: 0 0 0 .25rem var(--template-bg-dark-60);
       }
 
       &:hover,

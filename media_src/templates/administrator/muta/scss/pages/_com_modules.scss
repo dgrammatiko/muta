@@ -8,10 +8,10 @@
   display: flex;
   overflow: hidden;
   color: hsl(var(--hue),30%,40%);
+  text-decoration: none;
   background-color: var(--bs-dark-bg-subtle);
   border: 1px solid var(--bs-border-color);
   border-radius: var(--bs-border-radius);
-  text-decoration: none;
 
   * {
     transition: all .25s ease;
@@ -23,10 +23,10 @@
   }
 
   &-title {
-    color: var(--bs-body-color);
     margin-bottom: .25rem;
     font-size: 1rem;
     font-weight: 700;
+    color: var(--bs-body-color);
   }
 
   &-caption {
