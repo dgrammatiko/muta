@@ -8,6 +8,25 @@ document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.cla
 const inlineHelp = document.getElementById('toolbar-inlinehelp');
 if (inlineHelp) inlineHelp.remove();
 
+
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const get_cookie = (name) => document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
+
+document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forEach(el => {
+  el.onclick = function() {
+    if (el.checked && el.value === '0' && get_cookie('mutaPrefersColorScheme')) {
+      const val = document.cookie.split(';').find(c => c.trim().startsWith('mutaPrefersColorScheme=')).split('=')[1]
+      document.cookie = `mutaPrefersColorScheme=${val};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+    }
+    if (el.checked && el.value === '1') {
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      document.cookie = `mutaPrefersColorScheme=${darkModeMediaQuery.matches ? 'dark' : 'light'};expires=${oneYearFromNow.toGMTString()}`;
+    }
+  }
+})
+
+
 class DgColor extends LitElement {
   static get properties() {
     return {
