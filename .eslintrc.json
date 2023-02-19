@@ -1,0 +1,21 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "airbnb-base",
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+      "max-len": ["error", { "comments": 160, "code": 160 }]
+    },
+    "globals": {
+      "Joomla": "writable",
+      "tinyMCE": "readonly",
+      "tinymce": "readonly"
+    }
+}

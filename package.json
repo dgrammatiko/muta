@@ -12,7 +12,7 @@
     "b": "node ./cli.js -b media_src",
     "init": "npm run i && npm run l && npm run b",
     "lint-css": "npx stylelint media_src/templates/**/**/scss/**/*.scss",
-    "lint-js": "npx eslint media_src/js/.",
+    "lint-js": "npx eslint media_src/templates/**/**/js/**/*.js",
     "lint": "npm run lint-css && npm run lint-js",
     "update:browserlist": "npx browserslist@latest --update-db"
   },
@@ -33,6 +33,8 @@
     "commander": "~10.0.0",
     "cssnano": "^5.1.14",
     "eslint": "^8.34.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "fs-jetpack": "^5.1.0",
     "postcss": "^8.3.11",
     "postcss-cli": "10.1.0",
