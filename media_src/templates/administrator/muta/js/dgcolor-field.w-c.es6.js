@@ -23,8 +23,7 @@ document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forE
       document.cookie = `mutaPrefersColorScheme=${darkModeMediaQuery.matches ? 'dark' : 'light'};expires=${oneYearFromNow.toGMTString()}`;
     }
   }
-})
-
+});
 
 class DgColor extends LitElement {
   static get properties() {
