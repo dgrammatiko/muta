@@ -60,10 +60,11 @@ export class Switcher extends HTMLElement {
     window.dispatchEvent(ev);
     this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
-    if (!navigator.cookieEnabled) return;
-    const oneYearFromNow = new Date();
-    oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-    document.cookie = `mutaPrefersColorScheme=${this.state}; expires=${oneYearFromNow.toGMTString()}`;
+    if (this.forced && navigator.cookieEnabled) {
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      document.cookie = `mutaPrefersColorScheme=${this.state}; expires=${oneYearFromNow.toGMTString()}`;
+    }
   }
 }
 

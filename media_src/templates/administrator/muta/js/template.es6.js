@@ -7,10 +7,11 @@ if (!Joomla) {
   throw new Error('Joomla API is not initialized');
 }
 
-const getCookie = () => document.cookie.length && document.cookie
-  .split('; ')
-  .find((row) => row.startsWith('mutaSidebarState='))
-  .split('=')[1];
+const getCookie = () => {
+  if (document.cookie.length && document.cookie.split('; ').length) {
+    return document.cookie.split('; ') .find((row) => row.startsWith('mutaSidebarState=')).split('=')[1];
+  }
+}
 
 const mobile = window.matchMedia('(max-width: 992px)');
 const small = window.matchMedia('(max-width: 575.98px)');

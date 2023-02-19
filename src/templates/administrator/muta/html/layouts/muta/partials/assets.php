@@ -26,7 +26,7 @@ $doc->a11y_contrast      = (bool) $user->getParam('a11y_contrast', '');
 $doc->a11y_highlight     = (bool) $user->getParam('a11y_highlight', '');
 $doc->a11y_font          = (bool) $user->getParam('a11y_font', '');
 $doc->forcedColorScheme  = (bool) $params->get('forcedColorScheme', false);
-$doc->prefersColorScheme = $input->cookie->get('mutaPrefersColorScheme', $user->getParam('prefers_color_scheme', 'light'));
+$doc->prefersColorScheme = !$doc->forcedColorScheme ? '' : ' data-bs-theme="' . $input->cookie->get('mutaPrefersColorScheme', $user->getParam('prefers_color_scheme', 'light')) . '"';
 $doc->cpanel             = $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help');
 $doc->hiddenMenu         = $input->get('hidemainmenu');
 $doc->sidebarState       = $input->cookie->get('mutaSidebarState', '');

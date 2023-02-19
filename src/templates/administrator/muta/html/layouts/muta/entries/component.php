@@ -14,14 +14,17 @@ $params = $displayData['params'];
 $entry  = $displayData['entry'];
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>" data-bs-theme="<?= $doc->prefersColorScheme; ?>">
-  <head>
-    <jdoc:include type="metas" />
-    <jdoc:include type="styles" />
-    <jdoc:include type="scripts" />
-  </head>
-  <body class="contentpane component">
-    <jdoc:include type="message" />
-    <jdoc:include type="component" />
-  </body>
+<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>"<?= $doc->prefersColorScheme; ?>>
+
+<head>
+  <jdoc:include type="metas" />
+  <jdoc:include type="styles" />
+  <jdoc:include type="scripts" />
+</head>
+
+<body class="contentpane component">
+  <jdoc:include type="message" />
+  <jdoc:include type="component" />
+</body>
+
 </html>
