@@ -3,7 +3,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
-const configs = new WeakMap();
+const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {}) : (Joomla.optionsStorage.plg_editor_tinymce || {});
 
 // Debounce ReInit per editor ID
 const reInitQueue = {};
@@ -37,8 +37,6 @@ function reRender(element, ev) {
     Joomla.editors.instances[element.id] = null;
   }
 
-  const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {})
-      : (Joomla.optionsStorage.plg_editor_tinymce || {});
   const name = element ? element.getAttribute('name').replace(/\[\]|\]/g, '').split('[').pop() : 'default'; // Get Editor name
   const tinyMCEOptions = pluginOptions ? pluginOptions.tinyMCE || {} : {};
   const defaultOptions = tinyMCEOptions.default || {};
@@ -112,8 +110,6 @@ JoomlaTinyMCE = {
    */
   setupEditors: (target) => {
     const container = target || document;
-    const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {})
-      : (Joomla.optionsStorage.plg_editor_tinymce || {});
     const editors = [].slice.call(container.querySelectorAll('.js-editor-tinymce'));
 
     editors.forEach((editor) => {
@@ -122,7 +118,7 @@ JoomlaTinyMCE = {
       const toggleIcon = editor.querySelector('.icon-eye');
 
       // Setup the editor
-      JoomlaTinyMCE.setupEditor(currentEditor, pluginOptions);
+      JoomlaTinyMCE.setupEditor(currentEditor);
 
       // Setup the toggle button
       if (toggleButton) {
@@ -153,7 +149,7 @@ JoomlaTinyMCE = {
    *
    * @since 3.7.0
    */
-  setupEditor: (element, pluginOptions) => {
+  setupEditor: (element) => {
     // Check whether the editor already has ben set
     if (Joomla.editors.instances[element.id]) {
       return;
