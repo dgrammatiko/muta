@@ -3,13 +3,15 @@
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+const configs = new WeakMap();
+
 // Debounce ReInit per editor ID
 const reInitQueue = {};
-const debounceReInit = (element, pluginOptions, ev) => {
-  if (reInitQueue[element.id]) {
-    clearTimeout(reInitQueue[element.id]);
-  }
-  reInitQueue[element.id] = setTimeout(() => reRender(element, pluginOptions, ev), 500);
+const debounceReInit = (element, ev) => {
+  console.log({ev})
+  if (reInitQueue[element.id]) clearTimeout(reInitQueue[element.id]);
+
+  reInitQueue[element.id] = setTimeout(() => reRender(element, ev), 500);
 };
 
 function registerJoomlaInstance(ed) {
@@ -29,22 +31,40 @@ function registerJoomlaInstance(ed) {
 }
 
 // tinyMCE themes docs: https://www.tiny.cloud/docs/general-configuration-guide/customize-ui/
-function reRender(element, options, ev) {
+function reRender(element, ev) {
   tinyMCE.remove(`#${element.id}`);
   if (Joomla.editors.instances[element.id]) {
     Joomla.editors.instances[element.id] = null;
   }
 
+  const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {})
+      : (Joomla.optionsStorage.plg_editor_tinymce || {});
+  const name = element ? element.getAttribute('name').replace(/\[\]|\]/g, '').split('[').pop() : 'default'; // Get Editor name
+  const tinyMCEOptions = pluginOptions ? pluginOptions.tinyMCE || {} : {};
+  const defaultOptions = tinyMCEOptions.default || {};
+  // Check specific options by the name
+  let options = tinyMCEOptions[name] ? tinyMCEOptions[name] : defaultOptions;
+
+  // Avoid an unexpected changes, and copy the options object
+  if (options.joomlaMergeDefaults) {
+    options = Joomla.extend(Joomla.extend({}, defaultOptions), options);
+  } else {
+    options = Joomla.extend({}, options);
+  }
+
+  if (element) {
+    // We already have the Target, so reset the selector and assign given element as target
+    options.selector = null;
+    options.target = element;
+  }
+
   const originalContentCss = options.content_css;
   const originalSkin = options.skin;
 
-  let prefersColorScheme = ev.prefersColorScheme;
   // Check if window.matchMedia is supported
   let theme = document.documentElement.getAttribute('data-bs-theme');
-  if (!theme) theme = 'light';
-  if (prefersColorScheme && ['dark', 'light'].includes(prefersColorScheme)) {
-    theme = prefersColorScheme;
-  }
+  theme = theme ?? 'light';
+  theme = ev && ['dark', 'light'].includes(ev) ? ev : theme;
 
   options.skin = theme === 'dark' ? 'oxide-dark' : originalSkin;
   options.content_css = `${originalContentCss}${theme === 'dark' ? ',dark' : ''}`;
@@ -56,10 +76,10 @@ function reRender(element, options, ev) {
   if (!ed.inline) {
     let isReady = false;
     let isRendered = false;
-    const listenIframeReload = () => {
+    function listenIframeReload() {
       const $iframe = ed.getContentAreaContainer().querySelector('iframe');
 
-      $iframe.addEventListener('load', () => debounceReInit(element, options, {prefersColorScheme: null}));
+      $iframe.addEventListener('load', () => debounceReInit(element, theme));
     };
 
     // Make sure iframe is fully loaded.
@@ -227,10 +247,10 @@ JoomlaTinyMCE = {
     };
 
     // Check for color-scheme changes in OS
-    window.addEventListener('joomla:toggle-theme', (ev) => reRender(element, options, ev));
+    window.addEventListener('joomla:toggle-theme', (ev) => reRender(element, ev.prefersColorScheme));
 
     // Render
-    reRender(element, options, {prefersColorScheme: null});
+    reRender(element, '');
   },
 };
 
