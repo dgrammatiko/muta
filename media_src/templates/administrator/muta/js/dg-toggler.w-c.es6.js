@@ -58,14 +58,29 @@ export class Switcher extends HTMLElement {
     const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
     ev.prefersColorScheme = this.state;
     window.dispatchEvent(ev);
+    console.log(this.forced)
     this.button.setAttribute('aria-pressed', this.state == 'dark' ? 'true' : 'false');
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
     if (this.forced && navigator.cookieEnabled) {
       const oneYearFromNow = new Date();
       oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-      document.cookie = `mutaPrefersColorScheme=${this.state}; expires=${oneYearFromNow.toGMTString()}`;
+      document.cookie = `mutaPrefersColorScheme=${this.state};path=${Joomla.getOptions('system.paths').base};domain=${location.host};expires=${oneYearFromNow.toGMTString()}`;
     }
   }
 }
 
 if (!customElements.get('joomla-theme-switch')) customElements.define('joomla-theme-switch', Switcher);
+
+const get_cookie = (name) => document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
+
+document.querySelectorAll([name=name="jform[params][forcedColorScheme]"]).forEach(el => {
+  el.addEventListener('change', (cEl) => {
+    if (cEl.value === '0' && get_cookie('mutaPrefersColorScheme')) {
+      document.cookie = `mutaPrefersColorScheme;path=${Joomla.getOptions('system.paths').base};domain=${location.host};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+    }
+    if (cEl.value === '1' && !get_cookie('mutaPrefersColorScheme')) {
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      document.cookie = `mutaPrefersColorScheme=${darkModeMediaQuery.matches ? 'dark' : 'light'};path=${Joomla.getOptions('system.paths').base};domain=${location.host};expires=${oneYearFromNow.toGMTString()}`;    }
+  })
+})
