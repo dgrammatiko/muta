@@ -8,7 +8,6 @@ document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.cla
 const inlineHelp = document.getElementById('toolbar-inlinehelp');
 if (inlineHelp) inlineHelp.remove();
 
-
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const get_cookie = (name) => document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
 
