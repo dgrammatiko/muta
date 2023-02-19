@@ -14,17 +14,17 @@ $dark:           #212529 !default;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  primary:      #132f53,
-  secondary:    #495057,
-  success:      #457d54,
-  info:         #2a69b8,
-  warning:      #ffb514,
-  danger:       #c52827,
-  light:        #f8f9fa,
-  dark:         #212529,
+  primary:      $primary,
+  secondary:    $secondary,
+  success:      $success,
+  info:         $info,
+  warning:      $warning,
+  danger:       $danger,
+  light:        $light,
+  dark:         $dark,
   focus:        #39f,
   focus-shadow: #eaeaea,
-);
+) !default;
 // scss-docs-end theme-colors-map
 
 $atum-colors: (

@@ -10,6 +10,10 @@
   background-color: var(--bs-border-color);
   border: $form-select-border-width solid $form-select-border-color;
 
+  &:focus {
+    box-shadow: none;
+  }
+
   &[multiple] {
     padding: 0;
     background-color: var(--bs-white-offset);

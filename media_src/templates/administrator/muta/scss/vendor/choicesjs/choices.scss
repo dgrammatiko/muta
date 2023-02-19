@@ -1,11 +1,9 @@
 @import "../../../../../../../node_modules/bootstrap/scss/functions";
-
-// Atum Variables
-@import "../../variables";
-
 @import "../../../../../../../node_modules/bootstrap/scss/variables";
 @import "../../../../../../../node_modules/bootstrap/scss/variables-dark";
 @import "../../../../../../../node_modules/bootstrap/scss/mixins";
+// Atum Variables
+@import "../../variables";
 
 /* ===============================
 =            Choices            =
@@ -31,7 +29,7 @@
 
 .choices.is-disabled .choices__inner,
 .choices.is-disabled .choices__input {
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
   cursor: not-allowed;
   -webkit-user-select: none;
   user-select: none;
@@ -58,7 +56,7 @@
   width: 100%;
   padding: 10px;
   border-bottom: 1px solid var(--bs-border-color);
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
   margin: 0;
 }
 
@@ -162,7 +160,7 @@
   display: inline-block;
   vertical-align: top;
   width: calc(100% - 1px);
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
   padding: 7.5px 7.5px 3.75px;
   border: 1px solid var(--bs-border-color);
   border-radius: 2.5px;
@@ -203,6 +201,12 @@
 
 .choices__list--single .choices__item {
   width: 100%;
+}
+
+.is-selected {
+  background-color: #00a5bb;
+  color: #444;
+  border: 1px solid #008fa1;
 }
 
 .choices__list--multiple {
@@ -249,7 +253,7 @@
   z-index: 1;
   position: absolute;
   width: 100%;
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
   border: 1px solid var(--bs-border-color);
   top: 100%;
   margin-top: -1px;
@@ -322,7 +326,7 @@
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
 }
 
 .choices__list--dropdown .choices__item--selectable.is-highlighted::after {
@@ -370,7 +374,7 @@
 .choices__input {
   display: inline-block;
   vertical-align: baseline;
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
   font-size: 14px;
   margin-bottom: 5px;
   border: 0;
@@ -413,7 +417,7 @@
   padding: 0;
   margin-bottom: 0;
   font-size: 1rem;
-  background-color: var(--bs-form-control-bg);
+  background-color: var(--bs-body-bg);
 
   &::placeholder {
     color: $gray-700;
