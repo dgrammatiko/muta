@@ -23,7 +23,7 @@ $doc->getWebAssetManager()
   ->registerAndUseStyle('joomla-theme-switch', 'dg-toggler.css');
 
 // @todo make this a real module
-$themeToggler        = '<joomla-theme-switch text-on="' . Text::_('JON'). '" text-off="' . Text::_('JOFF') . '" text-legend="' . Text::_('TPL_MUTA_COLORS_SETTINGS_DARK_THEME') . '"' . ($doc->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
+$themeToggler        = !$doc->forcedColorScheme ? '' : '<joomla-theme-switch text-on="' . Text::_('JON'). '" text-off="' . Text::_('JOFF') . '" text-legend="' . Text::_('TPL_MUTA_COLORS_SETTINGS_DARK_THEME') . '"' . ($doc->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
 $renderer            = $doc->loadRenderer('module');
 $modules             = ModuleHelper::getModules($modulePosition);
 $moduleHtml          = [$themeToggler];

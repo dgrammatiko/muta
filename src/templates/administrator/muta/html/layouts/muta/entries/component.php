@@ -14,7 +14,7 @@ $params = $displayData['params'];
 $entry  = $displayData['entry'];
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>"<?= $doc->prefersColorScheme; ?>>
+<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>"<?= $doc->prefersColorScheme; ?><?= $doc->forcedColorScheme ? ' data-forced-theme' : ''; ?>>
 
 <head>
   <jdoc:include type="metas" />

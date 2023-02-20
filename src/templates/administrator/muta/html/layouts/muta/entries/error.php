@@ -26,7 +26,7 @@ Text::script('JGLOBAL_WARNCOOKIES');
 $statusModules = LayoutHelper::render('muta.partials.status', ['modules' => 'status', 'prefersColorScheme' => $doc->prefersColorScheme]);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>" <?= $doc->prefersColorScheme; ?>>
+<html lang="<?php echo $doc->language; ?>" dir="<?php echo $doc->direction; ?>"<?= $doc->prefersColorScheme; ?><?= $doc->forcedColorScheme ? ' data-forced-theme' : ''; ?>>
 
 <head>
   <jdoc:include type="metas" />

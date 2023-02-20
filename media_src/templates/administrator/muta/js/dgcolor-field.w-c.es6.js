@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
 import fallbackJson from '../../../../../src/templates/administrator/muta/fields/def.json';
-import blueprint from '../../../../../src/templates/administrator/muta/fields/blueprint.json'
+import blueprint from '../../../../../src/templates/administrator/muta/fields/blueprint.json';
 
 /** Remove the inline help button and shenanigans, if present  */
 document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.classList.remove('hide-aware-inline-help', 'd-none'));
@@ -9,27 +9,32 @@ const inlineHelp = document.getElementById('toolbar-inlinehelp');
 if (inlineHelp) inlineHelp.remove();
 
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const get_cookie = (name) => document.cookie.split(';').some(c => c.trim().startsWith(name + '='));
+const forced = () => document.documentElement.hasAttribute('data-forced-theme');
 
-document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forEach(el => {
-  el.onclick = function() {
-    if (el.checked && el.value === '0' && get_cookie('mutaPrefersColorScheme')) {
-      const val = document.cookie.split(';').find(c => c.trim().startsWith('mutaPrefersColorScheme=')).split('=')[1]
-      document.cookie = `mutaPrefersColorScheme=${val};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forEach((el) => el.addEventListener('click', () => {
+  if (el.checked && el.value === '0') {
+    if (!forced()) {
+      document.cookie = 'mutaPrefersColorScheme=light;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    } else {
+      document.cookie = 'mutaPrefersColorScheme=light;expires=Thu, 01 Jan 1970 00:00:01 GMT';
     }
-    if (el.checked && el.value === '1') {
-      const oneYearFromNow = new Date();
-      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+  }
+  if (el.checked && el.value === '1') {
+    const oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+    if (!forced()) {
+      document.cookie = 'mutaPrefersColorScheme=light;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    } else {
       document.cookie = `mutaPrefersColorScheme=${darkModeMediaQuery.matches ? 'dark' : 'light'};expires=${oneYearFromNow.toGMTString()}`;
     }
   }
-});
+}));
 
 class DgColor extends LitElement {
   static get properties() {
     return {
-      value: {type: Object, value: {}},
-      name: {type: String, value: 'muta-colors' }
+      value: { type: Object, value: {}},
+      name: { type: String, value: 'muta-colors' },
     };
   }
 
@@ -53,7 +58,7 @@ class DgColor extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this.fields = blueprint.colors.filter(x => !x.cssVariableName.endsWith('-rgb'));
+    this.fields = blueprint.colors.filter((x) => !x.cssVariableName.endsWith('-rgb'));
     this.sliderValue = this.value.hue;
   }
 
@@ -63,7 +68,7 @@ class DgColor extends LitElement {
 
   render() {
     this.applyColors();
-    return html`${this.fields.map(field => {
+    return html`${this.fields.map((field) => {
       if (field.type === 'picker') return this.createColorField(field);
       else if (field.type === 'hue') return this.createHueField();
     })}
@@ -78,13 +83,13 @@ class DgColor extends LitElement {
     <div class="control-label"><label id="jform_params_hue-lbl" for="jform_params_hue">Choose your hue value for the dark template colour</label></div>
 
     <div class="controls">
-          <label for="slider-input" class="visually-hidden">Selected Colour Value</label>
-          <input type="text" class="form-control" id="slider-input" pattern="[0-9]{1,3}" style="border: 2px solid rgb(19, 47, 83);" .value=${this.sliderValue} @input=${(e) => { this.sliderValue = e.target.value; this.value.hue = e.target.value; this.requestUpdate();} }>
-          <label for="hue-slider" class="visually-hidden">Hue Slider</label>
-          <input type="range" min="0" step="1" max="360" class="form-control color-slider" .value=${this.sliderValue} @input=${(e) => { this.sliderValue = e.target.value; this.value.hue = e.target.value; this.requestUpdate();} } style="background-image: linear-gradient(90deg, rgb(83, 19, 19), rgb(83, 19, 19), rgb(83, 38, 19), rgb(83, 57, 19), rgb(83, 77, 19), rgb(70, 83, 19), rgb(51, 83, 19), rgb(32, 83, 19), rgb(19, 83, 25), rgb(19, 83, 45), rgb(19, 83, 64), rgb(19, 83, 83), rgb(19, 64, 83), rgb(19, 45, 83), rgb(19, 25, 83), rgb(32, 19, 83), rgb(51, 19, 83), rgb(70, 19, 83), rgb(83, 19, 77), rgb(83, 19, 57), rgb(83, 19, 38), rgb(83, 19, 19), rgb(83, 19, 19)); appearance: none;">
+      <label for="slider-input" class="visually-hidden">Selected Colour Value</label>
+      <input type="text" class="form-control" id="slider-input" pattern="[0-9]{1,3}" style="border: 2px solid rgb(19, 47, 83);" .value=${this.sliderValue} @input=${(e) => { this.sliderValue = e.target.value; this.value.hue = e.target.value; this.requestUpdate(); } }>
+      <label for="hue-slider" class="visually-hidden">Hue Slider</label>
+      <input type="range" min="0" step="1" max="360" class="form-control color-slider" .value=${this.sliderValue} @input=${(e) => { this.sliderValue = e.target.value; this.value.hue = e.target.value; this.requestUpdate();} } style="background-image: linear-gradient(90deg, rgb(83, 19, 19), rgb(83, 19, 19), rgb(83, 38, 19), rgb(83, 57, 19), rgb(83, 77, 19), rgb(70, 83, 19), rgb(51, 83, 19), rgb(32, 83, 19), rgb(19, 83, 25), rgb(19, 83, 45), rgb(19, 83, 64), rgb(19, 83, 83), rgb(19, 64, 83), rgb(19, 45, 83), rgb(19, 25, 83), rgb(32, 19, 83), rgb(51, 19, 83), rgb(70, 19, 83), rgb(83, 19, 77), rgb(83, 19, 57), rgb(83, 19, 38), rgb(83, 19, 19), rgb(83, 19, 19)); appearance: none;">
       </div>
     </div>
-</div>`
+</div>`;
   }
 
   createColorField(field) {
@@ -118,4 +123,4 @@ class DgColor extends LitElement {
   }
 }
 
-customElements.define('dg-color-field', DgColor)
+customElements.define('dg-color-field', DgColor);

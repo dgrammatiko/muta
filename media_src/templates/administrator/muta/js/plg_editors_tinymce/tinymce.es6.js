@@ -5,6 +5,8 @@
 if (!Joomla) throw new Error('The API wasn\'t initiated properly');
 
 const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {}) : (Joomla.optionsStorage.plg_editor_tinymce || {});
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const forced = () => document.documentElement.hasAttribute('data-forced-theme');
 const onBeforeSubmit = (editor) => editor.on('submit', () => {
   if (editor.isHidden()) {
     editor.show();
@@ -40,12 +42,14 @@ class Editor {
     this.onLoad = this.onLoad.bind(this);
     this.listenIframeReload = this.listenIframeReload.bind(this);
     this.onPrefersColorScheme = this.onPrefersColorScheme.bind(this);
+    this.systemQuery = this.systemQuery.bind(this);
 
     this.initOptions();
     this.render();
 
     // Check for color-scheme changes in OS
     window.addEventListener('joomla:toggle-theme', this.onPrefersColorScheme);
+    darkModeMediaQuery.addListener(this.systemQuery);
   }
 
   initOptions() {
@@ -167,16 +171,26 @@ class Editor {
     }
   }
 
-  onPrefersColorScheme(ev) {
-    if (['dark', 'light'].includes(ev.prefersColorScheme)) {
-      this.theme = ev.prefersColorScheme;
-      this.render();
-    }
-  }
-
   debounce() {
     if (this.timer) clearTimeout(this.timer);
     this.timer = setTimeout(this.render, 500);
+  }
+
+  onPrefersColorScheme(ev) {
+    if (['dark', 'light'].includes(ev.prefersColorScheme)) {
+      if (this.theme !== ev.prefersColorScheme) {
+        this.theme = ev.prefersColorScheme;
+        this.render();
+      }
+    }
+  }
+
+  systemQuery(event) {
+    const theme = event.matches === true ? 'dark' : 'light';
+    if (this.theme !== theme && forced()) {
+      this.theme = theme;
+      this.render();
+    }
   }
 }
 
