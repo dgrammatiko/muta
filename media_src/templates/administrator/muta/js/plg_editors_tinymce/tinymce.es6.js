@@ -5,6 +5,11 @@
 if (!Joomla) throw new Error('The API wasn\'t initiated properly');
 
 const pluginOptions = Joomla.getOptions ? Joomla.getOptions('plg_editor_tinymce', {}) : (Joomla.optionsStorage.plg_editor_tinymce || {});
+const onBeforeSubmit = (editor) => editor.on('submit', () => {
+  if (editor.isHidden()) {
+    editor.show();
+  }
+}, true);
 
 function registerJoomlaInstance(ed) {
   /** Register the editor's instance to Joomla Object */
@@ -19,12 +24,6 @@ function registerJoomlaInstance(ed) {
   };
 }
 
-const onBeforeSubmit = (editor) => editor.on('submit', () => {
-  if (editor.isHidden()) {
-    editor.show();
-  }
-}, true);
-
 class Editor {
   constructor(element) {
     if (Joomla.editors.instances[element.id]) return;
@@ -32,17 +31,12 @@ class Editor {
     this.element = element;
     this.editorOptions = {};
     this.options = {};
-    this.reInitQueue = {};
-    this.isReady = false;
-    this.isRendered = false;
-
     const theme = document.documentElement.getAttribute('data-bs-theme');
     this.theme = theme ?? 'light';
-
     this.render = this.render.bind(this);
     this.initOptions = this.initOptions.bind(this);
-    this.debounceReInit = this.debounceReInit.bind(this);
     this.onPostRender = this.onPostRender.bind(this);
+    this.debounce = this.debounce.bind(this);
     this.onLoad = this.onLoad.bind(this);
     this.listenIframeReload = this.listenIframeReload.bind(this);
     this.onPrefersColorScheme = this.onPrefersColorScheme.bind(this);
@@ -63,15 +57,18 @@ class Editor {
 
     // Avoid an unexpected changes, and copy the options object
     if (options.joomlaMergeDefaults) {
-      options = Joomla.extend(Joomla.extend({}, defaultOptions), options);
+      options = { ...defaultOptions, ...options };
     } else {
-      options = Joomla.extend({}, options);
+      options = { ...options };
     }
+    // Ensure tinymce is initialised in readonly mode if the textarea has readonly applied
+    let readOnlyMode = false;
 
     if (this.element) {
       // We already have the Target, so reset the selector and assign given element as target
       options.selector = null;
       options.target = this.element;
+      readOnlyMode = this.element.readOnly;
     }
 
     const buttonValues = [];
@@ -106,20 +103,11 @@ class Editor {
       buttonValues.push(tmp);
     });
 
-    // Ensure tinymce is initialised in readonly mode if the textarea has readonly applied
-    let readOnlyMode = false;
-
-    if (this.element) {
-      readOnlyMode = this.element.readOnly;
-    }
-
     if (buttonValues.length) {
       options.setup = (editor) => {
         editor.mode.set(readOnlyMode ? 'readonly' : 'design');
 
-        Object.keys(icons).forEach((icon) => {
-          editor.ui.registry.addIcon(icon, icons[icon]);
-        });
+        Object.keys(icons).forEach((icon) => editor.ui.registry.addIcon(icon, icons[icon]));
 
         editor.ui.registry.addMenuButton('jxtdbuttons', {
           text: Joomla.Text._('PLG_TINY_CORE_BUTTONS'),
@@ -128,30 +116,18 @@ class Editor {
         });
       };
     } else {
-      options.setup = (editor) => {
-        editor.mode.set(readOnlyMode ? 'readonly' : 'design');
-      };
+      options.setup = (editor) => editor.mode.set(readOnlyMode ? 'readonly' : 'design');
     }
 
     // We'll take over the onSubmit event
     options.init_instance_callback = onBeforeSubmit;
-
     this.editorOptions = options;
   }
 
-  // Debounce ReInit per editor ID
-  debounceReInit() {
-    if (this.reInitQueue[this.element.id]) {
-      clearTimeout(this.reInitQueue[this.element.id]);
-    }
-
-    // eslint-disable-next-line no-use-before-define
-    this.reInitQueue[this.element.id] = setTimeout(() => this.render(true), 500);
-  }
-
   // tinyMCE themes docs: https://www.tiny.cloud/docs/general-configuration-guide/customize-ui/
-  render(skip = false) {
+  render() {
     tinyMCE.remove(`#${this.element.id}`);
+    this.editor = null;
     const options = {
       skin: this.theme === 'light' ? this.editorOptions.skin : 'oxide-dark',
       content_css: `${this.editorOptions.content_css}${this.theme === 'light' ? '' : ',dark'}`,
@@ -160,14 +136,10 @@ class Editor {
     this.editor = new tinyMCE.Editor(this.element.id, this.options, tinymce.EditorManager);
 
     // Work around iframe behavior, when iframe element changes location in DOM and losing its content.
-    // Re init editor when iframe is reloaded.
+    // @todo v6 use a promise based approach
     if (!this.editor.inline) {
-      if (!skip) {
-        this.isReady = false;
-        this.isRendered = false;
-      }
-      // Make sure iframe is fully loaded.
-      // This works differently in different browsers, so have to listen both "load" and "PostRender" events.
+      this.isReady = false;
+      this.isRendered = false;
       this.editor.on('load', this.onLoad);
       this.editor.on('PostRender', this.onPostRender);
     }
@@ -175,6 +147,10 @@ class Editor {
     this.editor.render();
 
     registerJoomlaInstance(this.editor);
+  }
+
+  listenIframeReload() {
+    this.editor.getContentAreaContainer().querySelector('iframe').addEventListener('load', this.debounce);
   }
 
   onPostRender() {
@@ -191,15 +167,31 @@ class Editor {
     }
   }
 
-  listenIframeReload() {
-    this.editor.getContentAreaContainer().querySelector('iframe').addEventListener('load', this.debounceReInit);
-  }
-
   onPrefersColorScheme(ev) {
     if (['dark', 'light'].includes(ev.prefersColorScheme)) {
       this.theme = ev.prefersColorScheme;
       this.render();
     }
+  }
+
+  debounce() {
+    if (this.timer) clearTimeout(this.timer);
+    this.timer = setTimeout(this.render, 500);
+  }
+}
+
+function toggleButtonFn(event) {
+  const editorEl = event.target.closest('.js-editor-tinymce').querySelector('textarea');
+  const toggleIcon = editorEl.querySelector('.icon-eye');
+
+  if (Joomla.editors.instances[editorEl.id].instance.isHidden()) {
+    Joomla.editors.instances[editorEl.id].instance.show();
+  } else {
+    Joomla.editors.instances[editorEl.id].instance.hide();
+  }
+
+  if (toggleIcon) {
+    toggleIcon.setAttribute('class', Joomla.editors.instances[editorEl.id].instance.isHidden() ? 'icon-eye' : 'icon-eye-slash');
   }
 }
 
@@ -212,31 +204,15 @@ class Editor {
  */
 function setupEditors(target) {
   (target || document).querySelectorAll('.js-editor-tinymce').forEach((editor) => {
-    const currentEditor = editor.querySelector('textarea');
-    const toggleButton = editor.querySelector('.js-tiny-toggler-button');
-    const toggleIcon = editor.querySelector('.icon-eye');
-
     // Setup the editor
     // eslint-disable-next-line no-new
-    new Editor(currentEditor);
+    new Editor(editor.querySelector('textarea'));
 
     // Setup the toggle button
-    if (toggleButton) {
-      toggleButton.removeAttribute('disabled');
-      toggleButton.addEventListener('click', (event) => {
-        const editorEl = event.target.closest('.js-editor-tinymce').querySelector('textarea');
-
-        if (Joomla.editors.instances[editorEl.id].instance.isHidden()) {
-          Joomla.editors.instances[editorEl.id].instance.show();
-        } else {
-          Joomla.editors.instances[editorEl.id].instance.hide();
-        }
-
-        if (toggleIcon) {
-          toggleIcon.setAttribute('class', Joomla.editors.instances[editorEl.id].instance.isHidden() ? 'icon-eye' : 'icon-eye-slash');
-        }
-      });
-    }
+    const toggleButton = editor.querySelector('.js-tiny-toggler-button');
+    if (!toggleButton) return;
+    toggleButton.removeAttribute('disabled');
+    toggleButton.addEventListener('click', toggleButtonFn);
   });
 }
 
