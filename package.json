@@ -51,7 +51,7 @@
     "rtlcss": "^4.0.0",
     "sass": "^1.58.0",
     "stylelint": "^15.1.0",
-    "stylelint-config-recommended": "^10.0.1",
+    "stylelint-config-recommended": "^11.0.0",
     "stylelint-order": "^6.0.2",
     "stylelint-scss": "^4.4.0",
     "symlink-dir": "^5.1.1"
