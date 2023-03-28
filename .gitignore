@@ -1,3 +1,4 @@
 media/
 www/
 dist/
+node_modules

@@ -34,7 +34,7 @@ class Editor {
     this.editorOptions = {};
     this.options = {};
     const theme = document.documentElement.getAttribute('data-bs-theme');
-    this.theme = theme ?? 'light';
+    this.theme = !forced() ? darkModeMediaQuery.matches === true ? 'dark' : 'light' : theme;
     this.render = this.render.bind(this);
     this.initOptions = this.initOptions.bind(this);
     this.onPostRender = this.onPostRender.bind(this);
@@ -186,8 +186,9 @@ class Editor {
   }
 
   systemQuery(event) {
+    if (forced()) return;
     const theme = event.matches === true ? 'dark' : 'light';
-    if (this.theme !== theme && forced()) {
+    if (this.theme !== theme) {
       this.theme = theme;
       this.render();
     }

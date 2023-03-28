@@ -6,8 +6,10 @@ const { symLink } = require('./tools/symLinks');
 const { stylesheets } = require('./tools/compilecss');
 const { scripts } = require('./tools/compilejs');
 const { copyThru } = require('./tools/copythru');
-const { logger } = require('./tools/utils/logger.js');
+const { logger } = require('./tools/utils/logger');
 const { zip } = require('./tools/zip');
+
+const pkg = require('./package.json');
 
 const program = new Command();
 
@@ -25,8 +27,7 @@ const program = new Command();
   if (options.link) {
     if (!existsSync) {
       logger('Initializing...');
-      await fetchJoomla('4.2.5');
-
+      await fetchJoomla(pkg.joomlaVersion);
     }
     logger(`linking ${options.link}`);
     symLink()
@@ -34,9 +35,9 @@ const program = new Command();
 
   if (options.build) {
     logger(`building ${options.build}`);
-    copyThru(options.build)
-    stylesheets(options.build)
-    scripts(options.build)
+    copyThru(options.build);
+    stylesheets(options.build);
+    scripts(options.build);
   }
 
   if (options.watch) logger(`watch type ${options.watch}`);
@@ -48,7 +49,7 @@ const program = new Command();
 
   if (options.init === true) {
     logger('Initializing...');
-    fetchJoomla('4.2.5');
+    fetchJoomla(pkg.joomlaVersion);
   }
 })()
 
