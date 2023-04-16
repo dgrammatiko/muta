@@ -48,7 +48,7 @@
     "postcss-preset-env": "8.3.1",
     "postcss-scss": "^4.0.6",
     "recursive-readdir": "^2.2.2",
-    "rollup": "3.20.2",
+    "rollup": "3.20.3",
     "rtlcss": "^4.0.0",
     "sass": "1.62.0",
     "semver": "^7.3.8",
