@@ -52,4 +52,3 @@ const program = new Command();
     fetchJoomla(pkg.joomlaVersion);
   }
 })()
-
