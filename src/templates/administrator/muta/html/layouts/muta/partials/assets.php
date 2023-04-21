@@ -30,7 +30,7 @@ $doc->prefersColorScheme = !$doc->forcedColorScheme ? '' : ' data-bs-theme="' . 
 $doc->cpanel             = $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help');
 $doc->hiddenMenu         = $input->get('hidemainmenu');
 $doc->sidebarState       = $input->cookie->get('mutaSidebarState', '');
-$defaultValue            = (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/fields/def.json'), true);
+$defaultValue            = (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/src/Field/def.json'), true);
 
 try {
   $json = json_decode($params->get('muta-colors', '{}'), true);

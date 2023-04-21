@@ -1,15 +1,6 @@
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
-import fallbackJson from '../../../../../src/templates/administrator/muta/fields/def.json';
-import blueprint from '../../../../../src/templates/administrator/muta/fields/blueprint.json';
-
-/** Remove the inline help button and shenanigans, if present  */
-document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.classList.remove('hide-aware-inline-help', 'd-none'));
-const inlineHelp = document.getElementById('toolbar-inlinehelp');
-if (inlineHelp) inlineHelp.remove();
-
-const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-const forced = () => document.documentElement.hasAttribute('data-forced-theme');
+import fallbackJson from '../../../../../src/templates/administrator/muta/src/Field/def.json';
 
 document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forEach((el) => el.addEventListener('click', () => {
   if (el.checked && el.value === '0') {
