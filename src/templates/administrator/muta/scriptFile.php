@@ -30,37 +30,40 @@ class MutaInstallerScript extends InstallerScript
    *
    * @var array
    */
-  protected $deleteFiles   = ['favicon.png'];
+  protected $deleteFiles   = [
+    '/administrator/templates/muta/favicon.png',
+  ];
 
   /**
    * Folders for removal
    *
    * @var array
    */
-  protected $deleteFolders = ['fields'];
-
-  // public function __construct()
-  // {
-  //   $this->minimumJoomla = '4.2';
-  //   $this->minimumPhp    = JOOMLA_MINIMUM_PHP;
-  // }
+  protected $deleteFolders = [
+    '/administrator/templates/muta/fields',
+  ];
 
   public function postflight($type, TemplateAdapter $parent)
   {
-    if (($type === 'install' || $type === 'discover_install')) {
-      if (is_file($parent->getParent()->getPath('source') . '/media/images/favicon.png')) {
-        @copy($parent->getParent()->getPath('source') . '/media/images/favicon.png', JPATH_ROOT . '/media/system/images/favicon.png');
+    if (($type === 'install' || $type === 'discover_install' || $type === 'upgrade')) {
+      if (is_file(JPATH_ROOT . '/media/templates/administrator/muta/images/favicon.png')) {
+        @copy(JPATH_ROOT . '/media/templates/administrator/muta/images/favicon.png', JPATH_ROOT . '/media/system/images/favicon.png');
       }
-      if (!is_file(JPATH_ROOT . '/layouts/muta/field/dgcolor.php')) {
+      if (!is_dir(JPATH_ROOT . '/layouts/muta/field')) {
         @mkdir(JPATH_ROOT . '/layouts/muta/field', 0755, true);
-        @copy($parent->getParent()->getPath('source') . '/html/layouts/muta/field/dgcolor.php', JPATH_ROOT . '/layouts/muta/field/dgcolor.php');
       }
+      @copy($parent->getParent()->getPath('source') . '/html/layouts/muta/field/dgcolor.php', JPATH_ROOT . '/layouts/muta/field/dgcolor.php');
     }
+
     if ($type === 'upgrade') {
       $this->removeFiles();
     }
-    if ($type === 'uninstall') {
 
+    if ($type === 'uninstall') {
+      $this->deleteFolders = ['/layouts/muta'];
+      $this->deleteFiles   = ['/media/system/images/favicon.png'];
+
+      $this->removeFiles();
     }
   }
 }

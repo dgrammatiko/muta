@@ -55,6 +55,6 @@ Factory::getDocument()->getWebAssetManager()
   ->registerAndUseStyle('form.field.dgcolor', 'media/templates/administrator/muta/js/dgcolor-field.css', [], []);
 
 ?>
-<dg-color-field name="<?= $this->name; ?>" value='<?= json_encode($val); ?>'>
-  <input type="hidden" name="<?= $this->name; ?>" value='<?= json_encode($val); ?>'>
+<dg-color-field name="<?= $name; ?>" value='<?= json_encode($val); ?>'>
+  <input type="hidden" name="<?= $name; ?>" value='<?= json_encode($val); ?>'>
 </dg-color-field>

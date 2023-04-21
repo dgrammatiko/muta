@@ -1,6 +1,7 @@
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
 import fallbackJson from '../../../../../src/templates/administrator/muta/src/Field/def.json';
+import blueprint from '../../../../../src/templates/administrator/muta/src/Field/blueprint.json';
 
 document.querySelectorAll('input[name="jform[params][forcedColorScheme]"]').forEach((el) => el.addEventListener('click', () => {
   if (el.checked && el.value === '0') {

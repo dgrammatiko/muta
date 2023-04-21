@@ -1,6 +1,6 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "joomlaVersion": "4.3.0-rc2",
   "publishConfig": {
     "access": "public"
@@ -11,6 +11,7 @@
     "i": "node ./cli.js -i",
     "l": "node ./cli.js -l",
     "b": "node ./cli.js -b media_src",
+    "r": "node ./cli.js -r",
     "init": "npm run i && npm run l && npm run b",
     "lint-css": "npx stylelint media_src/templates/**/**/scss/**/*.scss",
     "lint-js": "npx eslint media_src/templates/**/**/js/**/*.js",

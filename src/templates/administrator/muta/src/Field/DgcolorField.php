@@ -24,7 +24,7 @@ class DgcolorField extends FormField
    * @var    string
    * @since  1.0.0
    */
-  protected $type = 'dgcolor';
+  protected $type = 'Dgcolor';
 
   /**
    * Layout to render
