@@ -10,8 +10,12 @@
   <version>{{version}}</version>
   <description>atum++</description>
   <inheritable>1</inheritable>
+  <namespace path="src">Dgrammatiko\Template\Muta</namespace>
   <scriptfile>scriptFile.php</scriptfile>
   <files>
+    <folder>src</folder>
+    <folder>html</folder>
+    <folder>language</folder>
     <filename>component.php</filename>
     <filename>cpanel.php</filename>
     <filename>error.php</filename>
@@ -19,9 +23,6 @@
     <filename>login.php</filename>
     <filename>joomla.asset.json</filename>
     <filename>templateDetails.xml</filename>
-    <folder>fields</folder>
-    <folder>html</folder>
-    <folder>language</folder>
   </files>
   <media destination="templates/administrator/muta" folder="media">
     <folder>css</folder>
@@ -30,24 +31,24 @@
   </media>
   <positions>
     <!-- used directly in the template -->
+    <position>customtop</position>
+    <position>top</position>
+    <position>status</position>
+    <position>menu</position>
+    <position>title</position>
+    <position>toolbar</position>
+    <position>sidebar</position>
     <position>bottom</position>
     <position>debug</position>
-    <position>menu</position>
-    <position>sidebar</position>
-    <position>status</position>
-    <position>title</position>
-    <position>top</position>
-    <position>toolbar</position>
     <!-- used directly in a component and included here so the position will appear in the list of available positions -->
     <position>cpanel</position>
     <position>icon</position>
     <position>login</position>
-    <position>customtop</position>
   </positions>
   <config>
-  <fields name="params" addfieldpath="/administrator/templates/muta/fields">
+  <fields name="params">
     <fieldset name="colors" label="TPL_MUTA_COLORS_SETTINGS_LABEL">
-      <field name="muta-colors" type="Dgcolor" hidden="true" />
+      <field name="muta-colors" type="Dgcolor" hidden="true" addfieldprefix="Dgrammatiko\Template\Muta\Administrator\Field" />
       <field name="forcedColorScheme" type="radio" label="TPL_MUTA_COLORS_SETTINGS_FORCED_LABEL" layout="joomla.form.field.radio.switcher" default="0">
         <option value="0">JNO</option>
         <option value="1">JYES</option>
@@ -57,23 +58,44 @@
         <option value="1">JYES</option>
       </field>
     </fieldset>
-
+    <fieldset name="fonts" label="TPL_MUTA_FONTS_SETTINGS_LABEL" >
+      <field name="defaultFont" type="list" layout="muta.field.dgfont" label="TPL_MUTA_FONTS_DEFAULT_LABEL" default="" validate="options" data-change="defaultFont">
+        <option value="">JSELECT</option>
+        <option value="Charter,'Bitstream Charter','Sitka Text',Cambria,serif">Transitional</option>
+        <option value="'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif">Old Style</option>
+        <option value="Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif">Humanist</option>
+        <option value="Avenir,'Avenir Next LT Pro',Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif">Geometric Humanist</option>
+        <option value="Optima,Candara,'Noto Sans',source-sans-pro,sans-serif">Classical Humanist</option>
+        <option value="Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif">Neo-Grotesque</option>
+        <option value="Bahnschrift,'DIN Alternate','Franklin Gothic Medium','Nimbus Sans Narrow',sans-serif-condensed,sans-serif">Industrial</option>
+        <option value="ui-rounded,'Hiragino Maru Gothic ProN',Quicksand,Comfortaa,Manjari,'Arial Rounded MT Bold',Calibri,source-sans-pro,sans-serif">Rounded Sans</option>
+        <option value="Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif">Slab Serif</option>
+        <option value="Superclarendon,'Bookman Old Style','URW Bookman','URW Bookman L','Georgia Pro',Georgia,serif">Antique</option>
+        <option value="Didot,'Bodoni MT','Noto Serif Display','URW Palladio L',P052,Sylfaen,serif">Didone</option>
+        <option value="'Segoe Print','Bradley Hand',Chilanka,TSCu_Comic,casual,cursive">Handwritten</option>
+      </field>
+      <field name="monoFont" type="list" layout="muta.field.dgfont" label="TPL_MUTA_FONTS_MONO_LABEL" default="" validate="options" data-change="monoFont">
+        <option value="">JSELECT</option>
+        <option value="'Nimbus Mono PS','Courier New','Cutive Mono',monospace">Monospace Slab Serif</option>
+        <option value="ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace">Monospace Code</option>
+      </field>
+    </fieldset>
     <fieldset name="images" label="TPL_MUTA_IMAGE_SETTINGS_LABEL">
-    <fieldset name="loginLogo" label="TPL_MUTA_LOGIN_LOGO_LABEL">
-      <field name="loginLogo" type="media" label="TPL_MUTA_IMAGE_LABEL" />
-      <field name="loginLogoAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
-      <field name="emptyLoginLogoAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
-    </fieldset>
-    <fieldset name="logoBrandLarge" label="TPL_MUTA_SITE_LOGO_LABEL">
-      <field name="logoBrandLarge" type="media" label="TPL_MUTA_IMAGE_LABEL" />
-      <field name="logoBrandLargeAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
-      <field name="emptyLogoBrandLargeAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
-    </fieldset>
-    <fieldset name="logoBrandSmall" label="TPL_MUTA_SITE_LOGO_SMALL_LABEL">
-      <field name="logoBrandSmall" type="media" label="TPL_MUTA_IMAGE_LABEL" />
-      <field name="logoBrandSmallAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
-      <field name="emptyLogoBrandSmallAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
-    </fieldset>
+      <fieldset name="loginLogo" label="TPL_MUTA_LOGIN_LOGO_LABEL">
+        <field name="loginLogo" type="media" label="TPL_MUTA_IMAGE_LABEL" />
+        <field name="loginLogoAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
+        <field name="emptyLoginLogoAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
+      </fieldset>
+      <fieldset name="logoBrandLarge" label="TPL_MUTA_SITE_LOGO_LABEL">
+        <field name="logoBrandLarge" type="media" label="TPL_MUTA_IMAGE_LABEL" />
+        <field name="logoBrandLargeAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
+        <field name="emptyLogoBrandLargeAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
+      </fieldset>
+      <fieldset name="logoBrandSmall" label="TPL_MUTA_SITE_LOGO_SMALL_LABEL">
+        <field name="logoBrandSmall" type="media" label="TPL_MUTA_IMAGE_LABEL" />
+        <field name="logoBrandSmallAlt" type="text" label="TPL_MUTA_LOGO_ALT_LABEL" />
+        <field name="emptyLogoBrandSmallAlt" type="checkbox" label="TPL_MUTA_LOGO_ALT_EMPTY_LABEL" description="TPL_MUTA_LOGO_ALT_EMPTY_DESC" />
+      </fieldset>
     </fieldset>
   </fields>
   </config>

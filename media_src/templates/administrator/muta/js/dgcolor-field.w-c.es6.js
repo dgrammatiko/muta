@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
-import fallbackJson from '../../../../../src/templates/administrator/muta/fields/def.json';
-import blueprint from '../../../../../src/templates/administrator/muta/fields/blueprint.json';
+import fallbackJson from '../../../../../src/templates/administrator/muta/src/Field/def.json';
+import blueprint from '../../../../../src/templates/administrator/muta/src/Field/blueprint.json';
 
-/** Remove the inline help button and shenanigans, if present  */
-document.querySelectorAll('.hide-aware-inline-help.d-none').forEach(el => el.classList.remove('hide-aware-inline-help', 'd-none'));
+/** Remove the inline help button and shenanigans  */
+document.querySelectorAll('.hide-aware-inline-help.d-none').forEach((el) => el.classList.remove('hide-aware-inline-help', 'd-none'));
 const inlineHelp = document.getElementById('toolbar-inlinehelp');
 if (inlineHelp) inlineHelp.remove();
 
@@ -70,9 +70,9 @@ class DgColor extends LitElement {
     this.applyColors();
     return html`${this.fields.map((field) => {
       if (field.type === 'picker') return this.createColorField(field);
-      else if (field.type === 'hue') return this.createHueField();
+      if (field.type === 'hue') return this.createHueField();
     })}
-    <button class="btn btn-warning" type="button" @click=${() => {this.value = fallbackJson; this.requestUpdate;}}>${Joomla.Text._('JRESET')}</button>
+    <button class="btn btn-warning" type="button" @click=${() => { this.value = fallbackJson; this.requestUpdate(); }}>${Joomla.Text._('JRESET')}</button>
     <p></p>
     <details><summary>CSS Variables:</summary>${blueprint.colors.map(field => { return html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`})}</details>
     <input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
