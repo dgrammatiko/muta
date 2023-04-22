@@ -58,6 +58,28 @@
         <option value="1">JYES</option>
       </field>
     </fieldset>
+    <fieldset name="fonts" label="TPL_MUTA_FONTS_SETTINGS_LABEL" >
+      <field name="defaultFont" type="list" layout="muta.field.dgfont" label="TPL_MUTA_FONTS_DEFAULT_LABEL" default="" validate="options" data-change="defaultFont">
+        <option value="">JSELECT</option>
+        <option value="Charter,'Bitstream Charter','Sitka Text',Cambria,serif">Transitional</option>
+        <option value="'Iowan Old Style','Palatino Linotype','URW Palladio L',P052,serif">Old Style</option>
+        <option value="Seravek,'Gill Sans Nova',Ubuntu,Calibri,'DejaVu Sans',source-sans-pro,sans-serif">Humanist</option>
+        <option value="Avenir,'Avenir Next LT Pro',Montserrat,Corbel,'URW Gothic',source-sans-pro,sans-serif">Geometric Humanist</option>
+        <option value="Optima,Candara,'Noto Sans',source-sans-pro,sans-serif">Classical Humanist</option>
+        <option value="Inter,Roboto,'Helvetica Neue','Arial Nova','Nimbus Sans',Arial,sans-serif">Neo-Grotesque</option>
+        <option value="Bahnschrift,'DIN Alternate','Franklin Gothic Medium','Nimbus Sans Narrow',sans-serif-condensed,sans-serif">Industrial</option>
+        <option value="ui-rounded,'Hiragino Maru Gothic ProN',Quicksand,Comfortaa,Manjari,'Arial Rounded MT Bold',Calibri,source-sans-pro,sans-serif">Rounded Sans</option>
+        <option value="Rockwell,'Rockwell Nova','Roboto Slab','DejaVu Serif','Sitka Small',serif">Slab Serif</option>
+        <option value="Superclarendon,'Bookman Old Style','URW Bookman','URW Bookman L','Georgia Pro',Georgia,serif">Antique</option>
+        <option value="Didot,'Bodoni MT','Noto Serif Display','URW Palladio L',P052,Sylfaen,serif">Didone</option>
+        <option value="'Segoe Print','Bradley Hand',Chilanka,TSCu_Comic,casual,cursive">Handwritten</option>
+      </field>
+      <field name="monoFont" type="list" layout="muta.field.dgfont" label="TPL_MUTA_FONTS_MONO_LABEL" default="" validate="options" data-change="monoFont">
+        <option value="">JSELECT</option>
+        <option value="'Nimbus Mono PS','Courier New','Cutive Mono',monospace">Monospace Slab Serif</option>
+        <option value="ui-monospace,'Cascadia Code','Source Code Pro',Menlo,Consolas,'DejaVu Sans Mono',monospace">Monospace Code</option>
+      </field>
+    </fieldset>
     <fieldset name="images" label="TPL_MUTA_IMAGE_SETTINGS_LABEL">
       <fieldset name="loginLogo" label="TPL_MUTA_LOGIN_LOGO_LABEL">
         <field name="loginLogo" type="media" label="TPL_MUTA_IMAGE_LABEL" />

@@ -53,6 +53,7 @@ class MutaInstallerScript extends InstallerScript
         @mkdir(JPATH_ROOT . '/layouts/muta/field', 0755, true);
       }
       @copy($parent->getParent()->getPath('source') . '/html/layouts/muta/field/dgcolor.php', JPATH_ROOT . '/layouts/muta/field/dgcolor.php');
+      @copy($parent->getParent()->getPath('source') . '/html/layouts/muta/field/dgfont.php', JPATH_ROOT . '/layouts/muta/field/dgfont.php');
     }
 
     if ($type === 'upgrade') {

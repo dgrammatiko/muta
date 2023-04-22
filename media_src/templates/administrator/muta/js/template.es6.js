@@ -8,10 +8,13 @@ if (!Joomla) {
 }
 
 const getCookie = () => {
-  if (document.cookie.length && document.cookie.split('; ').length) {
-    return document.cookie.split('; ') .find((row) => row.startsWith('mutaSidebarState=')).split('=')[1];
+  if (document.cookie.length < 1) return false;
+  try {
+    return document.cookie.split('; ').find((row) => row.startsWith('mutaSidebarState=')).split('=')[1];
+  } catch (err) {
+    return false;
   }
-}
+};
 
 const mobile = window.matchMedia('(max-width: 992px)');
 const small = window.matchMedia('(max-width: 575.98px)');
