@@ -1,7 +1,7 @@
 {
   "name": "@dgrammatiko/muta",
   "version": "2.0.0",
-  "joomlaVersion": "4.3.0-rc2",
+  "joomlaVersion": "4.3.0",
   "publishConfig": {
     "access": "public"
   },
