@@ -3,11 +3,12 @@
 
 ### Commands
 
-Initialize `npm run init`
+- Initialize `npm run init`
 
 Then:
-Build `npm run build`
-Link `npm run link`
+
+- Build `npm run build`
+- Link `npm run link`
 
 ## Commands
 ```
