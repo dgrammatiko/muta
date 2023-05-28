@@ -1,14 +1,29 @@
 // Override the font path
-$fa-css-prefix:                    fa;
-$fa-font-path:                     "../../../../../../vendor/fontawesome-free/webfonts" !default;
+$fa-css-prefix: fa;
+$fa-font-path: "../../../fonts" !default;
+$fa-style-family: "Font Awesome 5 Free";
 
-// Font Awesome 5 Free
-@import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+// Font Awesome 6 Free
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/functions';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/variables';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/mixins';
+@import 'core';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/sizing';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/fixed-width';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/list';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/bordered-pulled';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/animated';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/rotated-flipped';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/stacked';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/icons';
+@import '../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/screen-reader';
 
-// Brands must be imported last
-@import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "regular";
+@import "solid";
+@import "brands";
+
+// 4.0 B/C
+@import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/shims";
 
 // B/C for Icomoon
 @import "../icomoon";

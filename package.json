@@ -53,16 +53,21 @@
       "workflow": []
     },
     "templates": {
-      "administrator": [{"name": "muta", "version": "2.0.1"}],
+      "administrator": [
+        {
+          "name": "muta",
+          "version": "2.0.1"
+        }
+      ],
       "site": []
     }
   },
   "devDependencies": {
     "@dgrammatiko/joomla-tools": "0.0.1-alpha.3",
-    "eslint": "8.40.0",
+    "eslint": "8.41.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.27.5",
-    "eslint-plugin-vue": "9.13.0",
+    "eslint-plugin-vue": "9.14.1",
     "stylelint": "15.6.2",
     "stylelint-config-standard": "33.0.0",
     "stylelint-order": "6.0.3",
@@ -70,7 +75,7 @@
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "^2.3.6",
-    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@fortawesome/fontawesome-free": "6.4.0",
     "awesomplete": "^1.1.5",
     "bootstrap": "5.3.0-alpha3",
     "choices.js": "^10.2.0",
