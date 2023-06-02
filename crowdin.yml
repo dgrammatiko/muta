@@ -1,0 +1,3 @@
+files:
+  - source: /src/templates/administrator/muta/language/en-GB/*.ini
+    translation: /src/templates/administrator/muta/language/%language%/%original_file_name%.%file_extension%
