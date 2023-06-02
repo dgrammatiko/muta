@@ -3,8 +3,6 @@ import { join, sep } from 'node:path';
 import { stat, existsSync } from 'node:fs';
 import jetpack from 'fs-jetpack';
 
-import { logger } from '@dgrammatiko/joomla-tools/.scripts/utils/logger.mjs';
-
 /** text
  * Method that will crawl the media_source folder
  * and compile any scss files to css and .min.css
@@ -19,7 +17,7 @@ import { logger } from '@dgrammatiko/joomla-tools/.scripts/utils/logger.mjs';
  */
 async function copyThru(path) {
   if (!existsSync(join(cwd(), 'media_source'))) {
-    logger('The tools aren\'t initialized properly. Exiting');
+    console.log('The tools aren\'t initialized properly. Exiting');
     exit(1);
   }
 
