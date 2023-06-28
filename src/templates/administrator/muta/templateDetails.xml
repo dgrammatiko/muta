@@ -27,6 +27,7 @@
   <media destination="templates/administrator/muta" folder="media">
     <folder>css</folder>
     <folder>images</folder>
+    <folder>fonts</folder>
     <folder>js</folder>
   </media>
   <positions>

@@ -48,6 +48,10 @@ try {
 $colors = array_merge($defaultValue, !$json ? [] : $json);
 $doc->setMetaData('theme-color', 'hsl('. $colors['hue']. ',40%,20%)');
 
+$x = $wa->useStyle('fontawesome')->version;
+$wa->useStyle('fontawesome')->version = '6.4.0';
+$y = $wa->useStyle('fontawesome')->version;
+
 // Enable assets
 $wa->usePreset('template.muta.' . ($doc->direction === 'rtl' ? 'rtl' : 'ltr'))
   ->useStyle('template.active.language')

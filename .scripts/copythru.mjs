@@ -43,8 +43,8 @@ async function copyThru(path) {
     .find(`${cwd()}/media_source`, { matching: 'images', files: false, directories: true })
     .forEach((file) => jetpack.copy(file, file.replace(`media_source${sep}`, `media${sep}`), { overwrite: true }));
   jetpack
-    .find(`${cwd()}/media_source`, { matching: 'fonts', files: false, directories: true })
-    .forEach((file) => jetpack.copy(file, file.replace(`media_source${sep}`, `media${sep}`), { overwrite: true }));
+    .find(`node_modules/@fortawesome/fontawesome-free`, { matching: ['*.ttf', '*.woff2'], files: true, directories: false })
+    .forEach((file) => jetpack.copy(file, file.replace(`node_modules${sep}@fortawesome${sep}fontawesome-free${sep}webfonts`, `media${sep}templates${sep}administrator${sep}muta${sep}fonts${sep}`), { overwrite: true }));
 };
 
 export {copyThru};
