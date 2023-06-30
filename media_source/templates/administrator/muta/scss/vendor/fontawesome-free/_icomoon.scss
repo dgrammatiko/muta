@@ -9,8 +9,8 @@ $jicon-css-prefix: icon !default;
 // Standard icon global definition
 [class^="#{$jicon-css-prefix}-"],
 [class*=" #{$jicon-css-prefix}-"] {
+  @extend %fa-icon;
   @extend .fas;
-  speak: none;
 }
 
 [class^="#{$jicon-css-prefix}-"],
@@ -30,6 +30,7 @@ $jicons-brand: (
 // Parse brands mapping array
 @each $jicon-brand-key, $jicon-brand-value in $jicons-brand {
   .#{$jicon-css-prefix}-#{$jicon-brand-key} {
+    @extend %fa-icon;
     @extend .fab;
 
     &:before {

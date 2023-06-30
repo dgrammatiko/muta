@@ -1,12 +1,35 @@
 // Override the font path
 $fa-css-prefix: fa;
 $fa-font-path: "../../../fonts" !default;
+$fa-display:   swap !default;
 
 // Font Awesome 6 Free
 @import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 @import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
 @import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
 @import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+
+
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-display: swap;
+  font-weight: 400;
+  src: url("../../../fonts/fa-brands-400.woff2") format("woff2"), url("../../../fonts/fa-brands-400.ttf") format("truetype");
+}
+
+@font-face {
+font-family: 'Font Awesome 5 Free';
+font-display: swap;
+font-weight: 900;
+src: url("../../../fonts/fa-solid-900.woff2") format("woff2"), url("../../../fonts/fa-solid-900.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-display: swap;
+  font-weight: 400;
+  src: url("../../../fonts/fa-regular-400.woff2") format("woff2"), url("../../../fonts/fa-regular-400.ttf") format("truetype");
+}
 
 // 4.0 B/C
 @import "../../../../../../../node_modules/@fortawesome/fontawesome-free/scss/shims";
