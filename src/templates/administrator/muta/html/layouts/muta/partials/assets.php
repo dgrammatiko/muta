@@ -47,6 +47,7 @@ try {
 }
 $colors = array_merge($defaultValue, !$json ? [] : $json);
 $doc->setMetaData('theme-color', 'hsl('. $colors['hue']. ',40%,20%)');
+$wa->registerAndUseStyle('fontawesome', 'media/templates/administrator/muta/css/vendor/fontawesome-free/fontawesome.min.css', ['version' => '6.4.0'], [], []);
 
 $x = $wa->useStyle('fontawesome')->version;
 $wa->useStyle('fontawesome')->version = '6.4.0';
