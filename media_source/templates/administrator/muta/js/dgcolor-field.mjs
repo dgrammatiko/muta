@@ -35,6 +35,7 @@ class DgColor extends LitElement {
     return {
       value: { type: Object, value: {} },
       name: { type: String, value: 'muta-colors' },
+      initValue: { type: Object, value: {} },
     };
   }
 
@@ -43,8 +44,10 @@ class DgColor extends LitElement {
 
     try {
       this.value = JSON.parse(this.getAttribute('value'));
+      this.initValue = this.value;
     } catch (e) {
       this.value = fallbackJson;
+      this.initValue = fallbackJson;
     }
 
     if (!this.value.length) this.value = fallbackJson;
@@ -66,6 +69,23 @@ class DgColor extends LitElement {
     this.querySelector('input[type="hidden"]')?.remove();
   }
 
+  reset() {
+    this.sliderValue = this.initValue.hue;
+    this.requestUpdate();
+  }
+
+  renderDetails() {
+    return html`
+    <details><summary>CSS Variables:</summary>
+      ${blueprint.colors.map((field) => html`
+        <pre>
+          <code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code>
+        </pre>
+      `)}
+    </details>
+    <input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
+  }
+
   render() {
     this.applyColors();
     return html`${this.fields.map((field) => {
@@ -73,10 +93,8 @@ class DgColor extends LitElement {
       if (field.type === 'hue') return this.createHueField();
       return '';
     })}
-    <button class="btn btn-warning" type="button" @click=${() => { this.value = fallbackJson; this.requestUpdate(); }}>${Joomla.Text._('JRESET')}</button>
-    <p></p>
-    <details><summary>CSS Variables:</summary>${blueprint.colors.map((field) => html`<pre><code>--${field.cssVariableName}: ${this.value?.[field.cssVariableName]};</code></pre>`)}</details>
-    <input type="hidden" name="${this.name}" .value='${JSON.stringify(this.value)}'>`;
+    <button class="btn btn-warning" type="button" @click=${this.reset}>${Joomla.Text._('JRESET')}</button>
+    <p></p>${this.renderDetails()}`;
   }
 
   createHueField() {

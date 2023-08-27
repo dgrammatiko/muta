@@ -249,7 +249,7 @@
   .subhead {
     --subhead-btn-bg: var(--bs-dark);
     & .btn {
-      color: var(--template-text-light);
+      // color: var(--template-text-light);
       &:hover,
       &:focus {
         color: var(--bs-white);
@@ -360,7 +360,7 @@
     .subhead {
       --subhead-btn-bg: var(--bs-dark);
       & .btn {
-        color: var(--template-text-light);
+        // color: var(--template-text-light);
         &:hover,
         &:focus {
           color: var(--bs-white);
