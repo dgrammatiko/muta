@@ -31,7 +31,6 @@
     <folder>js</folder>
   </media>
   <positions>
-    <!-- used directly in the template -->
     <position>customtop</position>
     <position>top</position>
     <position>status</position>
@@ -41,7 +40,7 @@
     <position>sidebar</position>
     <position>bottom</position>
     <position>debug</position>
-    <!-- used directly in a component and included here so the position will appear in the list of available positions -->
+
     <position>cpanel</position>
     <position>icon</position>
     <position>login</position>

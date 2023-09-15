@@ -102,16 +102,16 @@ ul.media-tree {
   white-space: nowrap;
   cursor: pointer;
   &:hover {
-      text-decoration: none;
-      background-color: var(--bs-tertiary-bg) !important;
-      color: var(--bs-white) !important;
-    }
+    color: var(--bs-white) !important;
+    text-decoration: none;
+    background-color: var(--bs-tertiary-bg) !important;
+  }
 }
 
 .media-tree-item.active > a {
+  color: var(--bs-white) !important;
   text-decoration: none;
   background-color: var(--bs-tertiary-bg) !important;
-  color: var(--bs-white)!important;
 }
 
 .media-tree-item .item-icon {

@@ -34,6 +34,7 @@ class Editor {
     this.editorOptions = {};
     this.options = {};
     const theme = document.documentElement.getAttribute('data-bs-theme');
+    /* eslint-disable-next-line no-nested-ternary */
     this.theme = !forced() ? darkModeMediaQuery.matches === true ? 'dark' : 'light' : theme;
     this.render = this.render.bind(this);
     this.initOptions = this.initOptions.bind(this);

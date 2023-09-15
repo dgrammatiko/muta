@@ -6,8 +6,8 @@
 @import "../../../../../../node_modules/shepherd.js/dist/css/shepherd";
 
 .shepherd-element {
-  background: var(--bs-body-bg);
   color: var(--bs-body-color);
+  background: var(--bs-body-bg);
 }
 
 .shepherd-has-title .shepherd-content .shepherd-header {
@@ -18,7 +18,7 @@
 .shepherd-element.shepherd-has-title[data-popper-placement^="left"] > .shepherd-arrow::before,
 .shepherd-element.shepherd-has-title[data-popper-placement^="right"] > .shepherd-arrow::before,
 .shepherd-element.shepherd-has-title[data-popper-placement^="bottom"] > .shepherd-arrow::before {
-    background-color: var(--bs-body-bg);
+  background-color: var(--bs-body-bg);
 }
 
 .shepherd-content img {
@@ -27,9 +27,9 @@
 }
 
 .shepherd-title {
-  color: inherit;
   flex: 1 1 auto;
   line-height: 1.5em;
+  color: inherit;
 }
 
 .shepherd-progress {
@@ -37,9 +37,9 @@
 }
 
 .shepherd-text {
-  color: inherit;
   padding: 1em;
   line-height: 1.5em;
+  color: inherit;
 }
 
 .shepherd-footer {
@@ -60,8 +60,8 @@
 }
 
 shepherd-button.shepherd-button-secondary {
-  background: var(--bs-secondary);
   color: rgba(0,0,0,.75);
+  background: var(--bs-secondary);
 }
 
 .shepherd-enabled.shepherd-element[data-popper-placement=bottom] {

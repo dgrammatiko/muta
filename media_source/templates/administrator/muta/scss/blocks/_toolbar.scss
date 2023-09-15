@@ -7,7 +7,7 @@
   right: 0;
   left: 0;
   z-index: $zindex-toolbar;
-  width: auto;
+  width: 100%;
   min-height: 43px;
   padding: 8px 1rem;
   color: var(--bs-white);
@@ -48,7 +48,7 @@
     line-height: $atum-toolbar-line-height;
     color: var(--subhead-btn-accent);
     background-color: var(--subhead-btn-bg);
-    color: var(--subhead-btn-accent);
+    border-color: var(--subhead-btn-accent);
 
     > span {
       display: inline-block;
@@ -60,7 +60,6 @@
     &:not([disabled]):focus {
       color: rgba(255, 255, 255, .9);
       background-color: var(--subhead-btn-accent);
-      border-color: var(--subhead-btn-accent);
 
       > span {
         color: rgba(255, 255, 255, .9);
@@ -91,7 +90,7 @@
       --subhead-btn-accent: var(--template-bg-dark-60);
       display: flex;
       align-items: center;
-      border-color: var(--subhead-btn-accent);
+      // border-color: var(--subhead-btn-accent);
 
       &::after {
         width: 2.375rem;
@@ -104,8 +103,8 @@
 
       &:focus-visible {
         color: var(--bs-btn-hover-color);
-        background-color: var(--template-bg-dark-90);
-        border-color: var(--template-bg-dark-90);
+        background-color: var(--template-bg-dark-60);
+        border-color: var(--template-bg-dark-60);
         outline: 0;
         box-shadow: 0 0 0 .25rem var(--template-bg-dark-60);
       }
@@ -122,9 +121,9 @@
 
     &[disabled],
     &.dropdown-toggle[disabled] {
-      --subhead-btn-accent: var(--template-bg-dark);
-      background: rgba(var(--bs-emphasis-color-rgb,.8));
-      opacity: .5;
+      // --subhead-btn-accent: var(--template-bg-dark);
+      // background: rgba(var(--bs-emphasis-color-rgb,.8));
+      opacity: .3;
 
       &:hover,
       &:active,

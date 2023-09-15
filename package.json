@@ -1,6 +1,6 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "joomlaVersion": "4.3.1",
   "publishConfig": {
     "access": "public"
@@ -12,10 +12,11 @@
     "build": "joomla-tools -b media_source",
     "release": "joomla-tools -r",
     "init": "joomla-tools -i && joomla-tools -l && joomla-tools -b media_source",
-    "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/.",
+    "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/**/*.scss --fix",
     "lint-js": "./node_modules/eslint/bin/eslint.js ./media_source/**/*.mjs",
     "lint": "npm run lint-css && npm run lint-js",
-    "update:browserlist": "npx browserslist@latest --update-db"
+    "update:browserlist": "npx browserslist@latest --update-db",
+    "update:npm": "npm install $(npm outdated | cut -d' ' -f 1 | sed '1d' | xargs -I '$' echo '$@latest' | xargs echo)  --save-exact"
   },
   "author": "Dimitris Grammatikogiannis",
   "license": "MIT",
@@ -56,7 +57,7 @@
       "administrator": [
         {
           "name": "muta",
-          "version": "2.1.1"
+          "version": "2.1.2"
         }
       ],
       "site": []

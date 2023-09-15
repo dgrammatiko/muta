@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @copyright   Copyright (C) 2022 Dimitrios Grammatikogiannis. All rights reserved.
+ * @copyright   Copyright (C) 2023 Dimitrios Grammatikogiannis. All rights reserved.
  * @license   GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,12 +11,11 @@ use Joomla\CMS\Language\Text;
 
 /** @var \Joomla\CMS\Document\HtmlDocument $doc */
 
-$doc    = $displayData['doc'];
-$params = $displayData['params'];
+extract($displayData);
 
-if (!$doc->debug) return;
+if (!$doc->debug) return '';
 
-echo 'div';
+echo '<div>';
 echo $doc->renderBacktrace();
 if ($doc->error->getPrevious()) {
   $loop = true;
