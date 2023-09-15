@@ -54,10 +54,10 @@ joomla-tab {
       &[aria-expanded=true],
       &:focus,
       &:hover {
+        background-color: var(--bs-tertiary-bg);
         border: 0;
         border-radius: 0;
         box-shadow: none;
-        background-color: var(--bs-tertiary-bg);
         // color: var(--bs-white);
 
         &::after {
@@ -224,9 +224,9 @@ joomla-tab[view=accordion] {
         display: block;
         width: calc(100% + 2px);
         height: 5px;
+        color: var(--bs-white);
         content: "";
         background-color: var(--bs-primary);
-        color: var(--bs-white);
         opacity: .8;
       }
     }

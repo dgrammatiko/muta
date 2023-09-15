@@ -7,30 +7,30 @@
 }
 
 .calendar-container {
+  z-index: 1100 !important;
   float: left;
   min-width: 160px;
   padding: 0;
   list-style: none;
-  border-radius: 5px;
   background-color: var(--bs-body-bg) !important;
-  z-index: 1100 !important;
+  border-radius: 5px;
 }
 
 .calendar-container table {
-  table-layout: fixed;
-  max-width: 262px;
-  border-radius: 5px;
-  background-color: var(--bs-body-bg) !important;
   z-index: 1100 !important;
+  max-width: 262px;
+  table-layout: fixed;
+  background-color: var(--bs-body-bg) !important;
+  border-radius: 5px;
 }
 
 /* The main calendar widget.  DIV containing a table. */
 div.calendar-container table th,
 .calendar-container table td {
-  box-shadow: none;
   padding: 8px 0;
   line-height: 1.1em;
   text-align: center;
+  box-shadow: none;
 }
 
 div.calendar-container table body td {
@@ -42,22 +42,22 @@ div.calendar-container table body td {
 }
 
 div.calendar-container table td.title {
+  text-align: center;
   /* This holds the current "month, year" */
   vertical-align: middle;
-  text-align: center;
 }
 
 .calendar-container table thead td.headrow {
+  color: var(--bs-body-color);
   /* Row <TR> containing navigation buttons */
   background: var(--bs-body-bg);
-  color: var(--bs-body-color);
 }
 
 .calendar-container table thead td.name {
+  color: var(--bs-body-color);
+  text-align: center;
   /* Cells <TD> containing the day names */
   border-bottom: 1px solid var(--bs-body-bg);
-  text-align: center;
-  color: var(--bs-body-color);
 }
 
 .calendar-container table thead td.weekend {
@@ -82,16 +82,16 @@ div.calendar-container table td.title {
 }
 
 .calendar-container table tbody td.hilite {
-  /* Hovered cells <TD> */
-  background: #999999;
   color: var(--bs-body-bg);
+  /* Hovered cells <TD> */
+  background: #999;
 }
 
 .calendar-container table tbody td.day {
-  border: 0;
-  cursor: pointer;
-  font-size: 12px;
   min-width: 38px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 0;
 }
 
 .calendar-container table tbody td.day.wn {
@@ -100,28 +100,28 @@ div.calendar-container table td.title {
 }
 
 .calendar-container table tbody td.day.selected {
+  color: var(--bs-body-bg);
   /* Cell showing today date */
   background: #3071a9;
-  color: var(--bs-body-bg);
   border: 0;
 }
 
 .calendar-container table tbody td.today {
   position: relative;
-  height: 100%;
   width: auto;
+  height: 100%;
   font-weight: bold;
 }
 
 .calendar-container table tbody td.today:after {
   position: absolute;
+  right: 3px;
   bottom: 3px;
   left: 3px;
-  right: 3px;
-  content: "";
   height: 3px;
-  border-radius: 1.5px;
+  content: "";
   background-color: #46a546;
+  border-radius: 1.5px;
 }
 
 .calendar-container table tbody td.today.selected:after {
@@ -129,9 +129,9 @@ div.calendar-container table td.title {
 }
 
 .calendar-container table tbody td.day:hover {
+  color: var(--bs-body-bg);
   cursor: pointer;
   background: #3d8fd7;
-  color: var(--bs-body-bg);
 }
 
 .calendar-container table tbody td.day:hover:after {
@@ -159,7 +159,7 @@ div.calendar-container table td.title {
 }
 
 .calendar-container .day-name {
-  font-size: 0.7rem;
+  font-size: .7rem;
   font-weight: bold;
 }
 
@@ -168,17 +168,17 @@ div.calendar-container table td.title {
 }
 
 .buttons-wrapper {
-  padding: 5px 5px;
   width: 100%;
+  padding: 5px;
 }
 
 .buttons-wrapper .btn {
   min-width: 60px;
+  padding: 0 16px;
+  margin-right: .5rem;
+  line-height: 2.375rem;
   color: var(--bs-primary);
   border: 1px solid var(--bs-primary);
-  margin-right: .5rem;
-  padding: 0 16px;
-  line-height: 2.375rem;
 }
 
 .buttons-wrapper .btn:hover {

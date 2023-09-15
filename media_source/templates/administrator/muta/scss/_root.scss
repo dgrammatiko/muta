@@ -157,7 +157,13 @@
 }
 
 :root[data-forced-theme=""][data-bs-theme="dark"] {
+  color: var(--bs-body-color);
+  background-color: var(--bs-black);
   color-scheme: dark;
+  // scss-docs-end root-dark-mode-vars
+
+  // Custom Muta overrides
+  accent-color: var(--bs-primary);
 
   // scss-docs-start root-dark-mode-vars
   --#{$prefix}body-color: #{$body-color-dark};
@@ -208,12 +214,6 @@
   --#{$prefix}form-valid-border-color: #{$form-valid-border-color-dark};
   --#{$prefix}form-invalid-color: #{$form-invalid-color-dark};
   --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-dark};
-  // scss-docs-end root-dark-mode-vars
-
-  // Custom Muta overrides
-  accent-color: var(--bs-primary);
-  background-color: var(--bs-black);
-  color: var(--bs-body-color);
   --template-text-light: var(--bs-body-color);
   --template-select-indicator: url("../images/select-bg-dark.svg") #{"/* rtl:"}url("../images/select-bg-dark-rtl.svg")#{"*/"};
   --template-select-indicator-active: url("../../../images/select-bg-dark-active.svg") #{"/* rtl:"}url("../../../images/select-bg-dark-active-rtl.svg")#{"*/"};
@@ -248,7 +248,7 @@
   }
   .subhead {
     --subhead-btn-bg: var(--bs-dark);
-    & .btn {
+    .btn {
       // color: var(--template-text-light);
       &:hover,
       &:focus {
@@ -268,7 +268,13 @@
 @media (prefers-color-scheme: "dark") {
   :root:not([data-forced-theme=""]),
   :root:not([data-forced-theme=""]) [data-bs-theme="dark"] {
+    color: var(--bs-body-color);
+    background-color: var(--bs-black);
     color-scheme: dark;
+    // scss-docs-end root-dark-mode-vars
+
+    // Custom Muta overrides
+    accent-color: var(--bs-primary);
 
     // scss-docs-start root-dark-mode-vars
     --#{$prefix}body-color: #{$body-color-dark};
@@ -319,12 +325,6 @@
     --#{$prefix}form-valid-border-color: #{$form-valid-border-color-dark};
     --#{$prefix}form-invalid-color: #{$form-invalid-color-dark};
     --#{$prefix}form-invalid-border-color: #{$form-invalid-border-color-dark};
-    // scss-docs-end root-dark-mode-vars
-
-    // Custom Muta overrides
-    accent-color: var(--bs-primary);
-    background-color: var(--bs-black);
-    color: var(--bs-body-color);
     --template-text-light: var(--bs-body-color);
     --template-select-indicator: url("../images/select-bg-dark.svg") #{"/* rtl:"}url("../images/select-bg-dark-rtl.svg")#{"*/"};
     --template-select-indicator-active: url("../../../images/select-bg-dark-active.svg") #{"/* rtl:"}url("../../../images/select-bg-dark-active-rtl.svg")#{"*/"};
@@ -359,7 +359,7 @@
     }
     .subhead {
       --subhead-btn-bg: var(--bs-dark);
-      & .btn {
+      .btn {
         // color: var(--template-text-light);
         &:hover,
         &:focus {

@@ -98,6 +98,7 @@ class DgColor extends LitElement {
   }
 
   createHueField() {
+    /* eslint-disable max-len */
     return html`<div class="control-group">
     <div class="control-label"><label id="jform_params_hue-lbl" for="jform_params_hue">Choose your hue value for the dark template colour</label></div>
 
@@ -108,7 +109,7 @@ class DgColor extends LitElement {
       <input type="range" min="0" step="1" max="360" class="form-control color-slider" .value=${this.sliderValue} @input=${(e) => { this.sliderValue = e.target.value; this.value.hue = e.target.value; this.requestUpdate(); }} style="background-image: linear-gradient(90deg, rgb(83, 19, 19), rgb(83, 19, 19), rgb(83, 38, 19), rgb(83, 57, 19), rgb(83, 77, 19), rgb(70, 83, 19), rgb(51, 83, 19), rgb(32, 83, 19), rgb(19, 83, 25), rgb(19, 83, 45), rgb(19, 83, 64), rgb(19, 83, 83), rgb(19, 64, 83), rgb(19, 45, 83), rgb(19, 25, 83), rgb(32, 19, 83), rgb(51, 19, 83), rgb(70, 19, 83), rgb(83, 19, 77), rgb(83, 19, 57), rgb(83, 19, 38), rgb(83, 19, 19), rgb(83, 19, 19)); appearance: none;">
       </div>
     </div>
-</div>`;
+</div>`; /* eslint-enable max-len */
   }
 
   createColorField(field) {
@@ -130,12 +131,15 @@ class DgColor extends LitElement {
   this.value[`${field.cssVariableName}`] = e.detail.hex;
   this.value[`${field.cssVariableName}-rgb`] = e.detail.rgb.replace('rgb(', '').replace(')', '');
   this.requestUpdate();
+  /* eslint-disable max-len */
 }} button-width="8rem" button-height="3rem" button-padding="2px" style="--tool-cool-color-picker-popup-bg: var(--bs-body-bg); --tool-cool-color-picker-field-label-color: var(--bs-body-color)"></toolcool-color-picker>
     </div>
   </div>`;
+  /* eslint-enable max-len */
   }
 
   applyColors() {
+    /* eslint-disable-next-line no-restricted-syntax */
     for (const [key, value] of Object.entries(this.value)) {
       document.documentElement.style.setProperty(`--${key}`, value);
     }
