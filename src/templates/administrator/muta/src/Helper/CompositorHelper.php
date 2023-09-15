@@ -31,7 +31,7 @@ class CompositorHelper extends HtmlDocument
     $wam = $options['wam'];
 
     // Don't mess with regex
-    $this->doc->setEvaluateJDocInclude(false);
+    // $this->doc->setEvaluateJDocInclude(false);
 
     // Evaluate runtime params
     new ParamsEvaluatorHelper(['entry' => $this->entry, 'path' => $this->path, 'params' => $this->doc->params, 'wam' => $wam]);
