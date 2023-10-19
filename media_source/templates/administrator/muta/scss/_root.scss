@@ -154,6 +154,9 @@
       background-color: var(--bs-border-color);
     }
   }
+  .btn-close {
+    filter: none;
+  }
 }
 
 :root[data-forced-theme=""][data-bs-theme="dark"] {
@@ -262,6 +265,9 @@
   }
   .image-background {
     --accent-color: var(--bs-gray-800);
+  }
+  .btn-close {
+    filter:var(--bs-btn-close-white-filter);
   }
 }
 
@@ -373,6 +379,9 @@
     }
     .image-background {
       --accent-color: var(--bs-gray-800);
+    }
+    .btn-close {
+      filter:var(--bs-btn-close-white-filter);
     }
   }
 }
