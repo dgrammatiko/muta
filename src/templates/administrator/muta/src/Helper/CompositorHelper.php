@@ -69,6 +69,11 @@ class CompositorHelper extends HtmlDocument
   }
 
   public function head() {
+    // Support both tinyMCE 5 and 6
+    if (version_compare(JVERSION, '5.0.0', '<')) {
+      $wam = $this->doc->getWebAssetManager();
+      $wam->registerAndUseScript('plg_editors_tinymce', 'plg_editors_tinymce/tinymce_5.min.js', ['dependencies' => ['core', 'tinymce']], ['relative' => true, 'version' => 'auto'], ['type' => 'module']);
+    }
     return $this->doc->getBuffer('metas', 'metas') . $this->doc->getBuffer('styles', 'styles') . $this->doc->getBuffer('scripts', 'scripts');
   }
 
