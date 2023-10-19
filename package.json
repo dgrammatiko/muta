@@ -1,6 +1,6 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "2.1.4",
+  "version": "3.0.0",
   "joomlaVersion": "5.0.0",
   "publishConfig": {
     "access": "public"
@@ -57,7 +57,7 @@
       "administrator": [
         {
           "name": "muta",
-          "version": "2.1.4"
+          "version": "3.0.0"
         }
       ],
       "site": []
