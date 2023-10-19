@@ -18,7 +18,7 @@ jobs:
     # https://nodejs.org/en/about/releases/
     strategy:
       matrix:
-        node-version: ["latest"]
+        node-version: ["20.x"]
 
     steps:
     - uses: actions/checkout@v4
