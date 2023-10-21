@@ -9,17 +9,17 @@ import UrlVersion from 'postcss-url-version';
 const opts = {
   version: (imagePath, sourceCssPath) => {
     if (!sourceCssPath) {
-      return (new Date()).valueOf().toString().substring(0, 6);
+      return (new Date()).valueOf().toString().slice(-6);
     }
 
     if (!(imagePath.startsWith('http') || imagePath.startsWith('//')) && existsSync(`${dirname(sourceCssPath)}/${imagePath}`)) {
       const hashSum = crypto.createHash('md5');
       hashSum.update(readFileSync(resolve(`${dirname(sourceCssPath)}/${imagePath}`)));
 
-      return (hashSum.digest('hex')).substring(0, 6);
+      return (hashSum.digest('hex')).slice(-6);
     }
 
-    return (new Date()).valueOf().toString().substring(0, 6);
+    return (new Date()).valueOf().toString().slice(-6);
   },
 };
 

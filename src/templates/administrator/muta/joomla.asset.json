@@ -6,24 +6,6 @@
   "license": "GPL-2.0-or-later",
   "assets": [
     {
-      "name": "template.muta.ltr",
-      "description": "The css file to be used when the site is left to right (LTR).",
-      "type": "style",
-      "uri": "template.min.css",
-      "dependencies": [
-        "fontawesome"
-      ]
-    },
-    {
-      "name": "template.muta.rtl",
-      "description": "The css file to be used when the site is right to left (RTL).",
-      "type": "style",
-      "uri": "template-rtl.min.css",
-      "dependencies": [
-        "fontawesome"
-      ]
-    },
-    {
       "name": "template.active.language",
       "description": "An asset to allow language specific css, eg 'language/[lang-CODE]/[lang-CODE].css', to use it as a dependency to the active template",
       "type": "style",
@@ -44,18 +26,6 @@
         "template.active",
         "template.active.language"
       ]
-    },
-    {
-      "name": "template.muta",
-      "description": "The file containing the javascript for this template.",
-      "type": "script",
-      "uri": "media/templates/administrator/muta/js/template.min.js",
-      "dependencies": [
-        "core"
-      ],
-      "attributes": {
-      "type": "module"
-      }
     },
     {
       "name": "template.active",
@@ -94,6 +64,36 @@
       "name": "searchtools",
       "type": "style",
       "uri": "system/searchtools/searchtools.min.css"
+    },
+    {
+      "name": "template.muta",
+      "description": "The file containing the javascript for this template.",
+      "type": "script",
+      "uri": "template.min.js",
+      "dependencies": [
+        "core"
+      ],
+      "attributes": {
+        "type": "module"
+      }
+    },
+    {
+      "name": "template.muta.ltr",
+      "description": "The css file to be used when the site is left to right (LTR).",
+      "type": "style",
+      "uri": "template.min.css",
+      "dependencies": [
+        "fontawesome"
+      ]
+    },
+    {
+      "name": "template.muta.rtl",
+      "description": "The css file to be used when the site is right to left (RTL).",
+      "type": "style",
+      "uri": "template-rtl.min.css",
+      "dependencies": [
+        "fontawesome"
+      ]
     }
   ]
 }

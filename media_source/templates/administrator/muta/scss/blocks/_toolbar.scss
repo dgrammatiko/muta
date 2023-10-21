@@ -151,8 +151,9 @@
   }
 
   .contentpane & {
-    margin: -1.2rem -1.2rem 0;
     background-image: none;
+    margin: -1.2rem -1.2rem 0;
+    width: 100vw;
   }
 }
 
