@@ -56,3 +56,16 @@ async function cssVersioning() {
 };
 
 cssVersioning();
+
+import { getFiles } from '@dgrammatiko/compress/src/getFiles.js';
+import { compressFile } from '@dgrammatiko/compress/src/compressFile.js';
+
+getFiles('./media/templates/administrator/muta/')
+  .then(async files => {
+    for (const file of files) {
+      await compressFile(file, false);
+    }
+
+    console.log('Done 👍');
+  })
+  .catch(err => process.exit(err ? 1 : 0));

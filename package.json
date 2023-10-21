@@ -10,6 +10,7 @@
     "get-joomla": "joomla-tools.mjs -i",
     "link": "joomla-tools -l",
     "build": "joomla-tools -b media_source && node ./.scripts/css-versioning.mjs",
+    "compress": "cd media/templates/administrator/muta && npx --no-install github:dgrammatiko/compress@1.0.3",
     "release": "joomla-tools -r",
     "init": "joomla-tools -i && joomla-tools -l && joomla-tools -b media_source",
     "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/**/*.scss --fix",
@@ -64,6 +65,7 @@
     }
   },
   "devDependencies": {
+    "@dgrammatiko/compress": "^1.0.4",
     "@dgrammatiko/joomla-tools": "github:dgrammatiko/joomla-tools#main",
     "fs-jetpack": "^5.1.0",
     "postcss-url-version": "^1.0.5"
