@@ -90,7 +90,7 @@ button span {
   }
 }
 </style>
-<button tabindex="0"><span aria-hidden="true"></span></button>
+<button><span aria-hidden="true"></span></button>
     `;
 
     this.button = this.shadowRoot.querySelector('button');

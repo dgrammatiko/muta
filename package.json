@@ -9,7 +9,7 @@
   "scripts": {
     "get-joomla": "joomla-tools.mjs -i",
     "link": "joomla-tools -l",
-    "build": "joomla-tools -b media_source",
+    "build": "joomla-tools -b media_source && node ./.scripts/css-versioning.mjs",
     "release": "joomla-tools -r",
     "init": "joomla-tools -i && joomla-tools -l && joomla-tools -b media_source",
     "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/**/*.scss --fix",
@@ -64,7 +64,9 @@
     }
   },
   "devDependencies": {
-    "@dgrammatiko/joomla-tools": "github:dgrammatiko/joomla-tools#main"
+    "@dgrammatiko/joomla-tools": "github:dgrammatiko/joomla-tools#main",
+    "fs-jetpack": "^5.1.0",
+    "postcss-url-version": "^1.0.5"
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "^2.3.6",
