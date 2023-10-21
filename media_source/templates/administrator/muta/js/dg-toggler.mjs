@@ -1,10 +1,8 @@
 // https://github.com/dgrammatiko/dark-switch/blob/master/src/index.js
-if (!Joomla) throw new Error('The Joomla API is not initialized properly');
-
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const lightModeMediaQuery = window.matchMedia('(prefers-color-scheme: light)');
 const supported = window.matchMedia('(prefers-color-scheme)').media !== 'not all';
-const forced = () => document.documentElement.hasAttribute('data-forced-theme');
+const forced = () => ('forcedTheme' in document.documentElement.dataset);
 
 class Switcher extends HTMLElement {
   constructor() {
@@ -95,6 +93,7 @@ button span {
 
     this.button = this.shadowRoot.querySelector('button');
     this.span = this.shadowRoot.querySelector('span');
+    this.button.addEventListener('click', this.onClick);
   }
 
   get on() { return this.getAttribute('text-on') || 'on'; }
@@ -104,21 +103,19 @@ button span {
   get legend() { return this.getAttribute('text-legend') || 'dark theme'; }
 
   connectedCallback() {
-    this.state = forced() && this.html.dataset && this.html.dataset.bsTheme ? this.html.dataset.bsTheme : 'light';
+    this.state = forced() && this.html.dataset && this.html.dataset.theme ? this.html.dataset.theme : 'light';
     if (supported && !forced()) {
-      this.state = supported && lightModeMediaQuery.matches ? 'light' : 'dark';
+      this.state = lightModeMediaQuery.matches ? 'light' : 'dark';
       darkModeMediaQuery.addListener(this.systemQuery);
     }
 
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
     this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
-    this.button.addEventListener('click', this.onClick);
     this.applyState();
   }
 
   disconnectedCallback() {
     if (supported && !forced()) darkModeMediaQuery.removeListener(this.systemQuery);
-    if (this.button) this.button.removeEventListener('click', this.onClick);
   }
 
   systemQuery(event) {
@@ -127,24 +124,27 @@ button span {
   }
 
   onClick() {
+    if (!forced()) {
+      this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
+      return;
+    }
     this.state = this.state === 'light' ? 'dark' : 'light';
     this.applyState();
   }
 
   applyState() {
-    const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
-    ev.prefersColorScheme = this.state;
-    window.dispatchEvent(ev);
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
     this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
-    if (navigator.cookieEnabled) {
-      if (forced()) {
+    this.html.setAttribute('data-theme', this.state === 'dark' ? 'dark' : 'light');
+    if (forced()) {
+      const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
+      ev.prefersColorScheme = this.state;
+      window.dispatchEvent(ev);
+      if (navigator.cookieEnabled) {
         const oneYearFromNow = new Date();
         oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
         document.cookie = `mutaPrefersColorScheme=${this.state};expires=${oneYearFromNow.toGMTString()}`;
-      } else {
-        document.cookie = `mutaPrefersColorScheme=${this.state};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
       }
     }
   }

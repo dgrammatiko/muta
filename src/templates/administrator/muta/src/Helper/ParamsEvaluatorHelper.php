@@ -75,6 +75,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
   if ($currentPage->forcedColorScheme) {
     $htmlTagAttributes['data-forced-theme'] = '';
     $htmlTagAttributes['data-bs-theme'] = $input->cookie->get('mutaPrefersColorScheme', $user->getParam('prefers_color_scheme', 'light')) . '"';
+    $htmlTagAttributes['data-theme'] = $htmlTagAttributes['data-bs-theme'];
   }
 
   $bodyClasses = '';
@@ -132,6 +133,8 @@ class ParamsEvaluatorHelper extends HtmlDocument
         . implode('', array_map(function($k, $v) { return '--'.$k.':'.$v.';'; }, array_keys($colors), array_values($colors)))
         . '--bs-font-sans-serif:' . $currentPage->defaultFont . ',"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";'
         . '--bs-font-monospace:' . $currentPage->monoFont . ',"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";'
+        . '--font-sans-serif: var(--bs-font-sans-serif);'
+        . '--font-monospace: var(--bs-font-monospace);'
       . '}',
       [],
       ['id' => 'tpl-muta-colors'])
