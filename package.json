@@ -1,6 +1,6 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "joomlaVersion": "4.3.0",
   "publishConfig": {
     "access": "public"
@@ -11,7 +11,7 @@
     "link": "joomla-tools -l",
     "build": "joomla-tools -b media_source && node ./.scripts/css-versioning.mjs",
     "compress": "cd media/templates/administrator/muta && npx --no-install github:dgrammatiko/compress@1.0.3",
-    "release": "joomla-tools -r",
+    "release": "joomla-tools -r && node ./.scripts/clean-version.mjs",
     "init": "joomla-tools -i && joomla-tools -l && joomla-tools -b media_source",
     "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/**/*.scss --fix",
     "lint-js": "./node_modules/eslint/bin/eslint.js ./media_source/**/*.mjs",
@@ -58,7 +58,7 @@
       "administrator": [
         {
           "name": "muta",
-          "version": "2.1.4"
+          "version": "2.1.5"
         }
       ],
       "site": []
