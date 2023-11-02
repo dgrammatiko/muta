@@ -78,7 +78,7 @@
     "choices.js": "^10.2.0",
     "color-picker-web-component": "^1.3.7",
     "joomla-ui-custom-elements": "^0.2.0",
-    "lit": "3.0.1",
+    "lit": "3.0.2",
     "shepherd.js": "11.2.0",
     "toolcool-color-picker": "1.0.15"
   }
