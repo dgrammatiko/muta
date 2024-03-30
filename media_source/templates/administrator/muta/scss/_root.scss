@@ -1,3 +1,32 @@
+:root {
+   // Fonts
+
+  // Note: Use `inspect` for lists so that quoted items keep the quotes.
+  // See https://github.com/sass/sass/issues/2383#issuecomment-336349172
+  --#{$prefix}font-sans-serif: #{inspect($font-family-sans-serif)};
+  --#{$prefix}font-monospace: #{inspect($font-family-monospace)};
+  --#{$prefix}gradient: #{$gradient};
+  --gradient: var(--#{$prefix}gradient);
+
+  // Root and body
+  // scss-docs-start root-body-variables
+  @if $font-size-root != null {
+    --#{$prefix}root-font-size: #{$font-size-root};
+    --root-font-size: var(--#{$prefix}root-font-size);
+  }
+  --#{$prefix}body-font-family: #{inspect($font-family-base)};
+  --body-font-family: var(--#{$prefix}body-font-family);
+  @include rfs($font-size-base, --#{$prefix}body-font-size);
+  --#{$prefix}body-font-weight: #{$font-weight-base};
+  --body-font-weight: #{$font-weight-base};
+  --#{$prefix}body-line-height: #{$line-height-base};
+  --body-line-height: var(--#{$prefix}body-line-height);
+  @if $body-text-align != null {
+    --#{$prefix}body-text-align: #{$body-text-align};
+    --body-text-align: var(--#{$prefix}body-text-align);
+  }
+}
+
 :root,
 :root[data-forced-theme][data-bs-theme=light],
 :root:not([data-forced-theme]) [data-bs-theme=light] {
@@ -45,33 +74,6 @@
   --white-rgb: var(--#{$prefix}white-rgb);
   --#{$prefix}black-rgb: #{to-rgb($black)};
   --black-rgb: var(--#{$prefix}black-rgb);
-
-  // Fonts
-
-  // Note: Use `inspect` for lists so that quoted items keep the quotes.
-  // See https://github.com/sass/sass/issues/2383#issuecomment-336349172
-  --#{$prefix}font-sans-serif: #{inspect($font-family-sans-serif)};
-  --#{$prefix}font-monospace: #{inspect($font-family-monospace)};
-  --#{$prefix}gradient: #{$gradient};
-  --gradient: var(--#{$prefix}gradient);
-
-  // Root and body
-  // scss-docs-start root-body-variables
-  @if $font-size-root != null {
-    --#{$prefix}root-font-size: #{$font-size-root};
-    --root-font-size: var(--#{$prefix}root-font-size);
-  }
-  --#{$prefix}body-font-family: #{inspect($font-family-base)};
-  --body-font-family: var(--#{$prefix}body-font-family);
-  @include rfs($font-size-base, --#{$prefix}body-font-size);
-  --#{$prefix}body-font-weight: #{$font-weight-base};
-  --body-font-weight: var(--#{$prefix}body-font-weight);
-  --#{$prefix}body-line-height: #{$line-height-base};
-  --body-line-height: var(--#{$prefix}body-line-height);
-  @if $body-text-align != null {
-    --#{$prefix}body-text-align: #{$body-text-align};
-    --body-text-align: var(--#{$prefix}body-text-align);
-  }
 
   --#{$prefix}body-color: #{$body-color};
   --body-color: var(--#{$prefix}body-color);

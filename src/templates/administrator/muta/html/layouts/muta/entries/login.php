@@ -12,11 +12,11 @@ use Joomla\CMS\Layout\LayoutHelper;
 
 extract($displayData);
 ?>
-<?= LayoutHelper::render('muta.partials.header', ['doc' => $doc, 'entry' => $entry, 'params' => $params, 'renderPosition' => $renderPosition]); ?>
+<?= LayoutHelper::render('muta.partials.header', ['doc' => $doc, 'entry' => $entry, 'params' => $params]); ?>
 <div id="wrapper" class="wrapper login-bg flex-grow-1">
   <div class="container-fluid container-main">
     <div class="login_message">
-      <?= $renderPosition->message ?? ''; ?>
+      <jdoc:include type="message" />
     </div>
     <main class="d-flex justify-content-center align-items-center h-100">
       <div class="card text-bg-light p-3 login">
@@ -27,10 +27,10 @@ extract($displayData);
         <div class="main-brand logo text-center">
           <?= LayoutHelper::render('joomla.html.image', ['src' => $params->loginLogo, 'alt' => $params->loginLogoAlt, 'loading' => 'eager']); ?>
         </div>
-        <?= $renderPosition->component ?? ''; ?>
-        <?= $renderPosition->sidebar ?? ''; ?>
+        <jdoc:include type="component" />
+        <jdoc:include type="modules" name="sidebar" style="details" />
       </div>
     </main>
   </div>
 </div>
-<?= $renderPosition->debug ?? ''; ?>
+<jdoc:include type="modules" name="debug" style="none" />

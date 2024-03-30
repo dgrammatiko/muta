@@ -72,12 +72,15 @@
 }
 
 // WebAuthn
-.plg_system_webauthn_login_button svg {
-  margin-inline-end: 2px;
-}
+.plg_system_webauthn_login_button {
+  svg {
+    width: 1.875rem;
+    margin: 0.25rem;
 
-.plg_system_webauthn_login_button svg path {
-  fill: var(--bs-white);
+    path {
+      fill: var(--bs-white);
+    }
+  }
 }
 
 .badge > span {

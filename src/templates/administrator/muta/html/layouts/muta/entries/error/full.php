@@ -25,7 +25,7 @@ extract($displayData);
             <span class="sidebar-item-title"><?= Text::_('JTOGGLE_SIDEBAR_MENU'); ?></span>
           </a>
         </div>
-        <?= $renderPosition->menu ?? ''; ?>
+        <jdoc:include type="modules" name="menu" style="none" />
       </div>
     </div>
   <?php endif; ?>
@@ -37,14 +37,14 @@ extract($displayData);
         <div id="container-collapse" class="container-collapse"></div>
         <div class="row">
           <div class="col-md-12">
-            <?= $renderPosition->toolbar ?? ''; ?>
+            <jdoc:include type="modules" name="toolbar" style="none" />
           </div>
         </div>
       </div>
     <?php endif; ?>
     <section id="content" class="content">
-      <?= $renderPosition->message ?? ''; ?>
-      <?= $renderPosition->top ?? ''; ?>
+      <jdoc:include type="message"  />
+      <jdoc:include type="modules" name="top" style="html5" />
       <div class="row">
         <div class="col-md-12">
           <h1><?= Text::_('JERROR_AN_ERROR_HAS_OCCURRED'); ?></h1>
@@ -59,9 +59,9 @@ extract($displayData);
               <?= Text::_('JGLOBAL_TPL_CPANEL_LINK_TEXT'); ?></a>
           </p>
         </div>
-        <?= $renderPosition->bottom ?? ''; ?>
+        <jdoc:include type="modules" name="bottom" style="html5" />
       </div>
     </section>
   </div>
 </div>
-<?= $renderPosition->debug ?? ''; ?>
+<jdoc:include type="modules" name="debug" style="none" />

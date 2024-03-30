@@ -7,10 +7,20 @@
 
 defined('_JEXEC') || die;
 
-use \Dgrammatiko\Template\Muta\Administrator\Helper\CompositorHelper;
+use Dgrammatiko\Template\Muta\Administrator\Helper\ParamsEvaluatorHelper;
+use Joomla\CMS\Layout\LayoutHelper;
 
-new CompositorHelper([
+// Evaluate runtime params
+new ParamsEvaluatorHelper([
   'entry' => 'index',
-  'path'  => __DIR__,
-  'doc'   => $this,
-  'wam'   => $this->getWebAssetManager()]);
+  'path'   => __DIR__,
+  'params' => $this->params,
+  'wam'    => $this->getWebAssetManager(),
+  'pem'    => $this->getPreloadManager()
+]);
+
+echo LayoutHelper::render('muta.html5_sceleton', [
+  'doc'    => $this,
+  'entry'  => 'index',
+  'params' => $this->params->get('currentPage'),
+]);

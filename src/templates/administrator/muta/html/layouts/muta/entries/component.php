@@ -6,7 +6,6 @@
  */
 
 defined('_JEXEC') || die;
-
-extract($displayData);
-
-echo $renderPosition->message . $renderPosition->component;
+?>
+<jdoc:include type="message" />
+<jdoc:include type="component" />

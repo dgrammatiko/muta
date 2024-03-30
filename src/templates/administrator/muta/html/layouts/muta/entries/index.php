@@ -11,10 +11,9 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 
 extract($displayData);
-
 ?>
-<?= $renderPosition->customtop ?? ''; ?>
-<?= LayoutHelper::render('muta.partials.header', ['doc' => $doc, 'entry' => $entry, 'params' => $params, 'renderPosition' => $renderPosition]); ?>
+<jdoc:include type="modules" name="customtop" style="none" />
+<?= LayoutHelper::render('muta.partials.header', ['doc' => $doc, 'entry' => $entry, 'params' => $params]); ?>
 <div id="wrapper" class="d-flex wrapper<?= $params->hiddenMenu ? '0' : ''; ?> <?= $params->sidebarState; ?>">
   <?php if (!$params->hiddenMenu) : ?>
     <button class="navbar-toggler toggler-burger collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-wrapper" aria-controls="sidebar-wrapper" aria-expanded="false" aria-label="<?= Text::_('JTOGGLE_SIDEBAR_MENU'); ?>">
@@ -28,7 +27,7 @@ extract($displayData);
             <span class="sidebar-item-title"><?= Text::_('JTOGGLE_SIDEBAR_MENU'); ?></span>
           </a>
         </div>
-        <?= $renderPosition->menu ?? ''; ?>
+        <jdoc:include type="modules" name="menu" style="none" />
       </div>
     </div>
   <?php endif; ?>
@@ -40,23 +39,23 @@ extract($displayData);
       <div id="subhead-container" class="subhead mb-3">
         <div class="row">
           <div class="col-md-12">
-            <?= $renderPosition->toolbar ?? ''; ?>
+            <jdoc:include type="modules" name="toolbar" style="none" />
           </div>
         </div>
       </div>
     <?php endif; ?>
     <section id="content" class="content">
-      <?= $renderPosition->top ?? ''; ?>
+      <jdoc:include type="modules" name="top" style="html5" />
       <div class="row">
         <div class="col-md-12">
           <main>
-            <?= $renderPosition->message ?? ''; ?>
-            <?= $renderPosition->component ?? ''; ?>
+            <jdoc:include type="message"  />
+            <jdoc:include type="component"  />
           </main>
         </div>
-        <?= $renderPosition->bottom ?? ''; ?>
+        <jdoc:include type="modules" name="bottom" style="html5" />
       </div>
     </section>
   </div>
 </div>
-<?= $renderPosition->debug ?? ''; ?>
+<jdoc:include type="modules" name="debug" style="none" />

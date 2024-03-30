@@ -124,6 +124,9 @@ export async function versioning() {
   }
 
   await Promise.all(tasks);
+
+
 };
+
 
 versioning()

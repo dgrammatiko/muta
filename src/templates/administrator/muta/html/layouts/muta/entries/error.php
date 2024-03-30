@@ -12,4 +12,4 @@ use Joomla\CMS\Layout\LayoutHelper;
 extract($displayData);
 
 echo LayoutHelper::render('muta.partials.header', ['doc' => $doc, 'entry' => $entry, 'params' => $params]);
-echo $this->sublayout(($params->isGuest ? 'login' : 'full'), ['params' => $params, 'doc' => $doc]);
+echo $this->sublayout(($params->isGuest ? 'login' : 'full'), ['doc' => $doc, 'entry' => $entry]);

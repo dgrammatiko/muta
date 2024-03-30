@@ -23,6 +23,23 @@ const opts = {
   },
 };
 
+// update the php entry
+function replaceFontVer(css) {
+	const regex = /private \$fontAwesomeUrl = '([^']*)'/;
+	const str = `private \$fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=dsfjhsg';`;
+	const m = regex.exec(str);
+
+  if (!existsSync('src/templates/administrator/muta/src/Helper/ParamsEvaluatorHelper.php')) return;
+
+
+	if (m !== null) {
+		// The result can be accessed through the `m`-variable.
+		m.forEach((match, groupIndex) => {
+			console.log(`Found match, group ${groupIndex}: ${match}`);
+		});
+	}
+}
+
 /**
  * Adds a hash to the url() parts of the static css
  *
@@ -34,6 +51,11 @@ const fixVersion = async (file) => {
     const cssString = await readFile(file, { encoding: 'utf8' });
     const data = await Postcss([UrlVersion(opts)]).process(cssString, { from: file });
     await writeFile(file, data.css, { encoding: 'utf8', mode: 0o644 });
+
+    console.log(`Versioning ${file}...`);
+    if (file === 'media/templates/administrator/muta/css/vendor/fontawesome-free/fontawesome.min.css') {
+      replaceFontVer(data.css);
+    }
   } catch (error) {
     throw new Error(error);
   }

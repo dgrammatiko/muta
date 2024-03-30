@@ -22,7 +22,7 @@ extract($displayData);
               <img src="<?php echo $params->loginLogo; ?>" <?php echo $params->loginLogoAlt; ?>>
             </div>
             <h1><?php echo Text::_('JERROR_AN_ERROR_HAS_OCCURRED'); ?></h1>
-            <?= $renderPosition->message ?? ''; ?>
+            <jdoc:include type="message"  />
             <blockquote class="blockquote">
               <span class="badge bg-secondary"><?php echo $doc->error->getCode(); ?></span>
               <?php echo htmlspecialchars($doc->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?>
@@ -34,4 +34,4 @@ extract($displayData);
     </section>
   </div>
 </div>
-<?= $renderPosition->debug ?? ''; ?>
+<jdoc:include type="modules" name="debug" style="none" />
