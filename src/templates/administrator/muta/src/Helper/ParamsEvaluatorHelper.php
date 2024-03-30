@@ -23,7 +23,7 @@ defined('_JEXEC') || die;
 class ParamsEvaluatorHelper extends HtmlDocument
 {
   // @TODO automate the versioning
-  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=a4b448';
+  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=bbb264';
   private $fallbackColors = [
   'bs-primary'                  => '#5087E0',
   'bs-link-color'               => '#5087E0',
