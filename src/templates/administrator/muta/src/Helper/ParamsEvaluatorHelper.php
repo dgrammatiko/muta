@@ -22,7 +22,6 @@ defined('_JEXEC') || die;
  */
 class ParamsEvaluatorHelper extends HtmlDocument
 {
-  // @TODO automate the versioning
   private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=bbb264';
   private $fallbackColors = [
   'bs-primary'                  => '#5087E0',
@@ -198,7 +197,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
   private function preloader($type, $assets) {
     foreach ($assets as $asset) {
       if ($type === 'font') {
-        $this->pem->preload($asset, ['as' => 'font/woff2']);
+        $this->pem->preload(Uri::root() . $asset, ['as' => 'font', 'type' => 'font/woff2', 'crossorigin' => true]);
         continue;
       }
       $assetObj = $this->wam->getAsset($type, $asset);

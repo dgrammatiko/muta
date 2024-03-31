@@ -1,5 +1,5 @@
 import { readFile, writeFile } from 'fs/promises';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import crypto from 'crypto';
 import jetpack from 'fs-jetpack';
@@ -25,19 +25,18 @@ const opts = {
 
 // update the php entry
 function replaceFontVer(css) {
-	const regex = /private \$fontAwesomeUrl = '([^']*)'/;
-	const str = `private \$fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=dsfjhsg';`;
-	const m = regex.exec(str);
+  const file = 'src/templates/administrator/muta/src/Helper/ParamsEvaluatorHelper.php';
+  const regexPHP = /private\s\$fontAwesomeUrl\s=\s\'.+\?v=(.+)\'/gm;
+  const regexCSS = /url\(.+\?v=(.+)\"\)\sformat\(\"woff2\"\)/gm;
 
-  if (!existsSync('src/templates/administrator/muta/src/Helper/ParamsEvaluatorHelper.php')) return;
+  if (!existsSync(file)) return;
+  let fileContent = readFileSync(file, { encoding: "utf8" });
+  const php = regexPHP.exec(fileContent);
+  const cssReg = regexCSS.exec(css);
 
+  fileContent = fileContent.replace(php[1], cssReg[1]);
 
-	if (m !== null) {
-		// The result can be accessed through the `m`-variable.
-		m.forEach((match, groupIndex) => {
-			console.log(`Found match, group ${groupIndex}: ${match}`);
-		});
-	}
+  writeFileSync(file, fileContent, { encoding: "utf8", mode: 0o644 });
 }
 
 /**
