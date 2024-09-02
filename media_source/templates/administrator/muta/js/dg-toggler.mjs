@@ -38,10 +38,6 @@ button {
   transition: background-color ease 0.4s, transform ease 0.4s;
 }
 
-button > * {
-  pointer-events: none;
-}
-
 button::before {
   position: absolute;
   top: .15rem;
@@ -72,27 +68,16 @@ button[aria-pressed=false]::before {
   transform: translateX(1.5rem);
 }
 
-button span {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   button, button::before {
     transition: all 0.1s;
   }
 }
 </style>
-<button><span aria-hidden="true"></span></button>
+<button><span aria-hidden="true"></button>
     `;
 
     this.button = this.shadowRoot.querySelector('button');
-    this.span = this.shadowRoot.querySelector('span');
     this.button.addEventListener('click', this.onClick);
   }
 
@@ -110,7 +95,7 @@ button span {
     }
 
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
-    this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
+    this.button.setAttribute('aria-label',`${this.legend} ${this.state === 'dark' ? this.on : this.off}`);
     this.applyState();
   }
 
@@ -134,7 +119,7 @@ button span {
 
   applyState() {
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
-    this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
+    this.button.setAttribute('aria-label',`${this.legend} ${this.state === 'dark' ? this.on : this.off}`);
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
     this.html.setAttribute('data-theme', this.state === 'dark' ? 'dark' : 'light');
     if (forced()) {

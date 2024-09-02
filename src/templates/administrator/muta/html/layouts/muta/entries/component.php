@@ -6,6 +6,5 @@
  */
 
 defined('_JEXEC') || die;
-?>
-<jdoc:include type="message" />
-<jdoc:include type="component" />
+
+echo '<jdoc:include type="message" /><jdoc:include type="component" />';

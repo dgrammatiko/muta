@@ -22,7 +22,7 @@ defined('_JEXEC') || die;
  */
 class ParamsEvaluatorHelper extends HtmlDocument
 {
-  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=';
+  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-{entry}.woff2?v=';
   private $fallbackColors = [
   'bs-primary'                  => '#5087E0',
   'bs-link-color'               => '#5087E0',
@@ -69,8 +69,8 @@ class ParamsEvaluatorHelper extends HtmlDocument
 
   public function __construct($options) {
     $entry     = $options['entry'];
-    $path      = $options['path'];
-    $params    = $options['params'];
+    $doc       = $options['doc'];
+    $params    = $doc->params;
     $app       = Factory::getApplication();
     $input     = $app->getInput();
     $user      = $app->getIdentity();
@@ -78,34 +78,34 @@ class ParamsEvaluatorHelper extends HtmlDocument
     $view      = $input->get('view', '');
     $layout    = $input->get('layout', 'default');
     $task      = $input->get('task', 'display');
-    $this->wam = $options['wam'];
-    $this->pem = $options['pem'];
+    $this->wam = $doc->getWebAssetManager();
+    $this->pem = $doc->getPreloadManager();
 
-    $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
+    $doc->setMetaData('viewport', 'width=device-width, initial-scale=1');
 
     /**
      * To set a custom favicon:
      * you could place a 32x32 PNG file named `favicon.png` in the folder `media/templates/administrator/muta/images`
      * PNG favicons are widely supported: https://caniuse.com/link-icon-png
      */
-    $this->addHeadLink(HTMLHelper::_('image', 'favicon.png', '', [], true, 1), 'icon', 'rel', ['type' => 'image/png']);
+    $doc->addHeadLink(HTMLHelper::_('image', 'favicon.png', '', [], true, 1), 'icon', 'rel', ['type' => 'image/png']);
 
     $currentPage = (object) [
       'lang'              => $this->language,
       'dir'               => $this->direction,
-      'monochrome'        => (bool) $params->get('monochrome'),
-      'a11y_mono'         => (bool) $user->getParam('a11y_mono', ''),
-      'a11y_contrast'     => (bool) $user->getParam('a11y_contrast', ''),
-      'a11y_highlight'    => (bool) $user->getParam('a11y_highlight', ''),
-      'a11y_font'         => (bool) $user->getParam('a11y_font', ''),
+      'monochrome'        => (bool) $params->get('monochrome', false),
+      'a11y_mono'         => (bool) $user->getParam('a11y_mono', false),
+      'a11y_contrast'     => (bool) $user->getParam('a11y_contrast', false),
+      'a11y_highlight'    => (bool) $user->getParam('a11y_highlight', false),
+      'a11y_font'         => (bool) $user->getParam('a11y_font', false),
       'forcedColorScheme' => (bool) $params->get('forcedColorScheme', false),
       'defaultFont'       => $params->get('defaultFont'),
       'monoFont'          => $params->get('monoFont'),
       'cpanel'            => $option === 'com_cpanel' || ($option === 'com_admin' && $view === 'help'),
-      'hiddenMenu'        => $input->get('hidemainmenu'),
+      'hiddenMenu'        => $input->get('hidemainmenu', false),
       'sidebarState'      => $input->cookie->get('mutaSidebarState', ''),
       'fallbackColours'   => (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/src/Field/def.json'), true),
-      'colours'           => $params->get('muta-colors', '{}'),
+      'colours'           => json_decode((string) $params->get('muta-colors', '{}'), true),
       'sitename'          => $app->get('sitename'),
       'view'              => $view,
       'isGuest'           => (bool) $user->guest,
@@ -135,7 +135,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
     $currentPage->htmlTagAttributes = $htmlTagAttributes;
 
     if (($entry === 'login')) {
-      $currentPage->loginLogo = $params->get('loginLogo') ? Uri::root() . $params->get('loginLogo') : Uri::root() . 'media/templates/administrator/muta/images/logos/login.svg';
+      $currentPage->loginLogo    = $params->get('loginLogo') ? Uri::root() . $params->get('loginLogo') : Uri::root() . 'media/templates/administrator/muta/images/logos/login.svg';
       $currentPage->loginLogoAlt = empty($params->get('loginLogoAlt')) ? '' : htmlspecialchars($params->get('loginLogoAlt', ''), ENT_COMPAT, 'UTF-8');
       $currentPage->loginLogoAlt = empty($params->get('emptyLoginLogoAlt')) && $currentPage->loginLogoAlt === '' ? false : $currentPage->loginLogoAlt;
     }
@@ -150,15 +150,14 @@ class ParamsEvaluatorHelper extends HtmlDocument
     if (empty($currentPage->defaultFont)) {
       $currentPage->defaultFont = 'system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif';
     }
-    if (empty($currentPage->defaultFont)) {
+    if (empty($currentPage->monoFont)) {
       $currentPage->monoFont = 'SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace';
     }
 
-    $colors = array_merge($currentPage->fallbackColours ?? [], $this->fallbackColors);
+    $colors = array_merge($this->fallbackColors, $currentPage->colours ?? []);
 
     $this->setMetaData('theme-color', 'hsl('. $colors['hue']. ',40%,20%)');
     $this->wam->registerAndUseStyle('fontawesome', 'media/templates/administrator/muta/css/vendor/fontawesome-free/fontawesome.min.css', ['version' => '6.4.0'], [], []);
-
     $this->wam->useStyle('fontawesome');
 
     Text::script('JGLOBAL_WARNCOOKIES');
@@ -187,15 +186,20 @@ class ParamsEvaluatorHelper extends HtmlDocument
       $this->wam->useScript('bootstrap.collapse');
     }
 
-    $staticVersions = require_once __DIR__. '/versions.php';
+    try {
+      $staticVersions = require_once __DIR__. '/versions.php';
+    } catch (\Exception $e) {}
 
     if (empty($staticVersions)) {
-      $staticVersions = ['regular-400' => ''];
+      $staticVersions = ['regular-400' => 'b5120c', 'solid-900' => '567dd3', 'brands-400' => '98f5be'];
     }
 
     $this->preloader('style', ['template.muta.' . ($currentPage->dir === 'rtl' ? 'rtl' : 'ltr'), 'fontawesome', 'webcomponent.joomla-alert']);
     $this->preloader('script', $this->preloadScripts);
-    $this->preloader('font', [Uri::root() . $this->fontAwesomeUrl . $staticVersions['regular-400']]);
+
+    foreach ($staticVersions as $faFont => $ver) {
+      $this->preloader('font', [Uri::root() . str_replace('{entry}', $faFont, $this->fontAwesomeUrl) . $ver]);
+    }
 
     $params->set('currentPage', $currentPage);
   }
