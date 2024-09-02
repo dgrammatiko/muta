@@ -22,7 +22,7 @@ defined('_JEXEC') || die;
  */
 class ParamsEvaluatorHelper extends HtmlDocument
 {
-  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=bbb264';
+  private $fontAwesomeUrl = 'media/templates/administrator/muta/fonts/fa-regular-400.woff2?v=';
   private $fallbackColors = [
   'bs-primary'                  => '#5087E0',
   'bs-link-color'               => '#5087E0',
@@ -187,9 +187,15 @@ class ParamsEvaluatorHelper extends HtmlDocument
       $this->wam->useScript('bootstrap.collapse');
     }
 
+    $staticVersions = require_once __DIR__. '/versions.php';
+
+    if (empty($staticVersions)) {
+      $staticVersions = ['regular-400' => ''];
+    }
+
     $this->preloader('style', ['template.muta.' . ($currentPage->dir === 'rtl' ? 'rtl' : 'ltr'), 'fontawesome', 'webcomponent.joomla-alert']);
     $this->preloader('script', $this->preloadScripts);
-    $this->preloader('font', [Uri::root(true) . $this->fontAwesomeUrl]);
+    $this->preloader('font', [Uri::root() . $this->fontAwesomeUrl . $staticVersions['regular-400']]);
 
     $params->set('currentPage', $currentPage);
   }
@@ -197,7 +203,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
   private function preloader($type, $assets) {
     foreach ($assets as $asset) {
       if ($type === 'font') {
-        $this->pem->preload(Uri::root() . $asset, ['as' => 'font', 'type' => 'font/woff2', 'crossorigin' => true]);
+        $this->pem->preload($asset, ['as' => 'font', 'type' => 'font/woff2', 'crossorigin' => true]);
         continue;
       }
       $assetObj = $this->wam->getAsset($type, $asset);

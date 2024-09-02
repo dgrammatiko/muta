@@ -25,18 +25,23 @@ const opts = {
 
 // update the php entry
 function replaceFontVer(css) {
-  const file = 'src/templates/administrator/muta/src/Helper/ParamsEvaluatorHelper.php';
-  const regexPHP = /private\s\$fontAwesomeUrl\s=\s\'.+\?v=(.+)\'/gm;
-  const regexCSS = /url\(.+\?v=(.+)\"\)\sformat\(\"woff2\"\)/gm;
+  const vers = {}
+  const matches = [...css.matchAll(/url\(.+fa-(?<name>.+)\.woff2\?v=(?<ver>.+)\"\)\sformat\(\"woff2\"\),/gm)];
 
-  if (!existsSync(file)) return;
-  let fileContent = readFileSync(file, { encoding: "utf8" });
-  const php = regexPHP.exec(fileContent);
-  const cssReg = regexCSS.exec(css);
+  for (const match of matches) {
+    if (!vers[match.groups.name]) {
+      vers[match.groups.name] = match.groups.ver;
+    }
+  }
 
-  fileContent = fileContent.replace(php[1], cssReg[1]);
+  const fileContent = `<?php
+defined('_JEXEC') || die;
 
-  writeFileSync(file, fileContent, { encoding: "utf8", mode: 0o644 });
+return [
+  ${Object.keys(vers).map((key) => `'${key}' => '${vers[key]}'`).join(',\n  ')}
+];`;
+
+  writeFileSync('src/templates/administrator/muta/src/Helper/versions.php', fileContent, { encoding: "utf8", mode: 0o644, flag: 'w' });
 }
 
 /**
