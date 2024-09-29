@@ -74,8 +74,7 @@ button[aria-pressed=false]::before {
   }
 }
 </style>
-<button><span aria-hidden="true"></button>
-    `;
+<button></button>`;
 
     this.applyState = this.applyState.bind(this);
     this._update = this._update.bind(this);
