@@ -73,6 +73,8 @@
 @import "vendor/bootstrap/reboot";
 @import "vendor/bootstrap/table";
 
+@import "animations";
+
 // Blocks
 @import "blocks/alerts";
 @import "blocks/edit";
@@ -108,4 +110,3 @@
 @import "pages/com_privacy";
 @import "pages/com_templates";
 @import "pages/com_users";
-@import "animations"

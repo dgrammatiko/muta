@@ -36,7 +36,7 @@ foreach ($allModules as $key => $mod) {
     </div>
     <main class="d-flex justify-content-center align-items-center h-100">
       <div class="card p-5 login">
-        <header id="header" class="header bg-body">
+        <header id="header" class="header-login bg-body">
           <div class="header-inside">
             <div class="header-title ms-auto me-auto">
               <div class="header-items d-flex justify-content-between ms-auto me-auto gap-5 w-100">

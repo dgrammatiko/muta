@@ -1,9 +1,9 @@
 // Header
-.header {
+.header,
+.header-login {
   z-index: $zindex-header;
   color: var(--template-text-light);
   background: var(--template-bg-dark);
-  view-transition-name: header;
 
   &-inside {
     display: flex;
@@ -178,6 +178,10 @@
   span {
     margin: 4px;
   }
+}
+
+.header {
+  view-transition-name: header;
 }
 
 .header-item-count {

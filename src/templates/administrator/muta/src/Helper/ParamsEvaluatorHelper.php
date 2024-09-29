@@ -66,14 +66,15 @@ class ParamsEvaluatorHelper extends HtmlDocument
   private $preloadScripts = ['core'];
   private $pem;
   private $wam;
+  private $app;
 
   public function __construct($options) {
     $entry     = $options['entry'];
     $doc       = $options['doc'];
     $params    = $doc->params;
-    $app       = Factory::getApplication();
-    $input     = $app->getInput();
-    $user      = $app->getIdentity();
+    $this->app = Factory::getApplication();
+    $input     = $this->app->getInput();
+    $user      = $this->app->getIdentity();
     $option    = $input->get('option', '');
     $view      = $input->get('view', '');
     $layout    = $input->get('layout', 'default');
@@ -106,7 +107,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
       'sidebarState'      => $input->cookie->get('mutaSidebarState', ''),
       'fallbackColours'   => (array) json_decode(file_get_contents(JPATH_ADMINISTRATOR . '/templates/muta/src/Field/def.json'), true),
       'colours'           => json_decode((string) $params->get('muta-colors', '{}'), true),
-      'sitename'          => $app->get('sitename'),
+      'sitename'          => $this->app->get('sitename'),
       'view'              => $view,
       'isGuest'           => (bool) $user->guest,
     ];
@@ -218,7 +219,7 @@ class ParamsEvaluatorHelper extends HtmlDocument
         continue;
       }
 
-      $ver = $assetObj->getVersion() !== 'auto' ? $assetObj->getVersion() : Factory::getApplication()->getDocument()->getMediaVersion();
+      $ver = $assetObj->getVersion() !== 'auto' ? $assetObj->getVersion() : $this->app->getDocument()->getMediaVersion();
       $this->pem->preload($url . '?' . $ver, ['as' => $type]);
     }
   }
