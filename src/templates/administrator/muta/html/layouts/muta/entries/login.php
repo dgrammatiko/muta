@@ -19,14 +19,14 @@ $doc->getWebAssetManager()
   ->registerAndUseScript('joomla-theme-switch', 'dg-toggler.js', [], ['type' => 'module']);
 
 $renderer         = $doc->loadRenderer('module');
-$themeTogglerHtml = !$params->forcedColorScheme ? '' : '<joomla-theme-switch text-on="' . Text::_('JON') . '" text-off="' . Text::_('JOFF') . '" text-legend="' . Text::_('TPL_MUTA_COLORS_SETTINGS_DARK_THEME') . '"' . ($params->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
-$moduleHtml       = [$themeTogglerHtml];
+$themeTogglerHtml = !$params->forcedColorScheme ? '' : '<joomla-theme-switch class="ms-3 me-3 m-2" text-on="' . Text::_('JON') . '" text-off="' . Text::_('JOFF') . '" text-legend="' . Text::_('TPL_MUTA_COLORS_SETTINGS_DARK_THEME') . '"' . ($params->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
+$moduleHtml       = [];
 $allModules       = ModuleHelper::getModules('status');
 
 foreach ($allModules as $key => $mod) {
   $out = $renderer->render($mod);
   if ($out)
-    $moduleHtml[] = '<div class="header-item">' . $out . '</div>';
+    $moduleHtml[] = '<div class="header-item m-0">' . $out . '</div>';
 }
 ?>
 <div id="wrapper" class="wrapper login-bg flex-grow-1">
@@ -38,10 +38,11 @@ foreach ($allModules as $key => $mod) {
       <div class="card p-5 login">
         <header id="header" class="header bg-body">
           <div class="header-inside">
-            <div class="header-title d-flex">
-              <div class="header-items d-flex ms-auto gap-5">
+            <div class="header-title ms-auto me-auto">
+              <div class="header-items d-flex justify-content-between ms-auto me-auto gap-5 w-100">
                 <?= implode(' ', $moduleHtml); ?>
               </div>
+              <?= $themeTogglerHtml; ?>
               <div class="header-more d-none" id="header-more-items"></div>
             </div>
         </header>
