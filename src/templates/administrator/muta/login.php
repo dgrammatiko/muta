@@ -7,9 +7,8 @@
 
 defined('_JEXEC') || die;
 
-use Dgrammatiko\Template\Muta\Administrator\Helper\ParamsEvaluatorHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 
-new ParamsEvaluatorHelper(['doc' => &$this, 'entry' => basename(__FILE__, '.php')]); // Evaluate runtime params
+LayoutHelper::render('muta.params_evaluator', ['doc' => &$this, 'entry' => basename(__FILE__, '.php')]); // Evaluate runtime params
 
 echo LayoutHelper::render('muta.html5_sceleton', ['doc' => &$this, 'entry' => basename(__FILE__, '.php')]); // Render the template
