@@ -38,10 +38,6 @@ button {
   transition: background-color ease 0.4s, transform ease 0.4s;
 }
 
-button > * {
-  pointer-events: none;
-}
-
 button::before {
   position: absolute;
   top: .15rem;
@@ -72,35 +68,23 @@ button[aria-pressed=false]::before {
   transform: translateX(1.5rem);
 }
 
-button span {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   button, button::before {
     transition: all 0.1s;
   }
 }
 </style>
-<button><span aria-hidden="true"></span></button>
-    `;
+<button></button>`;
 
+    this.applyState = this.applyState.bind(this);
+    this._update = this._update.bind(this);
     this.button = this.shadowRoot.querySelector('button');
-    this.span = this.shadowRoot.querySelector('span');
-    this.button.addEventListener('click', this.onClick);
+    this.addEventListener('click', this.onClick);
   }
 
-  get on() { return this.getAttribute('text-on') || 'on'; }
+  get on() { return this.getAttribute('text-on') || 'Dark theme enabled'; }
 
-  get off() { return this.getAttribute('text-off') || 'off'; }
-
-  get legend() { return this.getAttribute('text-legend') || 'dark theme'; }
+  get off() { return this.getAttribute('text-off') || 'Light theme enabled'; }
 
   connectedCallback() {
     this.state = forced() && this.html.dataset && this.html.dataset.theme ? this.html.dataset.theme : 'light';
@@ -110,8 +94,8 @@ button span {
     }
 
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
-    this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
-    this.applyState();
+    this.button.setAttribute('aria-label',`${this.state === 'dark' ? this.on : this.off}`);
+    this._update();
   }
 
   disconnectedCallback() {
@@ -123,29 +107,41 @@ button span {
     this.applyState();
   }
 
-  onClick() {
-    if (!forced()) {
-      this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
-      return;
-    }
+  async onClick() {
     this.state = this.state === 'light' ? 'dark' : 'light';
-    this.applyState();
+    await this.applyState();
   }
 
-  applyState() {
+  _update() {
     this.button.setAttribute('aria-pressed', this.state === 'dark' ? 'true' : 'false');
-    this.span.innerText = `${this.legend} ${this.state === 'dark' ? this.on : this.off}`;
+    this.button.setAttribute('aria-label',`${this.state === 'dark' ? this.on : this.off}`);
+
+    if (!forced()) return;
+
     this.html.setAttribute('data-bs-theme', this.state === 'dark' ? 'dark' : 'light');
     this.html.setAttribute('data-theme', this.state === 'dark' ? 'dark' : 'light');
-    if (forced()) {
-      const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
-      ev.prefersColorScheme = this.state;
-      window.dispatchEvent(ev);
-      if (navigator.cookieEnabled) {
-        const oneYearFromNow = new Date();
-        oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-        document.cookie = `mutaPrefersColorScheme=${this.state};expires=${oneYearFromNow.toGMTString()}`;
-      }
+    const ev = new Event('joomla:toggle-theme', { bubbles: true, cancelable: false });
+    ev.prefersColorScheme = this.state;
+    window.dispatchEvent(ev);
+    if (navigator.cookieEnabled) {
+      const oneYearFromNow = new Date();
+      oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+      document.cookie = `mutaPrefersColorScheme=${this.state};expires=${oneYearFromNow.toGMTString()}`;
+    }
+  }
+
+  async applyState() {
+    if (!document.startViewTransition) {
+      return this._update();
+    }
+
+    this.html.style.viewTransitionName = 'darklight';
+    const transition = document.startViewTransition(this._update);
+
+    try {
+      await transition.finished;
+    } finally {
+      this.html.style.viewTransitionName = 'none';
     }
   }
 }

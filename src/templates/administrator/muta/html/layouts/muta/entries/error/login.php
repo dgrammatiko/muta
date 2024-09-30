@@ -11,6 +11,8 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 
 extract($displayData);
+
+$params = $doc->params->get('currentPage');
 ?>
 <div id="wrapper" class="d-flex wrapper<?php echo $params->hiddenMenu ? '0' : ''; ?>">
   <div class="container-fluid container-main">

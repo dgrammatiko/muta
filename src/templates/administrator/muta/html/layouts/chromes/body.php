@@ -22,28 +22,25 @@ if ((string) $module->content === '') {
   return;
 }
 
-$id = $module->id;
-
+$id             = $module->id;
 // Permission checks
-$user    = Factory::getUser();
-$canEdit   = $user->authorise('core.edit', 'com_modules.module.' . $id) && $user->authorise('core.manage', 'com_modules');
-$canChange = $user->authorise('core.edit.state', 'com_modules.module.' . $id) && $user->authorise('core.manage', 'com_modules');
-
-$moduleTag    = $params->get('module_tag', 'div');
+$user           = Factory::getApplication()->getIdentity();
+$canEdit        = $user->authorise('core.edit', 'com_modules.module.' . $id) && $user->authorise('core.manage', 'com_modules');
+$canChange      = $user->authorise('core.edit.state', 'com_modules.module.' . $id) && $user->authorise('core.manage', 'com_modules');
+$moduleTag      = $params->get('module_tag', 'div');
 $bootstrapSize  = (int) $params->get('bootstrap_size', 6);
-$moduleClass  = $bootstrapSize ? 'col-md-' . $bootstrapSize : 'col-md-12';
-$headerTag    = htmlspecialchars($params->get('header_tag', 'h2'), ENT_QUOTES, 'UTF-8');
+$moduleClass    = $bootstrapSize ? 'col-md-' . $bootstrapSize : 'col-md-12';
+$headerTag      = htmlspecialchars($params->get('header_tag', 'h2'), ENT_QUOTES, 'UTF-8');
 $moduleClassSfx = $params->get('moduleclass_sfx', '');
-
 // Temporarily store header class in variable
-$headerClass = $params->get('header_class');
-$headerClass = $headerClass ? ' ' . htmlspecialchars($headerClass, ENT_QUOTES, 'UTF-8') : '';
+$headerClass    = $params->get('header_class');
+$headerClass    = $headerClass ? ' ' . htmlspecialchars($headerClass, ENT_QUOTES, 'UTF-8') : '';
 
 ?>
 <div class="<?php echo $moduleClass; ?> module-wrapper">
   <<?php echo $moduleTag; ?> class="card pt-3<?php echo $moduleClassSfx; ?>">
     <?php if ($canEdit || $canChange) : ?>
-      <?php $dropdownPosition = Factory::getLanguage()->isRtl() ? 'start' : 'end'; ?>
+      <?php $dropdownPosition = Factory::getApplication()->getLanguage()->isRtl() ? 'start' : 'end'; ?>
       <div class="module-actions dropdown">
         <button type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn" id="dropdownMenuButton-<?php echo $id; ?>">
           <span class="icon-cogs" aria-hidden="true"></span>
