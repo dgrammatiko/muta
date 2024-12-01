@@ -5,7 +5,7 @@
   min-height: calc(100vh - 66px);
   overflow: hidden;
   background-color: var(--template-sidebar-bg);
-  box-shadow: 0 0 20px -10px var(--template-bg-dark-50);
+  // box-shadow: 0 0 20px -10px var(--template-bg-dark-50);
   view-transition-name: sidebarwrapper;
 
   .sidebar-sticky {
@@ -252,6 +252,10 @@
 
     &:focus {
       box-shadow: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: none;
     }
 
     .navbar-toggler-icon::before {

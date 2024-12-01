@@ -11,4 +11,4 @@ use Joomla\CMS\Layout\LayoutHelper;
 
 LayoutHelper::render('muta.params_evaluator', ['doc' => &$this, 'entry' => 'index']); // Evaluate runtime params
 
-echo LayoutHelper::render('muta.html5_sceleton', ['doc' => &$this, 'entry' => 'index']); // Render the template
+echo LayoutHelper::render('muta.entries', ['doc' => &$this, 'entry' => 'index']); // Render the template

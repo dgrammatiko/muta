@@ -36,24 +36,24 @@ $headerClass    = $params->get('header_class') ? ' class="' . htmlspecialchars($
 $headerIcon     = $params->get('header_icon') ? '<span class="' . htmlspecialchars($params->get('header_icon'), ENT_QUOTES, 'UTF-8') . '" aria-hidden="true"></span>' : '';
 
 ?>
-<div class="<?php echo $moduleClass; ?> module-wrapper">
-  <<?php echo $moduleTag; ?> class=" <?php echo $moduleClassSfx; ?>">
+<div class="<?= $moduleClass; ?> module-wrapper">
+  <<?= $moduleTag; ?> class=" <?= $moduleClassSfx; ?>">
     <?php if ($canEdit || $canChange || $headerIcon || $module->showtitle) : ?>
         <?php if ($canEdit || $canChange) : ?>
           <?php $dropdownPosition = Factory::getApplication()->getLanguage()->isRtl() ? 'start' : 'end'; ?>
           <div class="module-actions dropdown">
-            <button type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false" class="btn" id="dropdownMenuButton-<?php echo $id; ?>">
+            <button type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-haspopup="true" aria-expanded="false" class="btn" id="dropdownMenuButton-<?= $id; ?>">
               <span class="icon-cogs" aria-hidden="true"></span>
-              <span class="visually-hidden"><?php echo Text::sprintf('JACTION_EDIT_MODULE', $module->title); ?></span>
+              <span class="visually-hidden"><?= Text::sprintf('JACTION_EDIT_MODULE', $module->title); ?></span>
             </button>
-            <div class="dropdown-menu dropdown-menu-<?php echo $dropdownPosition; ?>" aria-labelledby="dropdownMenuButton-<?php echo $id; ?>">
+            <div class="dropdown-menu dropdown-menu-<?= $dropdownPosition; ?>" aria-labelledby="dropdownMenuButton-<?= $id; ?>">
               <?php if ($canEdit) : ?>
                 <?php $uri = Uri::getInstance(); ?>
                 <?php $url = Route::_('index.php?option=com_modules&task=module.edit&id=' . $id . '&return=' . base64_encode($uri)); ?>
-                <a class="dropdown-item" href="<?php echo $url; ?>"><?php echo Text::_('JACTION_EDIT'); ?></a>
+                <a class="dropdown-item" href="<?= $url; ?>"><?= Text::_('JACTION_EDIT'); ?></a>
               <?php endif; ?>
               <?php if ($canChange) : ?>
-                <button type="button" class="dropdown-item unpublish-module" data-module-id="<?php echo $id; ?>"><?php echo Text::_('JACTION_UNPUBLISH'); ?></button>
+                <button type="button" class="dropdown-item unpublish-module" data-module-id="<?= $id; ?>"><?= Text::_('JACTION_UNPUBLISH'); ?></button>
               <?php endif; ?>
             </div>
           </div>
@@ -61,14 +61,14 @@ $headerIcon     = $params->get('header_icon') ? '<span class="' . htmlspecialcha
 
         <details class="mt-3">
           <summary>
-            <?php echo $headerIcon; ?>
-            <?php echo htmlspecialchars($module->title, ENT_QUOTES, 'UTF-8'); ?>
+            <?= $headerIcon; ?>
+            <?= htmlspecialchars($module->title, ENT_QUOTES, 'UTF-8'); ?>
           </summary>
           <div>
-            <?php echo $module->content; ?>
+            <?= $module->content; ?>
           </div>
         </div>
         </details>
     <?php endif; ?>
-  </<?php echo $moduleTag; ?>>
+  </<?= $moduleTag; ?>>
 </div>

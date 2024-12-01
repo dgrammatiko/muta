@@ -143,7 +143,7 @@ if (empty($currentPage->monoFont)) {
 
 $colors = array_merge($fallbackColors, $currentPage->colours ?? []);
 
-$doc->setMetaData('theme-color', 'hsl(' . $colors['hue'] . ',40%,20%)');
+$doc->setMetaData('theme-color', 'hsl(' . $colors['hue'] . ' 40% 20%)');
 $wam->registerAndUseStyle('fontawesome', 'media/templates/administrator/muta/css/vendor/fontawesome-free/fontawesome.min.css', ['version' => '6.4.0'], [], []);
 $wam->useStyle('fontawesome');
 

@@ -20,7 +20,7 @@ class PreloaderHelper
     throw new Exception('Font version file doesn\'t exist');
   }
 
-  public function preload($type, $assets, $pem, $wam, $app) {
+  public function preload($type, $assets, &$pem, &$wam, &$app) {
     foreach ($assets as $asset) {
       if ($type === 'font') {
         $pem->preload($asset, ['as' => 'font', 'type' => 'font/woff2', 'crossorigin' => true]);

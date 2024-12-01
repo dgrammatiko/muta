@@ -28,26 +28,27 @@
     padding: 12px 5px;
     overflow: hidden;
     // background-color: var(--template-bg-dark-70);
-    transition: all .3s ease-in-out;
+    transition: all .5s ease-in-out;
 
     &.small {
       justify-content: center;
       width: $sidebar-width-closed;
-      transition: all .3s ease-in-out;
+      transition: all .5s ease-in-out;
 
       svg,
       img {
-
+        margin: 0 -10px;
+        width: 20px;
         &:not(.logo-collapsed) {
-          display: none;
+          visibility: hidden;
         }
 
         &.logo-collapsed {
           display: inline-block;
-          width: 20px;
           height: 20px;
           object-fit: contain;
           object-position: center center;
+          visibility: visible;
         }
       }
     }
@@ -59,9 +60,10 @@
       margin: 0 .35rem;
       object-fit: contain;
       object-position: left center;
+      visibility: visible;
 
       &.logo-collapsed {
-        display: none;
+        visibility: hidden;
       }
     }
   }

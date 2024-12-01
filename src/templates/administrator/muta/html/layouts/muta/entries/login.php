@@ -19,7 +19,7 @@ $doc->getWebAssetManager()
   ->registerAndUseScript('joomla-theme-switch', 'dg-toggler.js', [], ['type' => 'module']);
 
 $renderer         = $doc->loadRenderer('module');
-$themeTogglerHtml = !$params->forcedColorScheme ? '' : '<joomla-theme-switch class="ms-3 me-3 m-2" text-on="' . Text::_('JON') . '" text-off="' . Text::_('JOFF') . '" text-legend="' . Text::_('TPL_MUTA_COLORS_SETTINGS_DARK_THEME') . '"' . ($params->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
+$themeTogglerHtml = !$params->forcedColorScheme ? '' : '<joomla-theme-switch class="ms-3 me-3 m-2" text-on="' . Text::_('JON') . '" text-off="' . Text::_('JOFF') . '"' . ($params->forcedColorScheme ? ' forced-theme' : '') . '></joomla-theme-switch>';
 $moduleHtml       = [];
 $allModules       = ModuleHelper::getModules('status');
 
