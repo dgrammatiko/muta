@@ -20,6 +20,6 @@ if ((string) $module->content === '') {
 
 ?>
 <div class="card-header">
-  <h6><?php echo $module->title; ?></h6>
+  <h6><?= $module->title; ?></h6>
 </div>
-<?php echo $module->content; ?>
+<?= $module->content; ?>

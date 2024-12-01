@@ -7,22 +7,8 @@
 
 defined('_JEXEC') || die;
 
-use Dgrammatiko\Template\Muta\Administrator\Helper\ParamsEvaluatorHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 
-$entry = basename(__FILE__, '.php');
+LayoutHelper::render('muta.params_evaluator', ['doc' => &$this, 'entry' => basename(__FILE__, '.php')]); // Evaluate runtime params
 
-// Evaluate runtime params
-new ParamsEvaluatorHelper([
-  'entry'  => $entry,
-  'path'   => __DIR__,
-  'params' => $this->params,
-  'wam'    => $this->getWebAssetManager(),
-  'pem'    => $this->getPreloadManager()
-]);
-
-echo LayoutHelper::render('muta.html5_sceleton', [
-  'doc'    => $this,
-  'entry'  => $entry,
-  'params' => $this->params->get('currentPage'),
-]);
+echo LayoutHelper::render('muta.entries', ['doc' => &$this, 'entry' => basename(__FILE__, '.php')]); // Render the template
