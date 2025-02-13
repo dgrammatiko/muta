@@ -1,6 +1,6 @@
 {
   "name": "@dgrammatiko/muta",
-  "version": "2.2.0",
+  "version": "3.0.0-beta2",
   "publishConfig": {
     "access": "public"
   },
@@ -10,7 +10,7 @@
     "link": "joomla-tools -l",
     "build": "joomla-tools -b media_source && node ./.scripts/css-versioning.mjs",
     "compress": "cd media/templates/administrator/muta && npx --no-install github:dgrammatiko/compress@1.0.3",
-    "release": "joomla-tools -r && node ./.scripts/clean-version.mjs",
+    "release": "node ./.scripts/clean-version.mjs && node ./.scripts/css-versioning.mjs && node ./.scripts/versioning.mjs && joomla-tools -r && node ./.scripts/clean-version.mjs",
     "init": "joomla-tools -i && joomla-tools -l && joomla-tools -b media_source",
     "lint-css": "./node_modules/stylelint/bin/stylelint.js ./media_source/**/*.scss --fix",
     "lint-js": "./node_modules/eslint/bin/eslint.js ./media_source/**/*.mjs",
@@ -21,7 +21,7 @@
   "author": "Dimitris Grammatikogiannis",
   "license": "MIT",
   "homepage": "https://muta.dgrammatiko.dev",
-  "joomlaVersion": "5.1.0-beta2",
+  "joomlaVersion": "5.2.0",
   "joomla-extensions": {
     "components": [],
     "libraries": [],
@@ -58,7 +58,7 @@
       "administrator": [
         {
           "name": "muta",
-          "version": "2.2.0"
+          "version": "3.0.0-beta2"
         }
       ],
       "site": []
@@ -75,7 +75,7 @@
     "@fortawesome/fontawesome-free": "^6.4.2",
     "awesomplete": "^1.1.5",
     "bootstrap": "^5.3.2",
-    "choices.js": "^10.2.0",
+    "choices.js": "11.0.2",
     "color-picker-web-component": "^1.3.7",
     "joomla-ui-custom-elements": "^0.4.0",
     "lit": "^3.0.0",

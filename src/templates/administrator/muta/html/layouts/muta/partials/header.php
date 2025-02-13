@@ -18,10 +18,10 @@ extract($displayData);
   <div class="header-inside">
     <div class="header-title d-flex">
       <div class="d-flex align-items-center">
-        <?php if (in_array($entry, ['login', 'error']) || (!$params->hiddenMenu || !$params->cpanel)) : ?><?php /* No home link in edit mode and control panel (so users can not jump out for a11y reasons) */ ?>
+        <?php if (in_array($entry, ['login', 'error']) || !$params->hiddenMenu || !$params->cpanel) : ?><?php /* No home link in edit mode and control panel (so users can not jump out for a11y reasons) */ ?>
         <div class="logo <?= $params->sidebarState === 'closed' || $params->hiddenMenu ? 'small' : ''; ?>">
-          <?= LayoutHelper::render('joomla.html.image', ['src' => $params->logoBrandLarge, 'alt' => $params->logoBrandLargeAlt, 'loading' => 'eager']); ?>
-          <?= LayoutHelper::render('joomla.html.image', ['src' => $params->logoBrandSmall, 'alt' => $params->logoBrandSmallAlt, 'class' => 'logo-collapsed', 'loading' => 'eager']); ?>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $params->logoBrandLarge, 'alt' => '', 'loading' => 'eager']); ?>
+          <?= LayoutHelper::render('joomla.html.image', ['src' => $params->logoBrandSmall, 'alt' => '', 'class' => 'logo-collapsed', 'loading' => 'eager']); ?>
         </div>
       <?php else : ?>
         <a class="logo <?= $params->sidebarState === 'closed' ? 'small' : ''; ?>" href="<?= Route::_('index.php'); ?>">

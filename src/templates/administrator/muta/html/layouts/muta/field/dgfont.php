@@ -11,7 +11,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Layout\LayoutHelper;
 
 if (!$displayData['readonly']) {
-  Factory::getDocument()->getWebAssetManager()->registerAndUseScript('form.field.dgfont', 'media/templates/administrator/muta/js/dgfont-field.js', ['version' => 'auto'], ['type'    => 'module'], ['core']);
+  Factory::getApplication()->getDocument()->getWebAssetManager()->registerAndUseScript('form.field.dgfont', 'media/templates/administrator/muta/js/dgfont-field.js', ['version' => 'auto'], ['type'    => 'module'], ['core']);
 }
 
 echo LayoutHelper::render('joomla.form.field.list', $displayData);

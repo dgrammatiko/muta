@@ -20,5 +20,5 @@ if ((string) $module->content === '') {
 
 ?>
 <div class="header-item d-flex">
-  <?php echo $module->content; ?>
+  <?= $module->content; ?>
 </div>
