@@ -1,0 +1,70 @@
+/* theme switch transition */
+::view-transition-new(darklight),
+::view-transition-old(darklight) {
+  animation: pan-v-t 1s ease-in-out;
+  backface-visibility: hidden;
+}
+
+::view-transition-new(darklight) {
+  --vt-ds: 180deg;
+  height: 100lvh;
+}
+
+::view-transition-old(darklight) {
+  --vt-ds: 0deg;
+  backface-visibility: hidden;
+}
+
+@keyframes pan-v-t {
+  0% { transform: scale(1) rotateY(var(--vt-ds)); }
+  25% { transform: scale(.5) rotateY(var(--vt-ds)); }
+  75% { transform: scale(.5) rotateY(calc(var(--vt-ds) + 180deg)); }
+  100% { transform: scale(1) rotateY(calc(var(--vt-ds) + 180deg)); }
+}
+
+/* navigation */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: pulse .08s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+::view-transition-old(sidebarwrapper) {
+  animation: fade-out .08s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+::view-transition-old(header) {
+  animation: fade-out .08s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+
+::view-transition-new(root) {
+  animation: pulse .16s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+::view-transition-new(sidebarwrapper) {
+  animation: fade-in .08s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+::view-transition-new(header) {
+  animation: fade-in .08s cubic-bezier(.25, 0, .3, 1) forwards;
+}
+@keyframes pulse {
+  50% {
+    transform: scale(.9);
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+
+::backdrop {
+  background-color: rgba(0 0 0 / 75%);
+}

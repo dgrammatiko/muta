@@ -108,25 +108,23 @@ export async function versioning() {
 
   if (existsSync('src/templates/administrator')) {
     readdirSync('src/templates/administrator', {withFileTypes: true})
-    .filter((dir) => !exclusion.includes(dir.path))
+    .filter((dir) => !exclusion.includes(dir.parentPath))
     .forEach((dir) => {
       final[`media/templates/administrator/${dir.name}`] = [];
-      tasks.push(fixVersion(`${dir.path}/${dir.name}`, true));
+      tasks.push(fixVersion(`${dir.parentPath}/${dir.name}`, true));
     });
   }
   if (existsSync('src/templates/site')) {
     readdirSync('src/templates/site', {withFileTypes: true})
-    .filter((dir) => !exclusion.includes(dir.path))
+    .filter((dir) => !exclusion.includes(dir.parentPath))
     .forEach((dir) => {
       final[`media/templates/site/${dir.name}`] = [];
-      tasks.push(fixVersion(`${dir.path}/${dir.name}`, true));
+      tasks.push(fixVersion(`${dir.parentPath}/${dir.name}`, true));
     });
   }
 
   await Promise.all(tasks);
-
-
 };
 
 
-versioning()
+versioning();

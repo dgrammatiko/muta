@@ -1,3 +1,5 @@
+// lab(from var(--template-bg-dark) l a b / 0.9)
+
 import { LitElement, html } from 'lit';
 import 'toolcool-color-picker';
 import fallbackJson from '../../../../../src/templates/administrator/muta/src/Field/def.json';

@@ -23,14 +23,14 @@ class MutaInstallerScript extends InstallerScript
    *
    * @var string
    */
-  protected $minimumPhp    = JOOMLA_MINIMUM_PHP;
+  protected $minimumPhp = JOOMLA_MINIMUM_PHP;
 
   /**
    * Files for removal
    *
    * @var array
    */
-  protected $deleteFiles   = [
+  protected $deleteFiles = [
     '/administrator/templates/muta/favicon.png',
   ];
 
